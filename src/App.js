@@ -1,10 +1,10 @@
 import Button from "./components/Button";
+import Login from "./main/login/login";
 
 function App() {
   return (
     <div className="App">
-      salom
-      <Button title="salom" class="red lg"/>
+      <Login/>
     </div>
   );
 }
