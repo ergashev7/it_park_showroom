@@ -28,8 +28,14 @@
     font-weight: 500;
 }
 .form-card{
-    padding: 60px 45px;
+    padding: 50px 45px;
     border-radius: 8px;
     background-color: white;
     margin-top: 28px;
+}
+.mt-5{
+    margin-top: 20px;
+}
+.wd{
+    width: 402px !important;
 }
