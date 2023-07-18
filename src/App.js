@@ -1,9 +1,8 @@
+import Button from "../components/Button/Button";
 function App() {
   return (
     <div className="App">
-      salom
-      hi
-      <h1>Diyorbek</h1>
+      <Button/>
     </div>
   );
 }
