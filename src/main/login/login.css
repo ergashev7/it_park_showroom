@@ -3,22 +3,22 @@
   padding: 0;
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap");
 }
-.container {
+.container1 {
   background-color: #f5f5fb;
   height: 100vh;
   font-family: "Montserrat", sans-serif;
 }
-.bg-container {
+.bg-container1 {
   background-image: url("../../assets/img/bg-img.png");
   background-size: 100%;
   height: 519px;
 }
-.form {
+.form1 {
   display: flex;
   justify-content: center;
 }
 
-.form-img {
+.form-img1 {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -28,7 +28,7 @@
   font-size: 21px;
   font-weight: 500;
 }
-.form-card {
+.form-card1 {
   max-width: 493.5px;
   max-height: 484.71px;
   padding: 50px 45px;
@@ -37,13 +37,13 @@
   margin-top: 28px;
   box-shadow: 0px 0px 4px rgb(73, 65, 65);
 }
-.mt-5 {
+.mt-51 {
   margin-top: 20px;
 }
-.wd {
+.wd1 {
   width: 402px !important;
 }
-.input {
+.input1 {
   margin-top: 5px;
   width: 402.99px;
   height: 40.01px;
@@ -57,7 +57,7 @@
   letter-spacing: 0em;
   text-align: left;
 }
-input:focus {
+input1:focus {
   outline: 2px solid #99adce;
 }
 .password2 {
@@ -68,12 +68,12 @@ input:focus {
   font-size: 14px;
   color: red;
 }
-.login-check {
+.login-check1 {
   width: 18px;
   height: 18px;
   border-radius: 4px;
 }
-.empty {
+.empty1 {
   display: flex;
   gap: 10px;
 }

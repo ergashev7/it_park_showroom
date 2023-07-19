@@ -8,28 +8,28 @@ function Login() {
   const [value, setValue] = useState("");
   const [valueCheck, setValueCheck] = useState("");
   return (
-    <div className="container">
-      <div className="bg-container">
-        <div className="form">
-          <div className="form-container">
-            <div className="form-img">
+    <div className="container1">
+      <div className="bg-container1">
+        <div className="form1">
+          <div className="form-container1">
+            <div className="form-img1">
               <img src={imgIT} width="300px" alt="" />
             </div>
-            <div className="form-card">
-              <p className="form-text">
+            <div className="form-card1">
+              <p className="form-text1">
                 Добро пожаловать <br /> в календарь
               </p>
-              <div className="card flex justify-content-center mt-5">
-                <div className="flex flex-column gap-2">
+              <div className="card1 flex1 justify-content-center1 mt-51">
+                <div className="flex1 flex-column gap-21">
                   <label htmlFor="username">Почта</label> <br />
                   <input
-                    className="input"
+                    className="input1"
                     placeholder=" hannah.green@test.com"
                     type="text"
                   />
                 </div>
               </div>
-              <div className="card flex justify-content-center mt-5">
+              <div className="card1 flex1 justify-content-center mt-51">
                 <label className="mt-5" htmlFor="value">
                   Пароль
                 </label>{" "}
@@ -37,18 +37,18 @@ function Login() {
                 <input
                   type="password"
                   placeholder=" Password123@"
-                  className="input password2"
+                  className="input1 password2"
                 />
                 <br />
               </div>
-              <div className=" mt-5">
-                <label className="empty">
-                  <input className="login-check" type="checkbox" />
+              <div className=" mt-51">
+                <label className="empty1">
+                  <input className="login-check1" type="checkbox" />
                   <span>Запомнить этот компьютер</span>
                 </label>
               </div>
-              <Button class="iris lg mt-5" title="Войти" />
-              <p className="parol mt-5">Забыли пароль?</p>
+              <Button class="iris lg mt-51" title="Войти" />
+              <p className="parol mt-51">Забыли пароль?</p>
               <div style={{ width: "401px" }}></div>
             </div>
           </div>
