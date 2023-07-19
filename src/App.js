@@ -1,18 +1,20 @@
-import "./App.css"   
-import React, { useState } from 'react'
+import "./App.css";
+import React, { useState } from "react";
 import CalendarHeader from "./components/CalendarHeader";
 import Month from "./components/Month";
 import Sidebar from "./components/Sidebar";
-import {getMonth} from "./util"        
+import { getMonth } from "./util";
+import Login from "./main/login/login";
 function App() {
-  const [currentMonth,setCurrentMonth]=useState(getMonth())
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
   return (
     <React.Fragment>
+      <Login />
       <div className="h-screen flex flex-columns">
-        <CalendarHeader/>
+        <CalendarHeader />
         <div className="flex flex-1">
-          <Sidebar/>
-          <Month month={currentMonth}/>
+          <Sidebar />
+          <Month month={currentMonth} />
         </div>
       </div>
     </React.Fragment>
