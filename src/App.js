@@ -1,16 +1,13 @@
 import Button from "./components/Button";
 import Login from "./main/login/login";
-import { Input } from "./components/input";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import Admin from "./main/adim";
 
 function App() {
   return (
     <div className="App">
-      {/* <Login /> */}
-      <Input
-        className="input input-image"
-        placeholder=" hannah.green@test.com"
-      />
-      <Input placeholder=" Password123@" />
+      <Admin />
     </div>
   );
 }
