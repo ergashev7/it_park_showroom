@@ -1,15 +1,21 @@
-import BasicDemo from "./components";
-import Button from "./components/Button";
-import Login from "./main/login/login";
-import "primereact/resources/themes/lara-light-indigo/theme.css";     
-import "primereact/resources/primereact.min.css";                                       
-import Admin from "./main/adim";
-        
+import "./App.css"   
+import React, { useState } from 'react'
+import CalendarHeader from "./components/CalendarHeader";
+import Month from "./components/Month";
+import Sidebar from "./components/Sidebar";
+import {getMonth} from "./util"        
 function App() {
+  const [currentMonth,setCurrentMonth]=useState(getMonth())
   return (
-    <div className="App">
-      <Admin/>
-    </div>
+    <React.Fragment>
+      <div className="h-screen flex flex-columns">
+        <CalendarHeader/>
+        <div className="flex flex-1">
+          <Sidebar/>
+          <Month month={currentMonth}/>
+        </div>
+      </div>
+    </React.Fragment>
   );
 }
 
