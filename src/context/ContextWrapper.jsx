@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import GlobalContext from './GlobalContext'
-import dayjs from 'dayjs'
+import dayjs, { isDayjs } from 'dayjs'
 
 function ContextWrapper(props) {
   const [monthIndex,setMonthIndex]=useState(dayjs().month())
   const [smallCalendarMonth,setSmallCalendarMonth]=useState(null)
-  const [daySelected , setDaySelected] = useState(null)
+  const [daySelected , setDaySelected] = useState(isDayjs())
+  const [showEventModal ,setShowEventModal]=useState(false)
   useEffect(()=>{
     if (smallCalendarMonth !== null) {
         setMonthIndex(smallCalendarMonth)
@@ -18,7 +19,9 @@ function ContextWrapper(props) {
         smallCalendarMonth,
         setSmallCalendarMonth,
         daySelected,
-        setDaySelected
+        setDaySelected,
+        showEventModal,
+        setShowEventModal
         }}>
         {props.children}
     </GlobalContext.Provider>

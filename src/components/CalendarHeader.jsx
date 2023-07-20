@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.svg"
 import GlobalContext from '../context/GlobalContext'
 import dayjs from 'dayjs'
 function CalendarHeader() {
@@ -15,10 +15,8 @@ function CalendarHeader() {
   }
   return (
     <header className='px-4 py-2 flex items-center '>
-      <img src={logo } className='mr-2 w-12 h-12' alt="" />
-      <h1 className="mr-10 text-xl text-grey-500 fond-bold">
-        Calendar
-      </h1>
+      <img src={logo } className='mr-2  h-12' alt="" />
+    
       <button className="border border-gray-500 rounded py-2 px-4 mr-5 " onClick={handleReset}> Today </button>
       <button onClick={handlePrevMonth}> 
         <span className='material-icons-outlined cursor-pointer text-gray-600 mx-2'> 

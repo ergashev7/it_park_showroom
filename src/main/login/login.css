@@ -57,7 +57,7 @@
   letter-spacing: 0em;
   text-align: left;
 }
-input1:focus {
+.input1:focus {
   outline: 2px solid #99adce;
 }
 .password2 {

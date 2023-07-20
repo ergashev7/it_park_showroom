@@ -15,6 +15,9 @@ function Day({ day , rowIdx }) {
         }
         <p className={`text-sm p-1 my-1 text-center ${ getCurrentDayClass()}` }>{day.format("DD")}</p>
       </header>
+      <div className="flex-1 cursor-pointr">
+
+      </div>
     </div>
   );
 }
