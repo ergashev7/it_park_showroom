@@ -41,12 +41,11 @@ function Login() {
                 />
                 <br />
               </div>
-              <div className=" mt-51">
+              {/* <div className=" mt-51">
                 <label className="empty1">
                   <input className="login-check1" type="checkbox" />
-                  <span>Запомнить этот компьютер</span>
                 </label>
-              </div>
+              </div> */}
               <Button class="iris lg mt-51 button1" title="Войти" />
               <p className="parol mt-51">Забыли пароль?</p>
               <div style={{ width: "401px" }}></div>
