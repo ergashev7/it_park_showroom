@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import imgIT from "../../assets/img/it-park 1.png";
-import Button from "../../components/Button/index";
+import imgIT from "../../assets/logo.svg";
 import "./login.css";
 import database from "../../logindata.js";
 function Login() {
@@ -41,12 +40,12 @@ function Login() {
                 />
                 <br />
               </div>
-              {/* <div className=" mt-51">
-                <label className="empty1">
-                  <input className="login-check1" type="checkbox" />
-                </label>
-              </div> */}
-              <Button class="iris lg mt-51 button1" title="Войти" />
+              <button
+                // onClick={confirmation}s
+                className="bg-blue-500  mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
+              >
+                Войти
+              </button>
               <p className="parol mt-51">Забыли пароль?</p>
               <div style={{ width: "401px" }}></div>
             </div>

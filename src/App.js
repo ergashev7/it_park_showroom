@@ -25,11 +25,11 @@ function App() {
         setData(data);
       });
   }, []);
+
   return (
     <React.Fragment>
       <Login />
-      {showEventModal && <EventModal />}
-      {/* <Login data={data} /> */}
+      <Login data={data} />
       {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">
         <CalendarHeader />
