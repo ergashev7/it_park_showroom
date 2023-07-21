@@ -15,7 +15,7 @@ function Login({data}) {
         <div className="form1">
           <div className="form-container1">
             <div className="form-img1">
-              <img src={imgIT} width="300px" alt="" />
+              <img src={imgIT} width="250px" alt="" />
             </div>
             <div className="form-card1">
               <p className="form-text1">
@@ -40,7 +40,7 @@ function Login({data}) {
                 <input
                   onChange={(e)=>{setPassword(e.target.value)}}
                   type="password"
-                  placeholder=" Password123@"
+                  placeholder="Password123@"
                   className="input1 password2"
                 />
                 <br />
