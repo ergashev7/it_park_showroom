@@ -2,6 +2,16 @@ import React, { useContext, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
+const labelsRoom = [
+  "Выберите помещение ",
+  "Митинг рум на 1-этаже ",
+  "Шоурум на 1-этаже",
+  "Митинг рум на 2-этаже ",
+  "Учебные кабинеты на 3-этаже ",
+  "Митинг рум на 17-этаже",
+  "Зал переговоров на 17-этаже",
+];
+const labelsHour = [];
 
 export default function EventModal() {
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
@@ -36,7 +46,7 @@ export default function EventModal() {
   }
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
-      <form className="bg-white rounded-lg shadow-2xl w-1/3">
+      <form className="bg-white rounded-lg shadow-2xl w-1/2">
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
           <span className="material-icons-outlined text-gray-400">
             drag_handle
@@ -58,7 +68,7 @@ export default function EventModal() {
             )}
             <button onClick={() => setShowEventModal(false)}>
               <span className="material-icons-outlined text-gray-400">
-                close 
+                close
               </span>
             </button>
           </div>
@@ -82,6 +92,34 @@ export default function EventModal() {
                 schedule
               </span>
               <p>{daySelected.format("dddd, MMMM DD")}</p>
+              <select className="border border-grey-500 rounded px-2" name="" id="">
+                <option value="">08:00</option>
+                <option value="">09:00</option>
+                <option value="">10:00</option>
+                <option value="">11:00</option>
+                <option value="">12:00</option>
+                <option value="">13:00</option>
+                <option value="">14:00</option>
+                <option value="">15:00</option>
+                <option value="">16:00</option>
+                <option value="">17:00</option>
+                <option value="">18:00</option>
+                <option value="">19:00</option>
+              </select>
+              <select name="" className="border border-grey-500 rounded px-2" id="">
+                <option value="">09:00</option>
+                <option value="">10:00</option>
+                <option value="">11:00</option>
+                <option value="">12:00</option>
+                <option value="">13:00</option>
+                <option value="">14:00</option>
+                <option value="">15:00</option>
+                <option value="">16:00</option>
+                <option value="">17:00</option>
+                <option value="">18:00</option>
+                <option value="">19:00</option>
+                <option value="">20:00</option>
+              </select>
             </div>
             <div className="flex gap-5">
               <span className="material-icons-outlined text-gray-400">
@@ -98,11 +136,28 @@ export default function EventModal() {
               />
             </div>
             <p className="text-xl">Предметы:</p>
+            <div>
+              <span className="font-bold">Ноутбуки:</span>
+              <input
+                placeholder="0-60"
+                className="border rounded border-grey-500 px-3"
+                type="number"
+                name=""
+                id=""
+              />
+            </div>
             <div className="flex gap-5">
               <span className="material-icons-outlined text-gray-400">
                 bookmark_border
               </span>
               <div className="flex gap-x-2">
+                <select className="border border-grey-500 rounded px-2">
+                  {labelsRoom.map((room, i) => (
+                    <option value="0" key={i}>
+                      {room}
+                    </option>
+                  ))}
+                </select>
                 {labelsClasses.map((lblClass, i) => (
                   <span
                     key={i}

@@ -2,18 +2,31 @@
     "items":[
         {
             "id":1,
-            "checked":false,
-            "item":"salom"
+            "name":"Saloxiddin",
+            "login":"Saloxiddin",
+            "admin":true,
+            "password":"123456"
         },
         {
-            "id":1,
-            "checked":false,
-            "item":"salom"
+            "id":2,
+            "name":"Sherzod",
+            "login":"sher",
+            "admin":false,
+            "password":"123456"
         },
         {
-            "id":1,
-            "checked":false,
-            "item":"salom"
+            "id":3,
+            "name":"Sanobar",
+            "login":"Sano",
+            "admin":false,
+            "password":"123456"
+        },
+        {
+            "id":4,
+            "name":"Qodiri",
+            "login":"Qodiri",
+            "admin":false,
+            "password":"123456"
         }
     ]
 }
