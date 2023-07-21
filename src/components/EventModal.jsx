@@ -92,7 +92,11 @@ export default function EventModal() {
                 schedule
               </span>
               <p>{daySelected.format("dddd, MMMM DD")}</p>
-              <select className="border border-grey-500 rounded px-2" name="" id="">
+              <select
+                className="border border-grey-500 rounded px-2"
+                name=""
+                id=""
+              >
                 <option value="">08:00</option>
                 <option value="">09:00</option>
                 <option value="">10:00</option>
@@ -106,7 +110,11 @@ export default function EventModal() {
                 <option value="">18:00</option>
                 <option value="">19:00</option>
               </select>
-              <select name="" className="border border-grey-500 rounded px-2" id="">
+              <select
+                name=""
+                className="border border-grey-500 rounded px-2"
+                id=""
+              >
                 <option value="">09:00</option>
                 <option value="">10:00</option>
                 <option value="">11:00</option>
@@ -123,7 +131,7 @@ export default function EventModal() {
             </div>
             <div className="flex gap-5">
               <span className="material-icons-outlined text-gray-400">
-                segment
+                people
               </span>
               <input
                 type="text"
@@ -135,44 +143,303 @@ export default function EventModal() {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <p className="text-xl">Предметы:</p>
-            <div>
-              <span className="font-bold">Ноутбуки:</span>
-              <input
-                placeholder="0-60"
-                className="border rounded border-grey-500 px-3"
-                type="number"
-                name=""
-                id=""
-              />
-            </div>
             <div className="flex gap-5">
-              <span className="material-icons-outlined text-gray-400">
-                bookmark_border
+            <span className="material-icons-outlined text-gray-400">
+                place
               </span>
-              <div className="flex gap-x-2">
-                <select className="border border-grey-500 rounded px-2">
-                  {labelsRoom.map((room, i) => (
-                    <option value="0" key={i}>
-                      {room}
-                    </option>
-                  ))}
-                </select>
-                {labelsClasses.map((lblClass, i) => (
-                  <span
-                    key={i}
-                    onClick={() => setSelectedLabel(lblClass)}
-                    className={`bg-${lblClass}-500 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
-                  >
-                    {selectedLabel === lblClass && (
-                      <span className="material-icons-outlined text-white text-sm">
-                        check
-                      </span>
-                    )}
-                  </span>
-                ))}
+           <div className="flex gap-x-2">
+             <select className="border border-grey-500 rounded px-2">
+               {labelsRoom.map((room, i) => (
+                 <option value="0" key={i}>
+                   {room}
+                 </option>
+               ))}
+             </select>
+             {labelsClasses.map((lblClass, i) => (
+               <span
+                 key={i}
+                 onClick={() => setSelectedLabel(lblClass)}
+                 className={`bg-${lblClass}-500 w-6 h-6 rounded-full flex items-center justify-center cursor-pointer`}
+               >
+                 {selectedLabel === lblClass && (
+                   <span className="material-icons-outlined text-white text-sm">
+                     check
+                   </span>
+                 )}
+               </span>
+             ))}
+           </div>
+         </div>
+            <p className="text-xl">Предметы:</p>
+            <div className="h-48 overflow-auto touch-auto ">
+              <div className="flex gap-7 w-[500px] ">
+                <div>
+                  <span className="font-bold">Ноутбуки:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div>
+                  <span className="font-bold">Микрофон:</span>
+                  <input
+                    placeholder="0-10"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div>
+                  <span className="font-bold">Петличка:</span>
+                  <input
+                    placeholder="0-10"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+              </div>
+              <div className="flex gap-7 w-[500px] mt-5 ">
+                <div>
+                  <span className="font-bold">Стулья:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div>
+                  <span className="font-bold">Письменный стол:</span>
+                  <input
+                    placeholder="0-5"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div>
+                  <span className="font-bold">Вода (0,33л.):</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+              </div>
+              <div className="flex gap-7 w-[500px] items-center mt-5">
+                <div>
+                  <span className="font-bold">Ручка:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="">
+                  <span className="font-bold">Чай:</span>
+                  <input
+                    placeholder="0-10"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div>
+                  <span className="font-bold">Кофе:</span>
+                  <input
+                    placeholder="0-10"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+              </div>
+              <div className="flex justify-between w-[480px] mt-5">
+                <div>
+                  <span className="font-bold">Бумага:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div>
+                  <span className="font-bold">Флаера:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500 px-3"
+                    type="number"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div></div>
+              </div>
+              <div className="flex gap-7  mt-5">
+                <div className="gap-3 flex">
+                  <span className="font-bold">Кликер:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">ТВ'43:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">ТВ'65:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">ТВ'76:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">Тачскрин'86':</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">Камера для ВКС:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+              </div>
+              <div className="flex gap-7  mt-5">
+                <div className="gap-3 flex">
+                  <span className="font-bold">Онлайн-трансляция:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">Запись ивента:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">Фотограф:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">Видеограф:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">Кулер:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+              </div>
+              <div className="flex gap-7  mt-5">
+                <div className="gap-3 flex">
+                  <span className="font-bold">Маркерная доска:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">HDMI переходник:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
+                <div className="gap-3 flex">
+                  <span className="font-bold">Адаптер Type-C на HDMI:</span>
+                  <input
+                    placeholder="0-60"
+                    className="border rounded border-grey-500   "
+                    type="checkbox"
+                    name=""
+                    id=""
+                  />
+                </div>
               </div>
             </div>
+
+          
           </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">
