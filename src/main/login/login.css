@@ -4,15 +4,15 @@
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400&display=swap");
 }
 .container1 {
-  background-color: #f5f5fb;
+  /* background-color: #f5f5fb; */
   height: 100vh;
   font-family: "Montserrat", sans-serif;
 }
 .bg-container1 {
-  background-image: url("../../assets/img/bg-img.png");
-  background-size: 100%;
+  background-image: url("../../assets/Log in.svg");
+  /* background-size: 100%; */
   background-repeat: no-repeat;
-  height: 519px;
+  height: 100vh;
 }
 .form1 {
   display: flex;
@@ -81,4 +81,13 @@
 }
 .outline-red {
   border-color: red;
+}
+@media screen and (max-width:400px) {
+  .form1{
+    margin-left: 60px;
+
+  }
+  .input1{
+    width: 270px;
+  }
 }

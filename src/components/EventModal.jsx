@@ -46,7 +46,7 @@ export default function EventModal() {
   }
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
-      <form className="bg-white rounded-lg shadow-2xl w-1/2">
+      <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
           <span className="material-icons-outlined text-gray-400">
             drag_handle
@@ -75,7 +75,7 @@ export default function EventModal() {
         </header>
         <div className="p-3">
           <div className="grid grid-cols-1/5 items-end gap-y-7">
-            <div className="flex gap-5">
+            <div className="flex gap-5 lg:ml-1 ml-[25px] sm:ml-[2px] ">
               <div></div>
               <input
                 type="text"
@@ -83,12 +83,13 @@ export default function EventModal() {
                 placeholder="Тема Мероприятия"
                 value={title}
                 required
-                className="pt-3 border-0 text-gray-600 text-xl font-semibold pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                className="pt-3 border-0 text-gray-600 text-xl font-semibold  lg:w-[600px] sm:w-[500px]
+                border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="flex gap-5">
-              <span className="material-icons-outlined text-gray-400">
+            <div className="flex gap-5 sm:ml-[0px]">
+              <span className="material-icons-outlined text-gray-400 sm:ml-[40px]">
                 schedule
               </span>
               <p>{daySelected.format("dddd, MMMM DD")}</p>
@@ -129,7 +130,7 @@ export default function EventModal() {
                 <option value="">20:00</option>
               </select>
             </div>
-            <div className="flex gap-5">
+            <div className="flex gap-5 sm:ml-[40px]">
               <span className="material-icons-outlined text-gray-400">
                 people
               </span>
@@ -143,12 +144,12 @@ export default function EventModal() {
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
-            <div className="flex gap-5">
+            <div className="flex gap-5 sm:ml-[40px]">
             <span className="material-icons-outlined text-gray-400">
                 place
               </span>
            <div className="flex gap-x-2">
-             <select className="border border-grey-500 rounded px-2">
+             <select className="border border-grey-500 lg:w-[450px] sm:w-[240px] rounded px-2">
                {labelsRoom.map((room, i) => (
                  <option value="0" key={i}>
                    {room}
@@ -170,9 +171,9 @@ export default function EventModal() {
              ))}
            </div>
          </div>
-            <p className="text-xl">Предметы:</p>
-            <div className="h-48 overflow-auto touch-auto ">
-              <div className="flex gap-7 w-[500px] ">
+            <p className="text-xl lg:ml-11 ml-[40px] sm:ml-[2px]  ">Предметы:</p>
+            <div className="h-48 overflow-auto sm:ml-[40px] lg:ml-[40px] touch-auto ">
+              <div className="lg:flex sm:block sm:mt-5 gap-7 w-[500px] lg:ml-1 ml-[40px] sm:ml-[2px]">
                 <div>
                   <span className="font-bold">Ноутбуки:</span>
                   <input
@@ -204,7 +205,7 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="flex gap-7 w-[500px] mt-5 ">
+              <div className=" lg:flex sm:block sm:mt-5 gap-7 w-[500px] mt-5 sm:ml-[30px] lg:ml-1 ml-[40px] sm:ml-[2px] ">
                 <div>
                   <span className="font-bold">Стулья:</span>
                   <input
@@ -236,7 +237,7 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="flex gap-7 w-[500px] items-center mt-5">
+              <div className=" lg:flex sm:block sm:mt-5 gap-7 w-[500px] items-center mt-5 sm:ml-[30px] lg:ml-1 ml-[40px] sm:ml-[2px]">
                 <div>
                   <span className="font-bold">Ручка:</span>
                   <input
@@ -268,7 +269,7 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="flex justify-between w-[480px] mt-5">
+              <div className="lg:flex sm:block sm:mt-5 justify-between w-[480px] mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
                 <div>
                   <span className="font-bold">Бумага:</span>
                   <input
@@ -291,7 +292,7 @@ export default function EventModal() {
                 </div>
                 <div></div>
               </div>
-              <div className="flex gap-7  mt-5">
+              <div className="lg:flex sm:block sm:mt-5 gap-7  mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
                 <div className="gap-3 flex">
                   <span className="font-bold">Кликер:</span>
                   <input
@@ -353,7 +354,7 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="flex gap-7  mt-5">
+              <div className="lg:flex sm:block sm:mt-5 gap-7  mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
                 <div className="gap-3 flex">
                   <span className="font-bold">Онлайн-трансляция:</span>
                   <input
@@ -405,7 +406,7 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="flex gap-7  mt-5">
+              <div className="lg:flex sm:block sm:mt-5 gap-7  mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
                 <div className="gap-3 flex">
                   <span className="font-bold">Маркерная доска:</span>
                   <input
@@ -446,7 +447,7 @@ export default function EventModal() {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white"
+            className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]"
           >
             Save
           </button>

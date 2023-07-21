@@ -15,17 +15,18 @@ function App() {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
 
-  useEffect(() => {
-    fetch("http://localhost:3500/items")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setData(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3500/items")
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setData(data);
+  //     });
+  // }, []);
   return (
     <React.Fragment>
+      <Login/>
       {/* <Login data={data} /> */}
       {showEventModal && <EventModal/>}
       <div className="h-screen flex flex-col">
