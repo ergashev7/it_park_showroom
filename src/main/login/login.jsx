@@ -58,36 +58,4 @@ function Login() {
   );
 }
 export default Login;
-// let base = database;
-// export class Logins extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       login: base,
-//       loginparol: "",
-//     };
-//   }
-//   render() {
-//     const { login, loginparol } = this.state;
-//     const findLogin = () => {
-//       let res = base.filter((s) => {
-//         s.parol.includes(loginparol);
-//         this.setState({ loginparol: res });
-//       });
-//     };
-//     return (
-//       <div>
-//         <h1>login</h1>
-//         <input
-//           type="text"
-//           name=""
-//           id=""
-//           onChange={({ target: { value } }) => {
-//             this.state({ loginparol: value });
-//             findLogin();
-//           }}
-//         />
-//       </div>
-//     );
-//   }
-// }
+ 
