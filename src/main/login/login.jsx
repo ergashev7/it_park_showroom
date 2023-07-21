@@ -13,7 +13,7 @@ function Login() {
         <div className="form1">
           <div className="form-container1">
             <div className="form-img1">
-              <img src={imgIT} width="300px" alt="" />
+              <img src={imgIT} width="250px" alt="" />
             </div>
             <div className="form-card1">
               <p className="form-text1">
@@ -36,7 +36,7 @@ function Login() {
                 <br />
                 <input
                   type="password"
-                  placeholder=" Password123@"
+                  placeholder="Password123@"
                   className="input1 password2"
                 />
                 <br />
@@ -47,7 +47,7 @@ function Login() {
                   <span>Запомнить этот компьютер</span>
                 </label>
               </div>
-              <Button class="iris lg mt-51" title="Войти" />
+              <Button class="iris lg mt-51 button1" title="Войти" />
               <p className="parol mt-51">Забыли пароль?</p>
               <div style={{ width: "401px" }}></div>
             </div>
