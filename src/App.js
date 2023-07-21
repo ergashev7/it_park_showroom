@@ -13,7 +13,7 @@ function App() {
   const [data, setData] = useState();
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
-  }, [monthIndex]);
+  }, [monthIndex]); 
 
   // useEffect(() => {
   //   fetch("http://localhost:3500/items")
@@ -24,11 +24,14 @@ function App() {
   //       setData(data);
   //     });
   // }, []);
+
+
+
   return (
     <React.Fragment>
       <Login/>
       {/* <Login data={data} /> */}
-      {showEventModal && <EventModal/>}
+      {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">
         <CalendarHeader />
         <div className="flex flex-1">
