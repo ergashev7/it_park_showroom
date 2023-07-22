@@ -84,11 +84,22 @@
 .outline-red {
   border-color: red;
 }
-@media screen and (max-width:400px) {
-  .input1{
-    width: 270px;
+@media screen and (max-width: 400px) {
+  .input1 {
+    width: 300px;
   }
-  .form-card1{
+  .form-card1 {
     width: 400px;
+  }
+  .button1 {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .input1 {
+    width: 300px;
+  }
+  .button1 {
+    width: 300px;
   }
 }
