@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import imgIT from "../../assets/logo.svg";
 import "./login.css";
-import database from "../../logindata.js";
+// import database from "../../logindata.js";
 function Login() {
   const [valueText, setValueText] = useState("");
   const [value, setValue] = useState("");
@@ -41,8 +41,8 @@ function Login() {
                 <br />
               </div>
               <button
-                // onClick={confirmation}s
-                className="bg-blue-500  mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
+                // onClick={confirmation}
+                className="bg-blue-500 button1 mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
               >
                 Войти
               </button>

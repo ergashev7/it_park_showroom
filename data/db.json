@@ -301,6 +301,27 @@
       "numberPeople": "",
       "hour": "",
       "id": 28
+    },
+    {
+      "themeEvents": "sasasasasas",
+      "numberPeople": "",
+      "hour": "",
+      "id": 29
+    },
+    {
+      "themeEvents": "zal",
+      "numberPeople": "15",
+      "hour": "",
+      "notebooks": "7",
+      "microphone": "6",
+      "buttonhole": "6",
+      "chairs": "8",
+      "pen": "6",
+      "clicker": "on",
+      "liveStream": "on",
+      "HDMIAdapter": "on",
+      "typeCToHDMIAdapter": "on",
+      "id": 30
     }
   ],
   "person": [
