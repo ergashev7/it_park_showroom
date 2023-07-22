@@ -14,7 +14,6 @@ function App() {
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]); 
-
   // useEffect(() => {
   //   fetch("http://localhost:3500/items")
   //     .then((response) => {
@@ -29,7 +28,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <Login/>
+      {/* <Login/> */}
       {/* <Login data={data} /> */}
       {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">

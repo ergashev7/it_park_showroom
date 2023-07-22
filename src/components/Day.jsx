@@ -10,7 +10,17 @@ export default function Day({ day, rowIdx }) {
     filteredEvents,
     setSelectedEvent,
   } = useContext(GlobalContext);
-
+  const [data , setData]= useState([])
+  useEffect(() => {
+   fetch("http://localhost:3500/items")
+     .then((response) => {
+       return response.json();
+     })
+     .then((data) => {
+       setData(data);
+     });
+ }, []);
+ let x = data.filter((row)=>day.format("dddd, MMMM DD") == row.day) 
   useEffect(() => {
     const events = filteredEvents.filter(
       (evt) =>
@@ -45,12 +55,12 @@ export default function Day({ day, rowIdx }) {
           setShowEventModal(true);
         }}
       >
-        {dayEvents.map((evt, idx) => (
+        {x.map((evt, idx) => (
           <div
             key={idx}
             onClick={() => setSelectedEvent(evt)}
             className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
-          >
+          > 
             {evt.title}
           </div>
         ))}

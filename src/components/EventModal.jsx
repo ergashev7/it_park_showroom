@@ -19,25 +19,17 @@ async function postData(url = "", data = {}) {
 
 function postDatas(dataForm) {
   postData("http://localhost:3500/items", dataForm).then((data) => {
-    console.log(data);
+    // console.log(data);
   });
 }
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
-const labelsRoom = [
-  "Выберите помещение ",
-  "Митинг рум на 1-этаже ",
-  "Шоурум на 1-этаже",
-  "Митинг рум на 2-этаже ",
-  "Учебные кабинеты на 3-этаже ",
-  "Митинг рум на 17-этаже",
-  "Зал переговоров на 17-этаже",
-];
+const labelsRoom = [];
 const labelsHour = [];
 
 export default function EventModal() {
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
-
+  console.log();
   const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
   const [description, setDescription] = useState(
     selectedEvent ? selectedEvent.description : ""
@@ -47,19 +39,23 @@ export default function EventModal() {
       ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
       : labelsClasses[0]
   );
-  // useEffect(() => {
-  //   fetch("http://localhost:3500/items")
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       setData(data);
-  //     });
-  // }, []);
-  // const [data ,setData]=useState()
-  // console.log(data);
+  // console.log(selectedEvent );
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3500/items")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
+  let x = data.filter((day) => day.day == daySelected.format("dddd, MMMM DD"));
+ 
+  //  console.log(x);
+  const [error,setError]= useState(false)
   const [notebooks, setNotebooks] = useState();
-  const [microphone, setMicrophone] = useState();
+  const [microphone, setMicrophone] = useState("sssss");
   const [buttonhole, setButtonhole] = useState();
   const [chairs, setChairs] = useState();
   const [desk, setDesk] = useState();
@@ -74,20 +70,27 @@ export default function EventModal() {
   const [TV65, setTV65] = useState();
   const [TV76, setTV76] = useState();
   const [touchscreen86, setTouchscreen86] = useState();
-  const [videoConferencing ,setVideoConferencing] = useState()
-  const [liveStream , setLiveStream] = useState()
-  const [eventRecording,setEventRecording] = useState()
-  const [photographer,setPhotographer]=useState()
-  const[videographer,setVideographer]=useState()
-  const [cooler,setCooler]=useState()
-  const[markerBoard,setMarkerBoard]=useState()
-  const [HDMIAdapter,setHDMIAdapter] = useState()
-  const [typeCToHDMIAdapter,setTypeCToHDMIAdapter]= useState()
+  const [videoConferencing, setVideoConferencing] = useState();
+  const [liveStream, setLiveStream] = useState();
+  const [eventRecording, setEventRecording] = useState();
+  const [photographer, setPhotographer] = useState();
+  const [videographer, setVideographer] = useState();
+  const [cooler, setCooler] = useState();
+  const [markerBoard, setMarkerBoard] = useState();
+  const [HDMIAdapter, setHDMIAdapter] = useState();
+  const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState();
+  const [label ,setLable] = useState()  
+  const [doClock ,setDoClock] = useState()
+  const [poClock , setPoClock] = useState()
   function handleSubmit(e) {
+     window.location.reload()
     const dataForm = {
-      themeEvents: title,
-      numberPeople: description,
-      hour: "",
+      day: daySelected.format("dddd, MMMM DD"),
+      title: title,
+      description: description,
+      label: label,
+      doClock:doClock,
+      poClock:poClock,
       notebooks: notebooks,
       microphone: microphone,
       buttonhole: buttonhole,
@@ -101,22 +104,28 @@ export default function EventModal() {
       flyers: flyers,
       clicker: clicker,
       TV43: TV43,
-      TV65:TV65,
-      TV76:TV76,
-      touchscreen86:touchscreen86,
-      videoConferencing:videoConferencing,
-      liveStream:liveStream,
-      eventRecording:eventRecording,
-      photographer:photographer,
-      videographer:videographer,
-      cooler:cooler,
-      markerBoard:markerBoard,
-      HDMIAdapter:HDMIAdapter,
-      typeCToHDMIAdapter:typeCToHDMIAdapter
+      TV65: TV65,
+      TV76: TV76,
+      touchscreen86: touchscreen86,
+      videoConferencing: videoConferencing,
+      liveStream: liveStream,
+      eventRecording: eventRecording,
+      photographer: photographer,
+      videographer: videographer,
+      cooler: cooler,
+      markerBoard: markerBoard,
+      HDMIAdapter: HDMIAdapter,
+      typeCToHDMIAdapter: typeCToHDMIAdapter,
     };
    
-  
-    postDatas(dataForm);
+    data.some(
+      (e)=>e.label == dataForm.label && 
+      e.doClock == dataForm.doClock  &&
+      e.poClock == dataForm.poClock  &&
+      e.day == dataForm.day 
+      ) ? alert("Извините, этот номер уже заблокирован"): postDatas(dataForm)
+          
+         
     e.preventDefault();
     const calendarEvent = {
       title,
@@ -186,38 +195,39 @@ export default function EventModal() {
                 className="border border-grey-500 rounded px-2"
                 name=""
                 id=""
-                // value={}
+                onClick={(e)=>{setDoClock(e.target.value)}}
               >
-                <option value="">08:00</option>
-                <option value="">09:00</option>
-                <option value="">10:00</option>
-                <option value="">11:00</option>
-                <option value="">12:00</option>
-                <option value="">13:00</option>
-                <option value="">14:00</option>
-                <option value="">15:00</option>
-                <option value="">16:00</option>
-                <option value="">17:00</option>
-                <option value="">18:00</option>
-                <option value="">19:00</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
               </select>
               <select
                 name=""
                 className="border border-grey-500 rounded px-2"
                 id=""
+                onClick={(e)=>{setPoClock(e.target.value)}}
               >
-                <option value="">09:00</option>
-                <option value="">10:00</option>
-                <option value="">11:00</option>
-                <option value="">12:00</option>
-                <option value="">13:00</option>
-                <option value="">14:00</option>
-                <option value="">15:00</option>
-                <option value="">16:00</option>
-                <option value="">17:00</option>
-                <option value="">18:00</option>
-                <option value="">19:00</option>
-                <option value="">20:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
               </select>
             </div>
             <div className="flex gap-5 sm:ml-[40px]">
@@ -239,12 +249,14 @@ export default function EventModal() {
                 place
               </span>
               <div className="flex gap-x-2">
-                <select className="border border-grey-500 rounded px-2">
-                  {labelsRoom.map((room, i) => (
-                    <option value="0" key={i}>
-                      {room}
-                    </option>
-                  ))}
+                <select onClick={(e)=>{setLable( e.target.value)}} className="border border-grey-500 rounded px-2">
+                  <option value="indigo">Выберите помещение</option>
+                  <option value="gray">Митинг рум на 1-этаже</option>
+                  <option value="green">Шоурум на 1-этаже</option>
+                  <option value="blue">Митинг рум на 2-этаже</option>
+                  <option value="red">Учебные кабинеты на 3-этаже </option>
+                  <option value="purple">Митинг рум на 17-этаже</option>
+                  <option value="orange">Зал переговоров на 17-этаже</option>
                 </select>
                 {labelsClasses.map((lblClass, i) => (
                   <span
@@ -267,9 +279,10 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Ноутбуки:</span>
                   <input
+                    value={notebooks}
                     placeholder="0-60"
                     className="border rounded border-grey-500 px-3"
-                    type="number"
+                    type="text"
                     onChange={(e) => {
                       setNotebooks(e.target.value);
                     }}
@@ -471,7 +484,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Онлайн-трансляция:</span>
                   <input
-                  onChange={(e)=>setLiveStream(e.target.value)}
+                    onChange={(e) => setLiveStream(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
                     type="checkbox"
@@ -482,7 +495,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Запись ивента:</span>
                   <input
-                    onChange={(e)=>setEventRecording(e.target.value)}
+                    onChange={(e) => setEventRecording(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
                     type="checkbox"
@@ -493,7 +506,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Фотограф:</span>
                   <input
-                    onChange={(e)=>setPhotographer(e.target.value)}
+                    onChange={(e) => setPhotographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
                     type="checkbox"
@@ -504,7 +517,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Видеограф:</span>
                   <input
-                    onChange={(e)=>setVideographer(e.target.value)}
+                    onChange={(e) => setVideographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
                     type="checkbox"
@@ -515,8 +528,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кулер:</span>
                   <input
-                    onChange={(e)=>setCooler(e.target.value)}
-
+                    onChange={(e) => setCooler(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
                     type="checkbox"
