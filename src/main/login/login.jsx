@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import imgIT from "../../assets/img/it-park 1.png";
+import imgIT from "../../assets/logo.svg";
 import "./login.css";
 function Login({data}) {
   const [login, setLogin] = useState("");
@@ -45,7 +45,7 @@ function Login({data}) {
                 />
                 <br />
               </div>
-              <button onClick={confirmation} className="bg-blue-500 mt-5 w-full hover:bg-blue-600 px-6 py-2 rounded text-white">
+              <button onClick={confirmation} className="bg-blue-500  mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white">
                 Войти
               </button>
               <p className="parol mt-51">Забыли пароль?</p>

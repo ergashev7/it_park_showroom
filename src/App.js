@@ -29,6 +29,7 @@ function App() {
 
   return (
     <React.Fragment>
+      <Login/>
       {/* <Login data={data} /> */}
       {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">
