@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 export default function Day({ day, rowIdx }) {
+  let person = localStorage.getItem("admin")
   const [dayEvents, setDayEvents] = useState([]);
   const {
     setDaySelected,
@@ -10,21 +11,37 @@ export default function Day({ day, rowIdx }) {
     filteredEvents,
     setSelectedEvent,
   } = useContext(GlobalContext);
-  const [data , setData]= useState([])
+  const [data, setData] = useState([]);
   useEffect(() => {
-   fetch("http://localhost:3500/items")
-     .then((response) => {
-       return response.json();
-     })
-     .then((data) => {
-       setData(data);
-     });
- }, []);
- let x = data.filter((row)=>day.format("dddd, MMMM DD") == row.day) 
+    fetch("http://localhost:3500/items")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
+  let monts = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  let kun = new Date().getDate();
+  let oy = new Date().getMonth();
+
+  let x = data.filter((row) => day.format("dddd, MMMM DD") == row.day);
   useEffect(() => {
     const events = filteredEvents.filter(
-      (evt) =>
-        dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
+      (evt) => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
     );
     setDayEvents(events);
   }, [filteredEvents, day]);
@@ -34,34 +51,43 @@ export default function Day({ day, rowIdx }) {
       ? "bg-blue-600 text-white rounded-full w-7"
       : "";
   }
+  function after() {
+    if (person !== "admin") {
+        if (monts[oy]== day.format("MMMM") && kun > day.format("DD")) {
+         if (monts[oy]== day.format("MMMM") && kun == day.format("DD")) {
+          setDaySelected(day);
+          setShowEventModal(true);
+         }
+          alert("Извините, время истекло")
+        }else{
+          setDaySelected(day);
+          setShowEventModal(true);
+        }
+    }else{
+          setDaySelected(day);
+          setShowEventModal(true);
+    }
+  
+  
+  }
   return (
     <div className="border border-gray-200 flex flex-col">
       <header className="flex flex-col items-center">
         {rowIdx === 0 && (
-          <p className="text-sm mt-1">
-            {day.format("ddd").toUpperCase()}
-          </p>
+          <p className="text-sm mt-1">{day.format("ddd").toUpperCase()}</p>
         )}
-        <p
-          className={`text-sm p-1 my-1 text-center  ${getCurrentDayClass()}`}
-        >
+        <p className={`text-sm p-1 my-1 text-center  ${getCurrentDayClass()}`}>
           {day.format("DD")}
         </p>
       </header>
-      <div
-        className="flex-1 cursor-pointer"
-        onClick={() => {
-          setDaySelected(day);
-          setShowEventModal(true);
-        }}
-      >
+      <div className="flex-1 cursor-pointer" onClick={after}>
         {x.map((evt, idx) => (
           <div
             key={idx}
             onClick={() => setSelectedEvent(evt)}
-            className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
-          > 
-            {evt.title}
+            className={`bg-${evt.label}-200 flex justify-between p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+          >
+            <p> {evt.title}</p>
           </div>
         ))}
       </div>

@@ -1,11 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imgIT from "../../assets/logo.svg";
 import "./login.css";
+import { Link } from "react-router-dom";
 // import database from "../../logindata.js";
 function Login() {
-  const [valueText, setValueText] = useState("");
-  const [value, setValue] = useState("");
-  const [valueCheck, setValueCheck] = useState("");
+  const [login, setLogin] = useState();
+  const [password, setPassword] = useState();
+  const [data, setData] = useState();
+  const [admin, setAdmin] = useState("/");
+  useEffect(() => {
+    fetch("http://localhost:3500/person")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setData(data);
+      });
+  }, []);
+  function confirmation() {
+    localStorage.setItem("person",data.filter((e)=>e.login == login)[0])
+   data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
+      ? localStorage.setItem("admin", "admin")
+      : localStorage.setItem("admin", "user");
+    data.some((e) => e.login == login && e.password == password)
+      ? setAdmin("/admin")
+      : setAdmin("/");
+  }
   return (
     <div className="container1">
       <div className="bg-container1">
@@ -23,7 +43,8 @@ function Login() {
                   <label htmlFor="username">Почта</label> <br />
                   <input
                     className="input1"
-                    placeholder=" hannah.green@test.com"
+                    placeholder="hannah.green@test.com"
+                    onChange={(e) => setLogin(e.target.value)}
                     type="text"
                   />
                 </div>
@@ -34,18 +55,21 @@ function Login() {
                 </label>{" "}
                 <br />
                 <input
+                  onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   placeholder="Password123@"
                   className="input1 password2"
                 />
                 <br />
               </div>
-              <button
-                // onClick={confirmation}
-                className="bg-blue-500 button1 mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
-              >
-                Войти
-              </button>
+              <Link to={admin}>
+                <button
+                  onClick={confirmation}
+                  className="bg-blue-500 button1 mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
+                >
+                  Войти
+                </button>
+              </Link>
               <p className="parol mt-51">Забыли пароль?</p>
               <div style={{ width: "401px" }}></div>
             </div>

@@ -12,7 +12,7 @@
 }
 .bg-container1 {
   background-image: url("../../assets/Log in.svg");
-  /* background-size: 100%; */
+  background-size: 100%;
   background-repeat: no-repeat;
   height: 100vh;
 }

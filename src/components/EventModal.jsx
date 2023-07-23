@@ -23,8 +23,6 @@ function postDatas(dataForm) {
   });
 }
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
-const labelsRoom = [];
-const labelsHour = [];
 
 export default function EventModal() {
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
@@ -52,36 +50,37 @@ export default function EventModal() {
   }, []);
   let x = data.filter((day) => day.day == daySelected.format("dddd, MMMM DD"));
  
-  //  console.log(x);
   const [error,setError]= useState(false)
-  const [notebooks, setNotebooks] = useState();
-  const [microphone, setMicrophone] = useState("sssss");
-  const [buttonhole, setButtonhole] = useState();
-  const [chairs, setChairs] = useState();
-  const [desk, setDesk] = useState();
-  const [water, setWater] = useState();
-  const [tea, setTea] = useState();
-  const [coffee, setCoffee] = useState();
-  const [pen, setPen] = useState();
-  const [paper, setPaper] = useState();
-  const [flyers, setFlyers] = useState();
-  const [clicker, setClicker] = useState();
-  const [TV43, setTV43] = useState();
-  const [TV65, setTV65] = useState();
-  const [TV76, setTV76] = useState();
-  const [touchscreen86, setTouchscreen86] = useState();
-  const [videoConferencing, setVideoConferencing] = useState();
-  const [liveStream, setLiveStream] = useState();
-  const [eventRecording, setEventRecording] = useState();
-  const [photographer, setPhotographer] = useState();
-  const [videographer, setVideographer] = useState();
-  const [cooler, setCooler] = useState();
-  const [markerBoard, setMarkerBoard] = useState();
-  const [HDMIAdapter, setHDMIAdapter] = useState();
-  const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState();
-  const [label ,setLable] = useState()  
-  const [doClock ,setDoClock] = useState()
-  const [poClock , setPoClock] = useState()
+  const [notebooks, setNotebooks] = useState(selectedEvent?selectedEvent.notebooks:"")
+  const [microphone, setMicrophone] = useState(selectedEvent?selectedEvent.microphone:"");
+  const [buttonhole, setButtonhole] = useState(selectedEvent?selectedEvent.buttonhole:"");
+  const [chairs, setChairs] = useState(selectedEvent?selectedEvent.buttonhole:"");
+  const [desk, setDesk] = useState(selectedEvent?selectedEvent.chairs:"");
+  const [water, setWater] = useState(selectedEvent?selectedEvent.water :"");
+  const [tea, setTea] = useState(selectedEvent?selectedEvent.tea:"");
+  const [coffee, setCoffee] = useState(selectedEvent?selectedEvent.coffee:"");
+  const [pen, setPen] = useState(selectedEvent?selectedEvent.pen:"");
+  const [paper, setPaper] = useState(selectedEvent?selectedEvent.paper:"");
+  const [flyers, setFlyers] = useState(selectedEvent?selectedEvent.flyers:"");
+  const [clicker, setClicker] = useState(selectedEvent?selectedEvent.clicker:"");
+  const [TV43, setTV43] = useState(selectedEvent?selectedEvent.TV43:"");
+  const [TV65, setTV65] = useState(selectedEvent?selectedEvent.TV65:"");
+  const [TV76, setTV76] = useState(selectedEvent?selectedEvent.TV76:"");
+  const [touchscreen86, setTouchscreen86] = useState(selectedEvent?selectedEvent.touchscreen86:"");
+  const [videoConferencing, setVideoConferencing] = useState(selectedEvent?selectedEvent.videoConferencing:"");
+  const [liveStream, setLiveStream] = useState(selectedEvent?selectedEvent.liveStream:"");
+  const [eventRecording, setEventRecording] = useState(selectedEvent?selectedEvent.eventRecording:"");
+  const [photographer, setPhotographer] = useState(selectedEvent?selectedEvent.photographer:"");
+  const [videographer, setVideographer] = useState(selectedEvent?selectedEvent.videographer:"");
+  const [cooler, setCooler] = useState(selectedEvent?selectedEvent.cooler:"");
+  const [markerBoard, setMarkerBoard] = useState(selectedEvent?selectedEvent.markerBoard:"");
+  const [HDMIAdapter, setHDMIAdapter] = useState(selectedEvent?selectedEvent.HDMIAdapter:"");
+  const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState(selectedEvent?selectedEvent.typeCToHDMIAdapter:"");
+  const [label ,setLable] = useState(selectedEvent?selectedEvent.label:"")  
+  const [doClock ,setDoClock] = useState(selectedEvent?selectedEvent.doClock:"08:00")
+  const [poClock , setPoClock] = useState(selectedEvent?selectedEvent.poClock:"09:00")
+  let person = localStorage.getItem("admin")
+  let per = localStorage.getItem("person")
   function handleSubmit(e) {
      window.location.reload()
     const dataForm = {
@@ -116,16 +115,21 @@ export default function EventModal() {
       markerBoard: markerBoard,
       HDMIAdapter: HDMIAdapter,
       typeCToHDMIAdapter: typeCToHDMIAdapter,
+      person:per
     };
-   
-    data.some(
-      (e)=>e.label == dataForm.label && 
-      e.doClock == dataForm.doClock  &&
-      e.poClock == dataForm.poClock  &&
-      e.day == dataForm.day 
-      ) ? alert("Извините, этот номер уже заблокирован"): postDatas(dataForm)
-          
-         
+     
+
+     if (data.some((e)=>e.person == per)) {
+      postDatas(dataForm)
+     }else{
+      data.some(
+        (e)=>e.label == dataForm.label && 
+        e.doClock == dataForm.doClock  &&
+        e.poClock == dataForm.poClock  &&
+        e.day == dataForm.day 
+        ) ? alert("Извините, этот номер уже заблокирован"): postDatas(dataForm)
+     }
+    
     e.preventDefault();
     const calendarEvent = {
       title,
@@ -142,6 +146,7 @@ export default function EventModal() {
 
     setShowEventModal(false);
   }
+
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
@@ -193,6 +198,7 @@ export default function EventModal() {
               <p>{daySelected.format("dddd, MMMM DD")}</p>
               <select
                 className="border border-grey-500 rounded px-2"
+                value={person=="admin"?selectedEvent?doClock:null:null}
                 name=""
                 id=""
                 onClick={(e)=>{setDoClock(e.target.value)}}
@@ -211,6 +217,7 @@ export default function EventModal() {
                 <option value="19:00">19:00</option>
               </select>
               <select
+              value={person=="admin"?selectedEvent?poClock:null:null}
                 name=""
                 className="border border-grey-500 rounded px-2"
                 id=""
@@ -249,7 +256,7 @@ export default function EventModal() {
                 place
               </span>
               <div className="flex gap-x-2">
-                <select onClick={(e)=>{setLable( e.target.value)}} className="border border-grey-500 rounded px-2">
+                <select  value={person=="admin"?selectedEvent?label:null:null} onClick={(e)=>{setLable( e.target.value)}} className="border border-grey-500 rounded px-2">
                   <option value="indigo">Выберите помещение</option>
                   <option value="gray">Митинг рум на 1-этаже</option>
                   <option value="green">Шоурум на 1-этаже</option>
@@ -258,7 +265,7 @@ export default function EventModal() {
                   <option value="purple">Митинг рум на 17-этаже</option>
                   <option value="orange">Зал переговоров на 17-этаже</option>
                 </select>
-                {labelsClasses.map((lblClass, i) => (
+                {/* {labelsClasses.map((lblClass, i) => (
                   <span
                     key={i}
                     onClick={() => setSelectedLabel(lblClass)}
@@ -270,7 +277,7 @@ export default function EventModal() {
                       </span>
                     )}
                   </span>
-                ))}
+                ))} */}
               </div>
             </div>
             <p className="text-xl">Предметы:</p>
@@ -279,7 +286,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Ноутбуки:</span>
                   <input
-                    value={notebooks}
+                    value={person=="admin"?notebooks:null}
                     placeholder="0-60"
                     className="border rounded border-grey-500 px-3"
                     type="text"
@@ -293,9 +300,10 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Микрофон:</span>
                   <input
+                    value={person == "admin"?microphone:null}
                     placeholder="0-10"
                     className="border rounded border-grey-500 px-3"
-                    type="number"
+                    type="text"
                     onChange={(e) => {
                       setMicrophone(e.target.value);
                     }}
@@ -306,9 +314,10 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Петличка:</span>
                   <input
+                    value={person=="admin"?buttonhole:null}
                     placeholder="0-10"
                     className="border rounded border-grey-500 px-3"
-                    type="number"
+                    type="text"
                     onChange={(e) => {
                       setButtonhole(e.target.value);
                     }}
@@ -321,6 +330,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Стулья:</span>
                   <input
+                  value={person=="admin"?chairs:null}
                     onChange={(e) => setChairs(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500 px-3"
@@ -332,6 +342,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold ">Письменный стол:</span>
                   <input
+                  value={person=="admin"?desk:null}
                     onChange={(e) => setDesk(e.target.value)}
                     placeholder="0-5"
                     className="border rounded border-grey-500 px-3"
@@ -343,6 +354,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Вода (0,33л.):</span>
                   <input
+                  value={person=="admin"?water:null}
                     placeholder="0-60"
                     className="border rounded border-grey-500 px-3"
                     type="number"
@@ -356,6 +368,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Ручка:</span>
                   <input
+                  value={person=="admin"?pen:null}
                     onChange={(e) => setPen(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500 px-3"
@@ -367,6 +380,7 @@ export default function EventModal() {
                 <div className="">
                   <span className="font-bold">Чай:</span>
                   <input
+                  value={person=="admin"?tea:null}
                     onChange={(e) => setTea(e.target.value)}
                     placeholder="0-10"
                     className="border rounded border-grey-500 px-3"
@@ -378,6 +392,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Кофе:</span>
                   <input
+                  value={person=="admin"?coffee:null}
                     onChange={(e) => setCoffee(e.target.value)}
                     placeholder="0-10"
                     className="border rounded border-grey-500 px-3"
@@ -391,6 +406,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Бумага:</span>
                   <input
+                  value={person=="admin"?paper:null}
                     onChange={(e) => setPaper(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500 px-3"
@@ -402,6 +418,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Флаера:</span>
                   <input
+                  value={person=="admin"?flyers:null}
                     onChange={(e) => setFlyers(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500 px-3"
@@ -416,6 +433,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кликер:</span>
                   <input
+                    checked={person=="admin"?clicker=="on"?true:false:null}
                     onChange={(e) => setClicker(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -427,6 +445,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'43:</span>
                   <input
+                    checked={person=="admin"?TV43=="on"?true:false:null}
                     onChange={(e) => setTV43(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -438,6 +457,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'65:</span>
                   <input
+                    checked={person=="admin"?TV65=="on"?true:false:null}
                     onChange={(e) => setTV65(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -449,6 +469,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'76:</span>
                   <input
+                    checked={person=="admin"?TV76=="on"?true:false:null}
                     onChange={(e) => setTV76(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -460,6 +481,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Тачскрин'86':</span>
                   <input
+                    checked={person=="admin"?touchscreen86=="on"?true:false:null}
                     onChange={(e) => setTouchscreen86(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -471,6 +493,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Камера для ВКС:</span>
                   <input
+                    checked={person=="admin"?videoConferencing=="on"?true:false:null}
                     onChange={(e) => setVideoConferencing(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -484,6 +507,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Онлайн-трансляция:</span>
                   <input
+                    checked={person=="admin"?liveStream=="on"?true:false:null}
                     onChange={(e) => setLiveStream(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -495,6 +519,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Запись ивента:</span>
                   <input
+                    checked={person=="admin"?eventRecording=="on"?true:false:null}
                     onChange={(e) => setEventRecording(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -506,6 +531,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Фотограф:</span>
                   <input
+                    checked={person=="admin"?photographer=="on"?true:false:null}
                     onChange={(e) => setPhotographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -517,6 +543,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Видеограф:</span>
                   <input
+                    checked={person=="admin"?videographer=="on"?true:false:null}
                     onChange={(e) => setVideographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -528,6 +555,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кулер:</span>
                   <input
+                    checked={person=="admin"?cooler=="on"?true:false:null}
                     onChange={(e) => setCooler(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -541,6 +569,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Маркерная доска:</span>
                   <input
+                    checked={person=="admin"?markerBoard=="on"?true:false:null}
                     onChange={(e) => setMarkerBoard(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -552,6 +581,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold ">HDMI переходник:</span>
                   <input
+                    checked={person=="admin"?HDMIAdapter=="on"?true:false:null}
                     onChange={(e) => setHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -563,6 +593,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Адаптер Type-C на HDMI:</span>
                   <input
+                    checked={person=="admin"?typeCToHDMIAdapter=="on"?true:false:null} 
                     onChange={(e) => setTypeCToHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
