@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
+import "./eventModal.css";
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -49,47 +50,85 @@ export default function EventModal() {
       });
   }, []);
   let x = data.filter((day) => day.day == daySelected.format("dddd, MMMM DD"));
- 
-  const [error,setError]= useState(false)
-  const [notebooks, setNotebooks] = useState(selectedEvent?selectedEvent.notebooks:"")
-  const [microphone, setMicrophone] = useState(selectedEvent?selectedEvent.microphone:"");
-  const [buttonhole, setButtonhole] = useState(selectedEvent?selectedEvent.buttonhole:"");
-  const [chairs, setChairs] = useState(selectedEvent?selectedEvent.buttonhole:"");
-  const [desk, setDesk] = useState(selectedEvent?selectedEvent.chairs:"");
-  const [water, setWater] = useState(selectedEvent?selectedEvent.water :"");
-  const [tea, setTea] = useState(selectedEvent?selectedEvent.tea:"");
-  const [coffee, setCoffee] = useState(selectedEvent?selectedEvent.coffee:"");
-  const [pen, setPen] = useState(selectedEvent?selectedEvent.pen:"");
-  const [paper, setPaper] = useState(selectedEvent?selectedEvent.paper:"");
-  const [flyers, setFlyers] = useState(selectedEvent?selectedEvent.flyers:"");
-  const [clicker, setClicker] = useState(selectedEvent?selectedEvent.clicker:"");
-  const [TV43, setTV43] = useState(selectedEvent?selectedEvent.TV43:"");
-  const [TV65, setTV65] = useState(selectedEvent?selectedEvent.TV65:"");
-  const [TV76, setTV76] = useState(selectedEvent?selectedEvent.TV76:"");
-  const [touchscreen86, setTouchscreen86] = useState(selectedEvent?selectedEvent.touchscreen86:"");
-  const [videoConferencing, setVideoConferencing] = useState(selectedEvent?selectedEvent.videoConferencing:"");
-  const [liveStream, setLiveStream] = useState(selectedEvent?selectedEvent.liveStream:"");
-  const [eventRecording, setEventRecording] = useState(selectedEvent?selectedEvent.eventRecording:"");
-  const [photographer, setPhotographer] = useState(selectedEvent?selectedEvent.photographer:"");
-  const [videographer, setVideographer] = useState(selectedEvent?selectedEvent.videographer:"");
-  const [cooler, setCooler] = useState(selectedEvent?selectedEvent.cooler:"");
-  const [markerBoard, setMarkerBoard] = useState(selectedEvent?selectedEvent.markerBoard:"");
-  const [HDMIAdapter, setHDMIAdapter] = useState(selectedEvent?selectedEvent.HDMIAdapter:"");
-  const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState(selectedEvent?selectedEvent.typeCToHDMIAdapter:"");
-  const [label ,setLable] = useState(selectedEvent?selectedEvent.label:"")  
-  const [doClock ,setDoClock] = useState(selectedEvent?selectedEvent.doClock:"08:00")
-  const [poClock , setPoClock] = useState(selectedEvent?selectedEvent.poClock:"09:00")
-  let person = localStorage.getItem("admin")
-  let per = localStorage.getItem("person")
+
+  const [error, setError] = useState(false);
+  const [notebooks, setNotebooks] = useState(
+    selectedEvent ? selectedEvent.notebooks : ""
+  );
+  const [microphone, setMicrophone] = useState(
+    selectedEvent ? selectedEvent.microphone : ""
+  );
+  const [buttonhole, setButtonhole] = useState(
+    selectedEvent ? selectedEvent.buttonhole : ""
+  );
+  const [chairs, setChairs] = useState(
+    selectedEvent ? selectedEvent.buttonhole : ""
+  );
+  const [desk, setDesk] = useState(selectedEvent ? selectedEvent.chairs : "");
+  const [water, setWater] = useState(selectedEvent ? selectedEvent.water : "");
+  const [tea, setTea] = useState(selectedEvent ? selectedEvent.tea : "");
+  const [coffee, setCoffee] = useState(
+    selectedEvent ? selectedEvent.coffee : ""
+  );
+  const [pen, setPen] = useState(selectedEvent ? selectedEvent.pen : "");
+  const [paper, setPaper] = useState(selectedEvent ? selectedEvent.paper : "");
+  const [flyers, setFlyers] = useState(
+    selectedEvent ? selectedEvent.flyers : ""
+  );
+  const [clicker, setClicker] = useState(
+    selectedEvent ? selectedEvent.clicker : ""
+  );
+  const [TV43, setTV43] = useState(selectedEvent ? selectedEvent.TV43 : "");
+  const [TV65, setTV65] = useState(selectedEvent ? selectedEvent.TV65 : "");
+  const [TV76, setTV76] = useState(selectedEvent ? selectedEvent.TV76 : "");
+  const [touchscreen86, setTouchscreen86] = useState(
+    selectedEvent ? selectedEvent.touchscreen86 : ""
+  );
+  const [videoConferencing, setVideoConferencing] = useState(
+    selectedEvent ? selectedEvent.videoConferencing : ""
+  );
+  const [liveStream, setLiveStream] = useState(
+    selectedEvent ? selectedEvent.liveStream : ""
+  );
+  const [eventRecording, setEventRecording] = useState(
+    selectedEvent ? selectedEvent.eventRecording : ""
+  );
+  const [photographer, setPhotographer] = useState(
+    selectedEvent ? selectedEvent.photographer : ""
+  );
+  const [videographer, setVideographer] = useState(
+    selectedEvent ? selectedEvent.videographer : ""
+  );
+  const [cooler, setCooler] = useState(
+    selectedEvent ? selectedEvent.cooler : ""
+  );
+  const [markerBoard, setMarkerBoard] = useState(
+    selectedEvent ? selectedEvent.markerBoard : ""
+  );
+  const [HDMIAdapter, setHDMIAdapter] = useState(
+    selectedEvent ? selectedEvent.HDMIAdapter : ""
+  );
+  const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState(
+    selectedEvent ? selectedEvent.typeCToHDMIAdapter : ""
+  );
+  const [label, setLable] = useState(selectedEvent ? selectedEvent.label : "");
+  const [doClock, setDoClock] = useState(
+    selectedEvent ? selectedEvent.doClock : "08:00"
+  );
+  const [poClock, setPoClock] = useState(
+    selectedEvent ? selectedEvent.poClock : "09:00"
+  );
+  let person = localStorage.getItem("admin");
+  let per = localStorage.getItem("person");
   function handleSubmit(e) {
-     window.location.reload()
+    window.location.reload();
     const dataForm = {
       day: daySelected.format("dddd, MMMM DD"),
       title: title,
       description: description,
       label: label,
-      doClock:doClock,
-      poClock:poClock,
+      doClock: doClock,
+      poClock: poClock,
       notebooks: notebooks,
       microphone: microphone,
       buttonhole: buttonhole,
@@ -115,21 +154,23 @@ export default function EventModal() {
       markerBoard: markerBoard,
       HDMIAdapter: HDMIAdapter,
       typeCToHDMIAdapter: typeCToHDMIAdapter,
-      person:per
+      person: per,
     };
-     
 
-     if (data.some((e)=>e.person == per)) {
-      postDatas(dataForm)
-     }else{
+    if (data.some((e) => e.person == per)) {
+      postDatas(dataForm);
+    } else {
       data.some(
-        (e)=>e.label == dataForm.label && 
-        e.doClock == dataForm.doClock  &&
-        e.poClock == dataForm.poClock  &&
-        e.day == dataForm.day 
-        ) ? alert("Извините, этот номер уже заблокирован"): postDatas(dataForm)
-     }
-    
+        (e) =>
+          e.label == dataForm.label &&
+          e.doClock == dataForm.doClock &&
+          e.poClock == dataForm.poClock &&
+          e.day == dataForm.day
+      )
+        ? alert("Извините, этот номер уже заблокирован")
+        : postDatas(dataForm);
+    }
+
     e.preventDefault();
     const calendarEvent = {
       title,
@@ -178,7 +219,7 @@ export default function EventModal() {
         </header>
         <div className="p-3">
           <div className="grid grid-cols-1/5 items-end gap-y-7">
-            <div className="flex gap-5 lg:ml-1 ml-[25px] sm:ml-[2px] ">
+            <div className="flex gap-5  ">
               <div></div>
               <input
                 type="text"
@@ -186,22 +227,25 @@ export default function EventModal() {
                 placeholder="Тема Мероприятия"
                 value={title}
                 required
-                className="pt-3 border-0 text-gray-600 text-xl font-semibold  lg:w-[600px] sm:w-[500px]
-                border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                className="pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="flex gap-5 sm:ml-[0px]">
+            <div className="flex gap-5  ">
               <span className="material-icons-outlined text-gray-400 sm:ml-[40px]">
                 schedule
               </span>
               <p>{daySelected.format("dddd, MMMM DD")}</p>
               <select
                 className="border border-grey-500 rounded px-2"
-                value={person=="admin"?selectedEvent?doClock:null:null}
+                value={
+                  person == "admin" ? (selectedEvent ? doClock : null) : null
+                }
                 name=""
                 id=""
-                onClick={(e)=>{setDoClock(e.target.value)}}
+                onClick={(e) => {
+                  setDoClock(e.target.value);
+                }}
               >
                 <option value="08:00">08:00</option>
                 <option value="09:00">09:00</option>
@@ -217,11 +261,15 @@ export default function EventModal() {
                 <option value="19:00">19:00</option>
               </select>
               <select
-              value={person=="admin"?selectedEvent?poClock:null:null}
+                value={
+                  person == "admin" ? (selectedEvent ? poClock : null) : null
+                }
                 name=""
                 className="border border-grey-500 rounded px-2"
                 id=""
-                onClick={(e)=>{setPoClock(e.target.value)}}
+                onClick={(e) => {
+                  setPoClock(e.target.value);
+                }}
               >
                 <option value="09:00">09:00</option>
                 <option value="10:00">10:00</option>
@@ -237,7 +285,7 @@ export default function EventModal() {
                 <option value="20:00">20:00</option>
               </select>
             </div>
-            <div className="flex gap-5 sm:ml-[40px]">
+            <div className="flex gap-5 ">
               <span className="material-icons-outlined text-gray-400">
                 people
               </span>
@@ -247,7 +295,7 @@ export default function EventModal() {
                 placeholder="Количество Людей"
                 value={description}
                 required
-                className="  border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
@@ -256,7 +304,15 @@ export default function EventModal() {
                 place
               </span>
               <div className="flex gap-x-2">
-                <select  value={person=="admin"?selectedEvent?label:null:null} onClick={(e)=>{setLable( e.target.value)}} className="border border-grey-500 rounded px-2">
+                <select
+                  value={
+                    person == "admin" ? (selectedEvent ? label : null) : null
+                  }
+                  onClick={(e) => {
+                    setLable(e.target.value);
+                  }}
+                  className="border border-grey-500 rounded px-2"
+                >
                   <option value="indigo">Выберите помещение</option>
                   <option value="gray">Митинг рум на 1-этаже</option>
                   <option value="green">Шоурум на 1-этаже</option>
@@ -282,13 +338,13 @@ export default function EventModal() {
             </div>
             <p className="text-xl">Предметы:</p>
             <div className="h-48 overflow-auto touch-auto ">
-              <div className="flex gap-7 w-[500px] ">
-                <div>
+              <div className="lg:flex gap-7 lg:w-[600px]  lg:place-content-start grid place-content-center ">
+                <div className="lg:text-start  ">
                   <span className="font-bold">Ноутбуки:</span>
                   <input
-                    value={person=="admin"?notebooks:null}
+                    value={person == "admin" ? notebooks : null}
                     placeholder="0-60"
-                    className="border rounded border-grey-500 px-3"
+                    className=" border w-40  grid place-content-start  md:place-content-center rounded border-grey-500 px-3"
                     type="text"
                     onChange={(e) => {
                       setNotebooks(e.target.value);
@@ -298,11 +354,11 @@ export default function EventModal() {
                   />
                 </div>
                 <div>
-                  <span className="font-bold">Микрофон:</span>
+                  <span className="font-bold ">Микрофон:</span>
                   <input
-                    value={person == "admin"?microphone:null}
+                    value={person == "admin" ? microphone : null}
                     placeholder="0-10"
-                    className="border rounded border-grey-500 px-3"
+                    className="border  w-40 grid place-content-start md:place-content-center rounded border-grey-500 px-3"
                     type="text"
                     onChange={(e) => {
                       setMicrophone(e.target.value);
@@ -314,9 +370,9 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Петличка:</span>
                   <input
-                    value={person=="admin"?buttonhole:null}
+                    value={person == "admin" ? buttonhole : null}
                     placeholder="0-10"
-                    className="border rounded border-grey-500 px-3"
+                    className="border w-40 rounded border-grey-500 grid place-content-start md:place-content-center px-3"
                     type="text"
                     onChange={(e) => {
                       setButtonhole(e.target.value);
@@ -326,14 +382,14 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className=" lg:flex sm:block sm:mt-5 gap-7 w-[500px] mt-5 sm:ml-[30px] lg:ml-1 ml-[40px] sm:ml-[2px] ">
+              <div className=" lg:flex gap-7 lg:w-[600px]  lg:place-content-start grid place-content-center mt-5 ">
                 <div>
                   <span className="font-bold">Стулья:</span>
                   <input
-                  value={person=="admin"?chairs:null}
+                    value={person == "admin" ? chairs : null}
                     onChange={(e) => setChairs(e.target.value)}
                     placeholder="0-60"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
                     type="number"
                     name=""
                     id=""
@@ -342,10 +398,10 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold ">Письменный стол:</span>
                   <input
-                  value={person=="admin"?desk:null}
+                    value={person == "admin" ? desk : null}
                     onChange={(e) => setDesk(e.target.value)}
                     placeholder="0-5"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
                     type="number"
                     name=""
                     id=""
@@ -354,9 +410,9 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Вода (0,33л.):</span>
                   <input
-                  value={person=="admin"?water:null}
+                    value={person == "admin" ? water : null}
                     placeholder="0-60"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3  w-40"
                     type="number"
                     name=""
                     id=""
@@ -364,14 +420,14 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className=" lg:flex sm:block sm:mt-5 gap-7 w-[500px] items-center mt-5 sm:ml-[30px] lg:ml-1 ml-[40px] sm:ml-[2px]">
+              <div className="lg:flex gap-7 lg:w-[600px]  lg:place-content-start grid place-content-center mt-5 ">
                 <div>
                   <span className="font-bold">Ручка:</span>
                   <input
-                  value={person=="admin"?pen:null}
+                    value={person == "admin" ? pen : null}
                     onChange={(e) => setPen(e.target.value)}
                     placeholder="0-60"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
                     type="number"
                     name=""
                     id=""
@@ -380,10 +436,10 @@ export default function EventModal() {
                 <div className="">
                   <span className="font-bold">Чай:</span>
                   <input
-                  value={person=="admin"?tea:null}
+                    value={person == "admin" ? tea : null}
                     onChange={(e) => setTea(e.target.value)}
                     placeholder="0-10"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
                     type="number"
                     name=""
                     id=""
@@ -392,24 +448,24 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Кофе:</span>
                   <input
-                  value={person=="admin"?coffee:null}
+                    value={person == "admin" ? coffee : null}
                     onChange={(e) => setCoffee(e.target.value)}
                     placeholder="0-10"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
                     type="number"
                     name=""
                     id=""
                   />
                 </div>
               </div>
-              <div className="lg:flex sm:block sm:mt-5 justify-between w-[480px] mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
+              <div className="lg:flex gap-7 lg:w-[380px]  lg:place-content-start grid place-content-center mt-5">
                 <div>
                   <span className="font-bold">Бумага:</span>
                   <input
-                  value={person=="admin"?paper:null}
+                    value={person == "admin" ? paper : null}
                     onChange={(e) => setPaper(e.target.value)}
                     placeholder="0-60"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
                     type="number"
                     name=""
                     id=""
@@ -418,10 +474,10 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Флаера:</span>
                   <input
-                  value={person=="admin"?flyers:null}
+                    value={person == "admin" ? flyers : null}
                     onChange={(e) => setFlyers(e.target.value)}
                     placeholder="0-60"
-                    className="border rounded border-grey-500 px-3"
+                    className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
                     type="number"
                     name=""
                     id=""
@@ -429,11 +485,17 @@ export default function EventModal() {
                 </div>
                 <div></div>
               </div>
-              <div className="lg:flex sm:block sm:mt-5 gap-7  mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
+              <div className="lg:flex sm:block sm:mt-5 gap-7  grid place-content-center">
                 <div className="gap-3 flex">
                   <span className="font-bold">Кликер:</span>
                   <input
-                    checked={person=="admin"?clicker=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? clicker == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setClicker(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -445,7 +507,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'43:</span>
                   <input
-                    checked={person=="admin"?TV43=="on"?true:false:null}
+                    checked={
+                      person == "admin" ? (TV43 == "on" ? true : false) : null
+                    }
                     onChange={(e) => setTV43(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -457,7 +521,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'65:</span>
                   <input
-                    checked={person=="admin"?TV65=="on"?true:false:null}
+                    checked={
+                      person == "admin" ? (TV65 == "on" ? true : false) : null
+                    }
                     onChange={(e) => setTV65(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -469,7 +535,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'76:</span>
                   <input
-                    checked={person=="admin"?TV76=="on"?true:false:null}
+                    checked={
+                      person == "admin" ? (TV76 == "on" ? true : false) : null
+                    }
                     onChange={(e) => setTV76(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -481,7 +549,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Тачскрин'86':</span>
                   <input
-                    checked={person=="admin"?touchscreen86=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? touchscreen86 == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setTouchscreen86(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -493,7 +567,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Камера для ВКС:</span>
                   <input
-                    checked={person=="admin"?videoConferencing=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? videoConferencing == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setVideoConferencing(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -503,11 +583,17 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="lg:flex sm:block sm:mt-5 gap-7  mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
+              <div className="lg:flex sm:block mt-5 gap-7  grid place-content-center">
                 <div className="gap-3 flex">
                   <span className="font-bold">Онлайн-трансляция:</span>
                   <input
-                    checked={person=="admin"?liveStream=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? liveStream == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setLiveStream(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -519,7 +605,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Запись ивента:</span>
                   <input
-                    checked={person=="admin"?eventRecording=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? eventRecording == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setEventRecording(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -531,7 +623,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Фотограф:</span>
                   <input
-                    checked={person=="admin"?photographer=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? photographer == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setPhotographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -543,7 +641,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Видеограф:</span>
                   <input
-                    checked={person=="admin"?videographer=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? videographer == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setVideographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -555,7 +659,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кулер:</span>
                   <input
-                    checked={person=="admin"?cooler=="on"?true:false:null}
+                    checked={
+                      person == "admin" ? (cooler == "on" ? true : false) : null
+                    }
                     onChange={(e) => setCooler(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -565,11 +671,17 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="lg:flex sm:block sm:mt-5 gap-7  mt-5 lg:ml-1 ml-[40px] sm:ml-[2px]">
+              <div className="lg:flex mt-5 gap-7  grid place-content-center">
                 <div className="gap-3 flex">
                   <span className="font-bold">Маркерная доска:</span>
                   <input
-                    checked={person=="admin"?markerBoard=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? markerBoard == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setMarkerBoard(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -581,7 +693,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold ">HDMI переходник:</span>
                   <input
-                    checked={person=="admin"?HDMIAdapter=="on"?true:false:null}
+                    checked={
+                      person == "admin"
+                        ? HDMIAdapter == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -593,7 +711,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Адаптер Type-C на HDMI:</span>
                   <input
-                    checked={person=="admin"?typeCToHDMIAdapter=="on"?true:false:null} 
+                    checked={
+                      person == "admin"
+                        ? typeCToHDMIAdapter == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setTypeCToHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "

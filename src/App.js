@@ -6,15 +6,13 @@ import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import Login from "./main/login/login";
 import Admin from "./main/admin";
 function App() {
- 
-
   return (
-      <BrowserRouter>
+    <BrowserRouter>
       <Routes>
-         <Route path="/" Component={Login}/>
-         <Route path="admin" Component={Admin}/>
+        <Route path="/" Component={Login} />
+        <Route path="admin" Component={Admin} />
       </Routes>
-      </BrowserRouter>
+    </BrowserRouter>
   );
 }
 
