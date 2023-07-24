@@ -18,7 +18,7 @@ async function postData(url = "", data = {}) {
 }
 
 function postDatas(dataForm) {
-  postData("http://localhost:3500/items", dataForm).then((data) => {
+  postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
 }
