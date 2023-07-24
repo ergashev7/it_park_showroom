@@ -25,6 +25,7 @@ function postDatas(dataForm) {
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {
+  const url = "http://83.69.139.151:3500/items"
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
   console.log();
@@ -38,9 +39,10 @@ export default function EventModal() {
       : labelsClasses[0]
   );
   // console.log(selectedEvent );
+ 
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3500/items")
+    fetch(url)
       .then((response) => {
         return response.json();
       })
@@ -146,7 +148,13 @@ export default function EventModal() {
 
     setShowEventModal(false);
   }
-
+// function deleteData(item, url) {
+//   return fetch(url + '/' + item, {
+//     method: 'delete'
+//   })
+//   .then(response => response.json());
+// }
+// deleteData(1, url)
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">

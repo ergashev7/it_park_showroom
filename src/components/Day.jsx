@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 export default function Day({ day, rowIdx }) {
+  const url = "http://83.69.139.151:3500/items"
   let person = localStorage.getItem("admin")
   const [dayEvents, setDayEvents] = useState([]);
   const {
@@ -13,7 +14,7 @@ export default function Day({ day, rowIdx }) {
   } = useContext(GlobalContext);
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3500/items")
+    fetch(url)
       .then((response) => {
         return response.json();
       })
@@ -52,16 +53,13 @@ export default function Day({ day, rowIdx }) {
       : "";
   }
   function after() {
+    console.log(monts[oy] == day.format("MMMM"));
     if (person !== "admin") {
-        if (monts[oy]== day.format("MMMM") && kun > day.format("DD")) {
-         if (monts[oy]== day.format("MMMM") && kun == day.format("DD")) {
+        if (monts[oy] == day.format("MMMM") &&( kun < day.format("DD" )|| kun == day.format("DD"))){
           setDaySelected(day);
           setShowEventModal(true);
-         }
-          alert("Извините, время истекло")
         }else{
-          setDaySelected(day);
-          setShowEventModal(true);
+          alert("Извините, время истекло")
         }
     }else{
           setDaySelected(day);

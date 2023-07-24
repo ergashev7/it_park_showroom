@@ -4,12 +4,14 @@ import "./login.css";
 import { Link } from "react-router-dom";
 // import database from "../../logindata.js";
 function Login() {
+  const url = "http://83.69.139.151:3500/items"
+
   const [login, setLogin] = useState();
   const [password, setPassword] = useState();
   const [data, setData] = useState();
   const [admin, setAdmin] = useState("/");
   useEffect(() => {
-    fetch("http://localhost:3500/person")
+    fetch(url)
       .then((response) => {
         return response.json();
       })

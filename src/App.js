@@ -5,9 +5,8 @@ import GlobalContext from "./context/GlobalContext";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import Login from "./main/login/login";
 import Admin from "./main/admin";
-function App() {
- 
 
+function App() {
   return (
       <BrowserRouter>
       <Routes>
