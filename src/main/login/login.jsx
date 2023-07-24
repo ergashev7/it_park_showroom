@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Login() {
   const url = "http://83.69.139.151:3500/person";
 
-  const [login, setLogin] = useState();
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState();
   const [data, setData] = useState();
   const [admin, setAdmin] = useState("/");
@@ -22,7 +22,7 @@ function Login() {
   function confirmation() {
     localStorage.setItem(
       "person",
-      data.filter((e) => e.login == login)[0].login
+      data.filter((e) => e.login == login)[0]
     );
     data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
       ? localStorage.setItem("admin", "admin")

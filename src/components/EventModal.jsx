@@ -122,6 +122,10 @@ export default function EventModal() {
   let person = localStorage.getItem("admin");
   let per = localStorage.getItem("person");
   function handleSubmit(e) {
+
+    if (selectedEvent !==null ) {
+      deleteData(selectedEvent.id)
+    }
     window.location.reload();
     const dataForm = {
       isCheck: false,
@@ -192,13 +196,16 @@ export default function EventModal() {
 
     setShowEventModal(false);
   }
-  function deleteData(item, url) {
-    return fetch(url + '/' + item, {
+  function deleteData(item) {
+    
+    window.location.reload()
+    return fetch("http://83.69.139.151:3500/items" + '/' + item, {
       method: 'delete'
     })
     .then(response => response.json());
+    setShowEventModal(false);
   }
-  deleteData(1, url)
+  
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center ">
       <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
@@ -207,11 +214,7 @@ export default function EventModal() {
             {selectedEvent && (
               <span
                 onClick={() => {
-                  dispatchCalEvent({
-                    type: "delete",
-                    payload: selectedEvent,
-                  });
-                  setShowEventModal(false);
+                  deleteData(selectedEvent.id )
                 }}
                 className=" material-icons-outlined text-gray-400 cursor-pointer"
               >
