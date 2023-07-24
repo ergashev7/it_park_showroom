@@ -3,8 +3,8 @@ import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 export default function Day({ day, rowIdx }) {
-  const url = "http://83.69.139.151:3500/items"
-  let person = localStorage.getItem("admin")
+  const url = "http://83.69.139.151:3500/items";
+  let person = localStorage.getItem("admin");
   const [dayEvents, setDayEvents] = useState([]);
   const {
     setDaySelected,
@@ -55,18 +55,19 @@ export default function Day({ day, rowIdx }) {
   function after() {
     console.log(monts[oy] == day.format("MMMM"));
     if (person !== "admin") {
-        if (monts[oy] == day.format("MMMM") &&( kun < day.format("DD" )|| kun == day.format("DD"))){
-          setDaySelected(day);
-          setShowEventModal(true);
-        }else{
-          alert("Извините, время истекло")
-        }
-    }else{
-          setDaySelected(day);
-          setShowEventModal(true);
+      if (
+        monts[oy] == day.format("MMMM") &&
+        (kun < day.format("DD") || kun == day.format("DD"))
+      ) {
+        setDaySelected(day);
+        setShowEventModal(true);
+      } else {
+        alert("Извините, время истекло");
+      }
+    } else {
+      setDaySelected(day);
+      setShowEventModal(true);
     }
-  
-  
   }
   return (
     <div className="border border-gray-200 flex flex-col">
