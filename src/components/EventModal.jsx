@@ -196,9 +196,9 @@ export default function EventModal() {
   // }
   // deleteData(1, url)
   return (
-    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
+    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center ">
       <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
-        <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
+        <header className="bg-gray-100 px-4 py-2 grid place-content-end">
           <div>
             {selectedEvent && (
               <span
@@ -209,7 +209,7 @@ export default function EventModal() {
                   });
                   setShowEventModal(false);
                 }}
-                className="material-icons-outlined text-gray-400 cursor-pointer"
+                className=" material-icons-outlined text-gray-400 cursor-pointer"
               >
                 delete
               </span>
@@ -241,7 +241,7 @@ export default function EventModal() {
               </span>
               <p>{daySelected.format("dddd, MMMM DD")}</p>
               <select
-                className="border border-grey-500 rounded px-2"
+                className="border h-8 border-grey-500 rounded px-2"
                 value={
                   person == "admin" ? (selectedEvent ? doClock : null) : null
                 }
@@ -269,7 +269,7 @@ export default function EventModal() {
                   person == "admin" ? (selectedEvent ? poClock : null) : null
                 }
                 name=""
-                className="border border-grey-500 rounded px-2"
+                className="border h-8 border-grey-500 rounded px-2"
                 id=""
                 onClick={(e) => {
                   setPoClock(e.target.value);
@@ -675,7 +675,7 @@ export default function EventModal() {
                   />
                 </div>
               </div>
-              <div className="lg:flex mt-5 gap-7  grid place-content-center">
+              <div className="lg:flex mt-5 gap-7  grid place-content-center lg:place-content-start">
                 <div className="gap-3 flex">
                   <span className="font-bold">Маркерная доска:</span>
                   <input
