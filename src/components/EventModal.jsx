@@ -18,14 +18,14 @@ async function postData(url = "", data = {}) {
 }
 
 function postDatas(dataForm) {
-  postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
+  postData("http://localhost:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
 }
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {
-  const url = "http://83.69.139.151:3500/items";
+  const url = "http://localhost:3500/items";
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
   console.log();
@@ -122,9 +122,8 @@ export default function EventModal() {
   let person = localStorage.getItem("admin");
   let per = localStorage.getItem("person");
   function handleSubmit(e) {
-
-    if (selectedEvent !==null ) {
-      deleteData(selectedEvent.id)
+    if (selectedEvent !== null) {
+      deleteData(selectedEvent.id);
     }
     window.location.reload();
     const dataForm = {
@@ -197,15 +196,14 @@ export default function EventModal() {
     setShowEventModal(false);
   }
   function deleteData(item) {
-    
-    window.location.reload()
-    return fetch("http://83.69.139.151:3500/items" + '/' + item, {
-      method: 'delete'
-    })
-    .then(response => response.json());
+    window.location.reload();
+    return fetch("http://localhost:3500/items" + "/" + item, {
+      method: "delete",
+    }).then((response) => response.json());
     setShowEventModal(false);
   }
-  
+ 
+
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center ">
       <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
@@ -214,7 +212,7 @@ export default function EventModal() {
             {selectedEvent && (
               <span
                 onClick={() => {
-                  deleteData(selectedEvent.id )
+                  deleteData(selectedEvent.id);
                 }}
                 className=" material-icons-outlined text-gray-400 cursor-pointer"
               >
@@ -742,6 +740,9 @@ export default function EventModal() {
           </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">
+          <button className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]">
+            подтверждение
+          </button>
           <button
             type="submit"
             onClick={handleSubmit}
