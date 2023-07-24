@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
 
 export default function Day({ day, rowIdx }) {
-  const url = "http://83.69.139.151:3500/items";
+  const url = "http://localhost:3500/items";
   let person = localStorage.getItem("admin");
   const [dayEvents, setDayEvents] = useState([]);
   const {
