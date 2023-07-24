@@ -27,9 +27,12 @@ function Login() {
     data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
       ? localStorage.setItem("admin", "admin")
       : localStorage.setItem("admin", "user");
-    data.some((e) => e.login == login && e.password == password)
-      ? setAdmin("/admin")
-      : setAdmin("/");
+    if (data.some((e) => e.login == login && e.password == password)) {
+      setAdmin("/admin");
+    } else {
+      setAdmin("/");
+      console.log("red");
+    }
   }
   return (
     <div className="container1">
@@ -75,8 +78,6 @@ function Login() {
                   Войти
                 </button>
               </Link>
-              <p className="parol mt-51">Забыли пароль?</p>
-              <div style={{ width: "401px" }}></div>
             </div>
           </div>
         </div>
