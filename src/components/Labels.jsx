@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
+import { key } from "localforage";
 
 export default function Labels() {
   const { labels, updateLabel } = useContext(GlobalContext);
@@ -15,12 +16,44 @@ export default function Labels() {
         setData(data);
       });
   }
+
+  async function postData(url = "", data = {}) {
+    const response = await fetch(url, {
+      method: "PATCH",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  }
+
+  function postDatas(dataForm, id) {
+    postData("http://83.69.139.151:3500/items/" + id, dataForm).then(
+      (data) => {}
+    );
+  }
+
+  function changeIsCheck(id) {
+    const data = {
+      isCheck: true,
+    };
+    postDatas(data, id);
+  }
+
   useEffect(() => {
     fetchNotifacationList();
   }, []);
 
+  useEffect(() => {});
+
   return (
-    <div>
+    <div className="">
       <p className="text-gray-500 font-bold mt-10">Notification</p>
       {/* {labels.map(({ label: lbl, checked }, idx) => (
         <label key={idx} className="items-center mt-3 block">
@@ -33,8 +66,22 @@ export default function Labels() {
           <span className="ml-2 text-gray-700 capitalize">{lbl}</span>
         </label>
       ))} */}
-      <div>
-        <p>label</p>
+      <div className="max-h-[250px] overflow-y-scroll">
+        {data.map((el, idx) => {
+          {
+            if (el.isCheck == false) {
+              return (
+                <div
+                  onClick={() => changeIsCheck(el.id)}
+                  key={idx}
+                  className="flex justify-between border p-2 rounded-lg mt-2 px-3 cursor-pointer"
+                >
+                  <p className="font-medium">{el.title}</p>
+                </div>
+              );
+            }
+          }
+        })}
       </div>
     </div>
   );
