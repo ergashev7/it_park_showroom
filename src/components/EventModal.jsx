@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
-import "./eventModal.css";
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -19,13 +18,14 @@ async function postData(url = "", data = {}) {
 }
 
 function postDatas(dataForm) {
-  postData("http://localhost:3500/items", dataForm).then((data) => {
+  postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
 }
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {
+  const url = "http://83.69.139.151:3500/items";
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
   console.log();
@@ -39,9 +39,10 @@ export default function EventModal() {
       : labelsClasses[0]
   );
   // console.log(selectedEvent );
+
   const [data, setData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3500/items")
+    fetch(url)
       .then((response) => {
         return response.json();
       })
@@ -187,14 +188,17 @@ export default function EventModal() {
 
     setShowEventModal(false);
   }
-
+  // function deleteData(item, url) {
+  //   return fetch(url + '/' + item, {
+  //     method: 'delete'
+  //   })
+  //   .then(response => response.json());
+  // }
+  // deleteData(1, url)
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 flex justify-between items-center">
-          <span className="material-icons-outlined text-gray-400">
-            drag_handle
-          </span>
           <div>
             {selectedEvent && (
               <span
