@@ -27,12 +27,9 @@ function Login() {
     data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
       ? localStorage.setItem("admin", "admin")
       : localStorage.setItem("admin", "user");
-    if (data.some((e) => e.login == login && e.password == password)) {
-      setAdmin("/admin");
-    } else {
-      setAdmin("/");
-      console.log("red");
-    }
+    data.some((e) => e.login == login && e.password == password)
+      ? setAdmin("/admin")
+      : setAdmin("/");
   }
   return (
     <div className="container1">
