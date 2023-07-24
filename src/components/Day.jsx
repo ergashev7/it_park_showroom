@@ -39,7 +39,9 @@ export default function Day({ day, rowIdx }) {
   let kun = new Date().getDate();
   let oy = new Date().getMonth();
 
-  let x = data.filter((row) => day.format("dddd, MMMM DD") == row.day && row.isCheck == true);
+  let x = data.filter(
+    (row) => day.format("dddd, MMMM DD") == row.day && row.isCheck == true
+  );
   useEffect(() => {
     const events = filteredEvents.filter(
       (evt) => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
