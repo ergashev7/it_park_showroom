@@ -44,13 +44,12 @@ export default function Labels() {
       isCheck: true,
     };
     postDatas(data, id);
+    window.location.reload();
   }
 
   useEffect(() => {
     fetchNotifacationList();
   }, []);
-
-  useEffect(() => {});
 
   return (
     <div className="">
