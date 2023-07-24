@@ -4,7 +4,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 // import database from "../../logindata.js";
 function Login() {
-  const url = "http://83.69.139.151:3500/items"
+  const url = "http://83.69.139.151:3500/person"
 
   const [login, setLogin] = useState();
   const [password, setPassword] = useState();

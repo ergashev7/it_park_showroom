@@ -188,13 +188,13 @@ export default function EventModal() {
 
     setShowEventModal(false);
   }
-  // function deleteData(item, url) {
-  //   return fetch(url + '/' + item, {
-  //     method: 'delete'
-  //   })
-  //   .then(response => response.json());
-  // }
-  // deleteData(1, url)
+  function deleteData(item, url) {
+    return fetch(url + '/' + item, {
+      method: 'delete'
+    })
+    .then(response => response.json());
+  }
+  deleteData(1, url)
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center">
       <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
