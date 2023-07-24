@@ -124,6 +124,7 @@ export default function EventModal() {
   function handleSubmit(e) {
     window.location.reload();
     const dataForm = {
+      isCheck: false,
       day: daySelected.format("dddd, MMMM DD"),
       title: title,
       description: description,
@@ -157,6 +158,9 @@ export default function EventModal() {
       typeCToHDMIAdapter: typeCToHDMIAdapter,
       person: per,
     };
+    if (person === "admin") {
+      dataForm.isCheck = true;
+    }
 
     if (data.some((e) => e.person == per)) {
       postDatas(dataForm);
