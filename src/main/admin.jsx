@@ -16,6 +16,7 @@ function Admin() {
         {showEventModal && <EventModal />}
         <div className="h-screen flex flex-col">
           <CalendarHeader />
+          <button>s</button>
           <div className="flex flex-1">
             <Month month={currentMonth} />
             <Sidebar />
