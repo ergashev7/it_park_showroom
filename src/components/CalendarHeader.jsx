@@ -26,7 +26,7 @@ function CalendarHeader() {
         onClick={handleReset}
       >
         {" "}
-        Today{" "}
+        Сегодня{" "}
       </button>
       <button onClick={handlePrevMonth}>
         <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2">

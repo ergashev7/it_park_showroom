@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import CalendarHeader from "../components/CalendarHeader"
+import CalendarHeader from "../components/CalendarHeader";
 import Month from "../components/Month";
 import Sidebar from "../components/Sidebar";
 import { getMonth } from "../util";
@@ -8,19 +8,26 @@ import EventModal from "../components/EventModal";
 function Admin() {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const { monthIndex, showEventModal } = useContext(GlobalContext);
+  const [hidden, setHidden] = useState();
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
+  function onHidden() {
+    setHidden(!hidden);
+  }
   return (
     <React.Fragment>
-        {showEventModal && <EventModal />}
-        <div className="h-screen flex flex-col">
+      {showEventModal && <EventModal />}
+      <div className="h-screen flex flex-col">
+        <div className="flex justify-between">
           <CalendarHeader />
-          <div className="flex flex-1">
-            <Month month={currentMonth} />
-            <Sidebar />
-          </div>
+          <button onClick={onHidden}>Новый</button>
         </div>
+        <div className="flex flex-1">
+          <Month month={currentMonth} />
+          <Sidebar showHidden={hidden} />
+        </div>
+      </div>
     </React.Fragment>
   );
 }

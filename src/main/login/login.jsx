@@ -22,7 +22,6 @@ function Login() {
   }, []);
   const navigate = useNavigate();
   function confirmation() {
-    navigate("/admin");
     localStorage.setItem(
       "person",
       JSON.stringify(data.filter((e) => e.login == login)[0])
@@ -32,6 +31,7 @@ function Login() {
       : localStorage.setItem("admin", "user");
     if (data.some((e) => e.login == login && e.password == password)) {
       setAdmin("/admin");
+      navigate("/admin");
     } else {
       InputRef.current.style.border = "2px solid red";
       PasswordRef.current.style.border = "2px solid red";

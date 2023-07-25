@@ -226,9 +226,9 @@ export default function EventModal() {
     return response.json();
   }
 
-  function updateEvent(){
-    console.log("run is code")
-    const url = `http://83.69.139.151:3500/items/${selectedEvent?.id}`
+  function updateEvent() {
+    console.log("run is code");
+    const url = `http://83.69.139.151:3500/items/${selectedEvent?.id}`;
     const dataForm = {
       isCheck: false,
       day: daySelected.format("dddd, MMMM DD"),
@@ -268,11 +268,11 @@ export default function EventModal() {
     if (person === "admin") {
       dataForm.isCheck = true;
     }
-    postData(url,dataForm)
+    postData(url, dataForm);
     setShowEventModal(false);
-    setTimeout(()=>{
-      window.location.reload()
-    },1000)
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
 
   return (
@@ -280,7 +280,7 @@ export default function EventModal() {
       className={
         selectedEvent !== null
           ? person == "admin"
-            ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+            ? `h-screen w-full fixed left-0 p-10 top-0 flex justify-center items-center`
             : selectedEvent?.person?.login == per.login
             ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
             : "hidden"
@@ -856,11 +856,14 @@ export default function EventModal() {
           >
             Save
           </button>
-          <button onClick={updateEvent}    className={
-            selectedEvent
+          <button
+            onClick={updateEvent}
+            className={
+              selectedEvent
                 ? `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
                 : `hidden`
-          }>
+            }
+          >
             Update
           </button>
         </footer>
