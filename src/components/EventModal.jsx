@@ -18,14 +18,14 @@ async function postData(url = "", data = {}) {
 }
 
 function postDatas(dataForm) {
-  postData("http://localhost:3500/items", dataForm).then((data) => {
+  postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
 }
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {
-  const url = "http://localhost:3500/items";
+  const url = "http://83.69.139.151:3500/items";
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
   console.log();
@@ -119,94 +119,104 @@ export default function EventModal() {
   const [poClock, setPoClock] = useState(
     selectedEvent ? selectedEvent.poClock : "09:00"
   );
-  let person = localStorage.getItem("admin");
-  let per = localStorage.getItem("person");
+  const [responsible, setResponsible] = useState(
+    selectedEvent ? selectedEvent.responsible : ""
+  );
+  const [errorHandle, setErrorHandle] = useState(false);
+  let person =localStorage.getItem("admin")
+  let per = localStorage.getItem("person")
+  console.log(per);
   function handleSubmit(e) {
-    if (selectedEvent !== null) {
-      deleteData(selectedEvent.id);
-    }
-    window.location.reload();
-    const dataForm = {
-      isCheck: false,
-      day: daySelected.format("dddd, MMMM DD"),
-      title: title,
-      description: description,
-      label: label,
-      doClock: doClock,
-      poClock: poClock,
-      notebooks: notebooks,
-      microphone: microphone,
-      buttonhole: buttonhole,
-      chairs: chairs,
-      desk: desk,
-      water: water,
-      tea: tea,
-      coffee: coffee,
-      pen: pen,
-      paper: paper,
-      flyers: flyers,
-      clicker: clicker,
-      TV43: TV43,
-      TV65: TV65,
-      TV76: TV76,
-      touchscreen86: touchscreen86,
-      videoConferencing: videoConferencing,
-      liveStream: liveStream,
-      eventRecording: eventRecording,
-      photographer: photographer,
-      videographer: videographer,
-      cooler: cooler,
-      markerBoard: markerBoard,
-      HDMIAdapter: HDMIAdapter,
-      typeCToHDMIAdapter: typeCToHDMIAdapter,
-      person: per,
-    };
-    if (person === "admin") {
-      dataForm.isCheck = true;
-    }
-
-    if (data.some((e) => e.person == per)) {
-      postDatas(dataForm);
+    if (title == "") {
+        setErrorHandle(true);
     } else {
-      data.some(
-        (e) =>
-          e.label == dataForm.label &&
-          e.doClock == dataForm.doClock &&
-          e.poClock == dataForm.poClock &&
-          e.day == dataForm.day
-      )
-        ? alert("Извините, этот номер уже заблокирован")
-        : postDatas(dataForm);
-    }
+      if (selectedEvent !== null) {
+        deleteData(selectedEvent.id);
+      }
+      window.location.reload();
+      const dataForm = {
+        isCheck: true,
+        day: daySelected.format("dddd, MMMM DD"),
+        title: title,
+        description: description,
+        label: label,
+        doClock: doClock,
+        poClock: poClock,
+        notebooks: notebooks,
+        microphone: microphone,
+        buttonhole: buttonhole,
+        chairs: chairs,
+        desk: desk,
+        water: water,
+        tea: tea,
+        coffee: coffee,
+        pen: pen,
+        paper: paper,
+        flyers: flyers,
+        clicker: clicker,
+        TV43: TV43,
+        TV65: TV65,
+        TV76: TV76,
+        touchscreen86: touchscreen86,
+        videoConferencing: videoConferencing,
+        liveStream: liveStream,
+        eventRecording: eventRecording,
+        photographer: photographer,
+        videographer: videographer,
+        cooler: cooler,
+        markerBoard: markerBoard,
+        HDMIAdapter: HDMIAdapter,
+        typeCToHDMIAdapter: typeCToHDMIAdapter,
+        person: per,
+        responsible,
+        responsible,
+      };
+      if (person === "admin") {
+        dataForm.isCheck = true;
+      }
 
-    e.preventDefault();
-    const calendarEvent = {
-      title,
-      description,
-      label: selectedLabel,
-      day: daySelected.valueOf(),
-      id: selectedEvent ? selectedEvent.id : Date.now(),
-    };
-    if (selectedEvent) {
-      dispatchCalEvent({ type: "update", payload: calendarEvent });
-    } else {
-      dispatchCalEvent({ type: "push", payload: calendarEvent });
-    }
+      if (data.some((e) => e.person == per)) {
+        postDatas(dataForm);
+      } else {
+        data.some(
+          (e) =>
+            e.label == dataForm.label &&
+            e.doClock == dataForm.doClock &&
+            e.poClock == dataForm.poClock &&
+            e.day == dataForm.day
+        )
+          ? alert("Извините, этот номер уже заблокирован")
+          : postDatas(dataForm);
+      }
 
-    setShowEventModal(false);
+      e.preventDefault();
+      const calendarEvent = {
+        title,
+        description,
+        label: selectedLabel,
+        day: daySelected.valueOf(),
+        id: selectedEvent ? selectedEvent.id : Date.now(),
+      };
+      if (selectedEvent) {
+        dispatchCalEvent({ type: "update", payload: calendarEvent });
+      } else {
+        dispatchCalEvent({ type: "push", payload: calendarEvent });
+      }
+
+      setShowEventModal(false);
+    }
   }
   function deleteData(item) {
     window.location.reload();
-    return fetch("http://localhost:3500/items" + "/" + item, {
+    return fetch("http://83.69.139.151:3500/items" + "/" + item, {
       method: "delete",
     }).then((response) => response.json());
     setShowEventModal(false);
   }
- 
 
   return (
     <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center ">
-      <form className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
+      <div className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 grid place-content-end">
           <div>
             {selectedEvent && (
@@ -236,7 +246,11 @@ export default function EventModal() {
                 placeholder="Тема Мероприятия"
                 value={title}
                 required
-                className="pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                className={
+                  errorHandle
+                    ? `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`
+                    : `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-red-500`
+                }
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -299,13 +313,27 @@ export default function EventModal() {
                 people
               </span>
               <input
-                type="text"
+                type="number"
                 name="description"
                 placeholder="Количество Людей"
                 value={description}
                 required
                 className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
                 onChange={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="flex gap-5 ">
+              <span className="material-icons-outlined text-gray-400">
+                people
+              </span>
+              <input
+                type="text"
+                name="description"
+                placeholder="Ответственный человек"
+                value={responsible}
+                required
+                className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                onChange={(e) => setResponsible(e.target.value)}
               />
             </div>
             <div className="flex gap-5">
@@ -744,14 +772,13 @@ export default function EventModal() {
             подтверждение
           </button>
           <button
-            type="submit"
             onClick={handleSubmit}
             className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]"
           >
             Save
           </button>
         </footer>
-      </form>
+      </div>
     </div>
   );
 }

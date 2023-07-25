@@ -4,7 +4,7 @@ import { key } from "localforage";
 
 export default function Labels() {
   const { labels, updateLabel } = useContext(GlobalContext);
-  const url = "http://localhost:3500/items";
+  const url = "http://83.69.139.151:3500/items";
   const [data, setData] = useState([]);
   function fetchNotifacationList() {
     fetch(url)
@@ -34,7 +34,7 @@ export default function Labels() {
   }
 
   function postDatas(dataForm, id) {
-    postData("http://localhost:3500/items" + id, dataForm).then(
+    postData("http://83.69.139.151:3500/items" + id, dataForm).then(
       (data) => {}
     );
   }

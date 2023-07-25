@@ -4,7 +4,7 @@ import "./login.css";
 import { Link } from "react-router-dom";
 // import database from "../../logindata.js";
 function Login() {
-  const url = "http://localhost:3500/person";
+  const url = "http://83.69.139.151:3500/person";
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState();
@@ -22,7 +22,7 @@ function Login() {
   function confirmation() {
     localStorage.setItem(
       "person",
-      data.filter((e) => e.login == login)[0]
+    JSON.stringify(  data.filter((e) => e.login == login)[0])
     );
     data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
       ? localStorage.setItem("admin", "admin")
