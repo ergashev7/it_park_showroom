@@ -209,7 +209,7 @@ export default function EventModal() {
     }).then((response) => response.json());
     setShowEventModal(false);
   }
-
+  // deleteData(35)
   return (
     <div
       className={
