@@ -168,7 +168,7 @@ export default function EventModal() {
         HDMIAdapter: HDMIAdapter,
         typeCToHDMIAdapter: typeCToHDMIAdapter,
         person: per,
-        responsible,
+        responsible:
         responsible,
       };
       if (person === "admin") {
