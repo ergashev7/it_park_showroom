@@ -47,7 +47,7 @@ export default function EventModal() {
   // if (selectedEvent){
   //   selectedEvent.person ==per.login ? "":selectedEvent = null
   // }
-  setSelectedEvent(selectedEvent.person.login == per.login ? selectedEvent : null)
+  setSelectedEvent(selectedEvent?.person.login == per.login ? selectedEvent : null)
   // selectedEvent? selectedEvent.person === per.login ? selectedEvent : selectedEvent = null:null
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -141,7 +141,7 @@ export default function EventModal() {
       }
       window.location.reload();
       const dataForm = {
-        isCheck: true,
+        isCheck: false,
         day: daySelected.format("dddd, MMMM DD"),
         title: title,
         description: description,
