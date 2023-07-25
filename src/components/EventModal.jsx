@@ -232,11 +232,13 @@ export default function EventModal() {
   return (
     <div
       className={
-        person == "admin"
-          ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
-          : selectedEvent.person.login == per.login
-          ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
-          : "hidden"
+        selectedEvent !== null
+          ? person == "admin"
+            ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+            : selectedEvent.person.login == per.login
+            ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+            : "hidden"
+          : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
       }
     >
       <div className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
@@ -249,8 +251,6 @@ export default function EventModal() {
                 }}
                 className={
                   person == "admin"
-                    ? `material-icons-outlined text-gray-400 cursor-pointer`
-                    : selectedEvent.person.login == per.login
                     ? `material-icons-outlined text-gray-400 cursor-pointer`
                     : `hidden`
                 }
