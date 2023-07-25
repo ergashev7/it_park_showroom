@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import imgIT from "../../assets/logo.svg";
 import "./login.css";
 import { Link } from "react-router-dom";
 // import database from "../../logindata.js";
 function Login() {
   const url = "http://localhost:3500/person";
-
+  const PasswordRef = useRef();
+  const InputRef = useRef();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState();
   const [data, setData] = useState();
@@ -24,9 +25,14 @@ function Login() {
     data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
       ? localStorage.setItem("admin", "admin")
       : localStorage.setItem("admin", "user");
-    data.some((e) => e.login == login && e.password == password)
-      ? setAdmin("/admin")
-      : setAdmin("/");
+    if (data.some((e) => e.login == login && e.password == password)) {
+      setAdmin("/admin");
+    } else {
+      InputRef.current.style.border = "2px solid red";
+      PasswordRef.current.style.border = "2px solid red";
+      console.log(InputRef);
+      // setAdmin("/");
+    }
   }
   return (
     <div className="container1">
@@ -44,6 +50,7 @@ function Login() {
                 <div className="flex1 flex-column gap-21">
                   <label htmlFor="username">Почта</label> <br />
                   <input
+                    ref={InputRef}
                     className="input1"
                     placeholder="hannah.green@test.com"
                     onChange={(e) => setLogin(e.target.value)}
@@ -57,6 +64,7 @@ function Login() {
                 </label>{" "}
                 <br />
                 <input
+                  ref={PasswordRef}
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   placeholder="Password123@"
