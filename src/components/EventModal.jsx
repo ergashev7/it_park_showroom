@@ -45,6 +45,8 @@ export default function EventModal() {
   );
   console.log(selectedEvent);
 
+  let person = localStorage.getItem("admin");
+  let per = JSON.parse(localStorage.getItem("person"));
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch(url)
@@ -128,9 +130,6 @@ export default function EventModal() {
     selectedEvent ? selectedEvent.responsible : ""
   );
   const [errorHandle, setErrorHandle] = useState(false);
-  let person = localStorage.getItem("admin");
-  let per = localStorage.getItem("person");
-  console.log(per);
   function handleSubmit(e) {
     if (title == "") {
       setErrorHandle(true);
@@ -140,7 +139,7 @@ export default function EventModal() {
       }
       window.location.reload();
       const dataForm = {
-        isCheck: true,
+        isCheck: false,
         day: daySelected.format("dddd, MMMM DD"),
         title: title,
         description: description,
@@ -173,22 +172,21 @@ export default function EventModal() {
         HDMIAdapter: HDMIAdapter,
         typeCToHDMIAdapter: typeCToHDMIAdapter,
         person: per,
-        responsible,
-        responsible,
+        responsible: responsible,
       };
       if (person === "admin") {
         dataForm.isCheck = true;
       }
 
-      if (data.some((e) => e.person == per)) {
+      if (data.some((e) => e.person === per)) {
         postDatas(dataForm);
       } else {
         data.some(
           (e) =>
-            e.label == dataForm.label &&
-            e.doClock == dataForm.doClock &&
-            e.poClock == dataForm.poClock &&
-            e.day == dataForm.day
+            e.label === dataForm.label &&
+            e.doClock === dataForm.doClock &&
+            e.poClock === dataForm.poClock &&
+            e.day === dataForm.day
         )
           ? alert("Извините, этот номер уже заблокирован")
           : postDatas(dataForm);
@@ -220,7 +218,17 @@ export default function EventModal() {
   }
 
   return (
-    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center ">
+    <div
+      className={
+        selectedEvent !== null
+          ? person == "admin"
+            ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+            : selectedEvent.person.login == per.login
+            ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+            : "hidden"
+          : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+      }
+    >
       <div className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 grid place-content-end">
           <div>
@@ -229,7 +237,11 @@ export default function EventModal() {
                 onClick={() => {
                   deleteData(selectedEvent.id);
                 }}
-                className=" material-icons-outlined text-gray-400 cursor-pointer"
+                className={
+                  person == "admin"
+                    ? `material-icons-outlined text-gray-400 cursor-pointer`
+                    : `hidden`
+                }
               >
                 delete
               </span>
@@ -290,7 +302,7 @@ export default function EventModal() {
               </select>
               <select
                 value={
-                  person == "admin" ? (selectedEvent ? poClock : null) : null
+                  person === "admin" ? (selectedEvent ? poClock : null) : null
                 }
                 name=""
                 className="border h-8 border-grey-500 rounded px-2"
