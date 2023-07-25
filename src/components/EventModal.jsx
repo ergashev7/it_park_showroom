@@ -168,22 +168,21 @@ export default function EventModal() {
         HDMIAdapter: HDMIAdapter,
         typeCToHDMIAdapter: typeCToHDMIAdapter,
         person: per,
-        responsible,
-        responsible,
+        responsible: responsible,
       };
       if (person === "admin") {
         dataForm.isCheck = true;
       }
 
-      if (data.some((e) => e.person == per)) {
+      if (data.some((e) => e.person === per)) {
         postDatas(dataForm);
       } else {
         data.some(
           (e) =>
-            e.label == dataForm.label &&
-            e.doClock == dataForm.doClock &&
-            e.poClock == dataForm.poClock &&
-            e.day == dataForm.day
+            e.label === dataForm.label &&
+            e.doClock === dataForm.doClock &&
+            e.poClock === dataForm.poClock &&
+            e.day === dataForm.day
         )
           ? alert("Извините, этот номер уже заблокирован")
           : postDatas(dataForm);
@@ -285,7 +284,7 @@ export default function EventModal() {
               </select>
               <select
                 value={
-                  person == "admin" ? (selectedEvent ? poClock : null) : null
+                  person === "admin" ? (selectedEvent ? poClock : null) : null
                 }
                 name=""
                 className="border h-8 border-grey-500 rounded px-2"
