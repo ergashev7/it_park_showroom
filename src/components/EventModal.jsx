@@ -17,6 +17,7 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
+
 function postDatas(dataForm) {
   postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
@@ -26,7 +27,7 @@ const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {
   const url = "http://83.69.139.151:3500/items";
-  const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
+  const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent,setSelectedEvent } =
     useContext(GlobalContext);
   console.log();
   const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
@@ -40,6 +41,14 @@ export default function EventModal() {
   );
   // console.log(selectedEvent );
 
+  let person =localStorage.getItem("admin")
+  let per =JSON.parse(localStorage.getItem("person"))
+  console.log(per,"per user info");
+  // if (selectedEvent){
+  //   selectedEvent.person ==per.login ? "":selectedEvent = null
+  // }
+  setSelectedEvent(selectedEvent.person.login == per.login ? selectedEvent : null)
+  // selectedEvent? selectedEvent.person === per.login ? selectedEvent : selectedEvent = null:null
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch(url)
@@ -123,9 +132,6 @@ export default function EventModal() {
     selectedEvent ? selectedEvent.responsible : ""
   );
   const [errorHandle, setErrorHandle] = useState(false);
-  let person =localStorage.getItem("admin")
-  let per = localStorage.getItem("person")
-  console.log(per);
   function handleSubmit(e) {
     if (title == "") {
         setErrorHandle(true);
