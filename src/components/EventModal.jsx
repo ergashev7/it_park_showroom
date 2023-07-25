@@ -265,7 +265,14 @@ export default function EventModal() {
       person: per,
       responsible: responsible,
     };
+    if (person === "admin") {
+      dataForm.isCheck = true;
+    }
     postData(url,dataForm)
+    setShowEventModal(false);
+    setTimeout(()=>{
+      window.location.reload()
+    },1000)
   }
 
   return (
