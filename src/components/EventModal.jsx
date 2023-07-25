@@ -216,7 +216,7 @@ export default function EventModal() {
         selectedEvent !== null
           ? person == "admin"
             ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
-            : selectedEvent.person.login == per.login
+            : selectedEvent?.person?.login == per.login
             ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
             : "hidden"
           : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
