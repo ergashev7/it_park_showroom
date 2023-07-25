@@ -131,83 +131,76 @@ export default function EventModal() {
   );
   const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
-    if (title == "") {
-      setErrorHandle(true);
-    } else {
-      if (selectedEvent !== null) {
-        deleteData(selectedEvent.id);
-      }
-      window.location.reload();
-      const dataForm = {
-        isCheck: false,
-        day: daySelected.format("dddd, MMMM DD"),
-        title: title,
-        description: description,
-        label: label,
-        doClock: doClock,
-        poClock: poClock,
-        notebooks: notebooks,
-        microphone: microphone,
-        buttonhole: buttonhole,
-        chairs: chairs,
-        desk: desk,
-        water: water,
-        tea: tea,
-        coffee: coffee,
-        pen: pen,
-        paper: paper,
-        flyers: flyers,
-        clicker: clicker,
-        TV43: TV43,
-        TV65: TV65,
-        TV76: TV76,
-        touchscreen86: touchscreen86,
-        videoConferencing: videoConferencing,
-        liveStream: liveStream,
-        eventRecording: eventRecording,
-        photographer: photographer,
-        videographer: videographer,
-        cooler: cooler,
-        markerBoard: markerBoard,
-        HDMIAdapter: HDMIAdapter,
-        typeCToHDMIAdapter: typeCToHDMIAdapter,
-        person: per,
-        responsible: responsible,
-      };
-      if (person === "admin") {
-        dataForm.isCheck = true;
-      }
-
-      if (data.some((e) => e.person === per)) {
-        postDatas(dataForm);
-      } else {
-        data.some(
-          (e) =>
-            e.label === dataForm.label &&
-            e.doClock === dataForm.doClock &&
-            e.poClock === dataForm.poClock &&
-            e.day === dataForm.day
-        )
-          ? alert("Извините, этот номер уже заблокирован")
-          : postDatas(dataForm);
-      }
-
-      e.preventDefault();
-      const calendarEvent = {
-        title,
-        description,
-        label: selectedLabel,
-        day: daySelected.valueOf(),
-        id: selectedEvent ? selectedEvent.id : Date.now(),
-      };
-      if (selectedEvent) {
-        dispatchCalEvent({ type: "update", payload: calendarEvent });
-      } else {
-        dispatchCalEvent({ type: "push", payload: calendarEvent });
-      }
-
-      setShowEventModal(false);
+    window.location.reload();
+    const dataForm = {
+      isCheck: false,
+      day: daySelected.format("dddd, MMMM DD"),
+      title: title,
+      description: description,
+      label: label,
+      doClock: doClock,
+      poClock: poClock,
+      notebooks: notebooks,
+      microphone: microphone,
+      buttonhole: buttonhole,
+      chairs: chairs,
+      desk: desk,
+      water: water,
+      tea: tea,
+      coffee: coffee,
+      pen: pen,
+      paper: paper,
+      flyers: flyers,
+      clicker: clicker,
+      TV43: TV43,
+      TV65: TV65,
+      TV76: TV76,
+      touchscreen86: touchscreen86,
+      videoConferencing: videoConferencing,
+      liveStream: liveStream,
+      eventRecording: eventRecording,
+      photographer: photographer,
+      videographer: videographer,
+      cooler: cooler,
+      markerBoard: markerBoard,
+      HDMIAdapter: HDMIAdapter,
+      typeCToHDMIAdapter: typeCToHDMIAdapter,
+      person: per,
+      responsible: responsible,
+    };
+    if (person === "admin") {
+      dataForm.isCheck = true;
     }
+
+    if (data.some((e) => e.person === per)) {
+      postDatas(dataForm);
+    } else {
+      data.some(
+        (e) =>
+          e.label === dataForm.label &&
+          e.doClock === dataForm.doClock &&
+          e.poClock === dataForm.poClock &&
+          e.day === dataForm.day
+      )
+        ? alert("Извините, этот номер уже заблокирован")
+        : postDatas(dataForm);
+    }
+
+    e.preventDefault();
+    const calendarEvent = {
+      title,
+      description,
+      label: selectedLabel,
+      day: daySelected.valueOf(),
+      id: selectedEvent ? selectedEvent.id : Date.now(),
+    };
+    if (selectedEvent) {
+      dispatchCalEvent({ type: "update", payload: calendarEvent });
+    } else {
+      dispatchCalEvent({ type: "push", payload: calendarEvent });
+    }
+
+    setShowEventModal(false);
   }
   function deleteData(item) {
     window.location.reload();
@@ -790,7 +783,11 @@ export default function EventModal() {
           </button>
           <button
             onClick={handleSubmit}
-            className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]"
+            className={
+              selectedEvent
+                ? `hidden`
+                : `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
+            }
           >
             Save
           </button>
