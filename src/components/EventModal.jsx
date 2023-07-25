@@ -26,8 +26,13 @@ const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {
   const url = "http://83.69.139.151:3500/items";
-  const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
-    useContext(GlobalContext);
+  const {
+    setShowEventModal,
+    daySelected,
+    dispatchCalEvent,
+    selectedEvent,
+    setSelectedEvent,
+  } = useContext(GlobalContext);
   console.log();
   const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
   const [description, setDescription] = useState(
@@ -38,7 +43,7 @@ export default function EventModal() {
       ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
       : labelsClasses[0]
   );
-  // console.log(selectedEvent );
+  console.log(selectedEvent);
 
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -123,12 +128,12 @@ export default function EventModal() {
     selectedEvent ? selectedEvent.responsible : ""
   );
   const [errorHandle, setErrorHandle] = useState(false);
-  let person =localStorage.getItem("admin")
-  let per = localStorage.getItem("person")
+  let person = localStorage.getItem("admin");
+  let per = localStorage.getItem("person");
   console.log(per);
   function handleSubmit(e) {
     if (title == "") {
-        setErrorHandle(true);
+      setErrorHandle(true);
     } else {
       if (selectedEvent !== null) {
         deleteData(selectedEvent.id);

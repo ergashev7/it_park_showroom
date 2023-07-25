@@ -31,7 +31,6 @@ function Login() {
       InputRef.current.style.border = "2px solid red";
       PasswordRef.current.style.border = "2px solid red";
       console.log(InputRef);
-      // setAdmin("/");
     }
   }
   return (
