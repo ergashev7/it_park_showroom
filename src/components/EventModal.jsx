@@ -210,6 +210,64 @@ export default function EventModal() {
     setShowEventModal(false);
   }
 
+  async function postData(url = "", data = {}) {
+    const response = await fetch(url, {
+      method: "PATCH",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  }
+
+  function updateEvent(){
+    console.log("run is code")
+    const url = `http://83.69.139.151:3500/items/${selectedEvent?.id}`
+    const dataForm = {
+      isCheck: false,
+      day: daySelected.format("dddd, MMMM DD"),
+      title: title,
+      description: description,
+      label: label,
+      doClock: doClock,
+      poClock: poClock,
+      notebooks: notebooks,
+      microphone: microphone,
+      buttonhole: buttonhole,
+      chairs: chairs,
+      desk: desk,
+      water: water,
+      tea: tea,
+      coffee: coffee,
+      pen: pen,
+      paper: paper,
+      flyers: flyers,
+      clicker: clicker,
+      TV43: TV43,
+      TV65: TV65,
+      TV76: TV76,
+      touchscreen86: touchscreen86,
+      videoConferencing: videoConferencing,
+      liveStream: liveStream,
+      eventRecording: eventRecording,
+      photographer: photographer,
+      videographer: videographer,
+      cooler: cooler,
+      markerBoard: markerBoard,
+      HDMIAdapter: HDMIAdapter,
+      typeCToHDMIAdapter: typeCToHDMIAdapter,
+      person: per,
+      responsible: responsible,
+    };
+    postData(url,dataForm)
+  }
+
   return (
     <div
       className={
@@ -790,6 +848,13 @@ export default function EventModal() {
             }
           >
             Save
+          </button>
+          <button onClick={updateEvent}    className={
+            selectedEvent
+                ? `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
+                : `hidden`
+          }>
+            Update
           </button>
         </footer>
       </div>
