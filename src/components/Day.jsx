@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
-
+import "./Day.css"
 export default function Day({ day, rowIdx }) {
   const url = "http://83.69.139.151:3500/items";
   let person = localStorage.getItem("admin");
@@ -81,7 +81,7 @@ export default function Day({ day, rowIdx }) {
           {day.format("DD")}
         </p>
       </header>
-      <div className="flex-1 cursor-pointer" onClick={after}>
+      <div className="flex-1 cursor-pointer overflow-auto sc" onClick={after}>
         {x.map((evt, idx) => (
           <div
             key={idx}

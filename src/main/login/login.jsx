@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import imgIT from "../../assets/logo.svg";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import database from "../../logindata.js";
 function Login() {
   const url = "http://83.69.139.151:3500/person";
@@ -20,7 +20,9 @@ function Login() {
         setData(data);
       });
   }, []);
+  const navigate = useNavigate();
   function confirmation() {
+    navigate("/admin");
     localStorage.setItem(
       "person",
       JSON.stringify(data.filter((e) => e.login == login)[0])
@@ -74,14 +76,14 @@ function Login() {
                 />
                 <br />
               </div>
-              <Link to={admin}>
-                <button
-                  onClick={confirmation}
-                  className="bg-blue-500 button1 mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
-                >
-                  Войти
-                </button>
-              </Link>
+              {/*<Link to={admin}>*/}
+              <button
+                onClick={confirmation}
+                className="bg-blue-500 button1 mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
+              >
+                Войти
+              </button>
+              {/*</Link>*/}
             </div>
           </div>
         </div>
