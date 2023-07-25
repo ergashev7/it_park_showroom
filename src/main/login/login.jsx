@@ -21,7 +21,10 @@ function Login() {
       });
   }, []);
   function confirmation() {
-    localStorage.setItem("person", JSON.stringify(data.filter((e) => e.login == login)[0]));
+    localStorage.setItem(
+      "person",
+      JSON.stringify(data.filter((e) => e.login == login)[0])
+    );
     data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
       ? localStorage.setItem("admin", "admin")
       : localStorage.setItem("admin", "user");

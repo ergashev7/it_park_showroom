@@ -12,7 +12,7 @@ function CreateEventButton() {
         <img src={plusImg} alt="" className="w-7 h-7" />
         <span className="pl-3 pr-4">Создать</span>
       </button>
-      <button className="p-2">sidebar</button>
+      <button className="p-2 ">sidebar</button>
     </div>
   );
 }
