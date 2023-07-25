@@ -17,7 +17,6 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
-
 function postDatas(dataForm) {
   postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
@@ -27,8 +26,13 @@ const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {
   const url = "http://83.69.139.151:3500/items";
-  const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent,setSelectedEvent } =
-    useContext(GlobalContext);
+  const {
+    setShowEventModal,
+    daySelected,
+    dispatchCalEvent,
+    selectedEvent,
+    setSelectedEvent,
+  } = useContext(GlobalContext);
   console.log();
   const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
   const [description, setDescription] = useState(
@@ -41,14 +45,8 @@ export default function EventModal() {
   );
   // console.log(selectedEvent );
 
-  let person =localStorage.getItem("admin")
-  let per =JSON.parse(localStorage.getItem("person"))
-  console.log(per,"per user info");
-  // if (selectedEvent){
-  //   selectedEvent.person ==per.login ? "":selectedEvent = null
-  // }
-  setSelectedEvent(selectedEvent?.person.login == per.login ? selectedEvent : null)
-  // selectedEvent? selectedEvent.person === per.login ? selectedEvent : selectedEvent = null:null
+  let person = localStorage.getItem("admin");
+  let per = JSON.parse(localStorage.getItem("person"));
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch(url)
@@ -134,7 +132,7 @@ export default function EventModal() {
   const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
     if (title == "") {
-        setErrorHandle(true);
+      setErrorHandle(true);
     } else {
       if (selectedEvent !== null) {
         deleteData(selectedEvent.id);
@@ -220,7 +218,15 @@ export default function EventModal() {
   }
 
   return (
-    <div className="h-screen w-full fixed left-0 top-0 flex justify-center items-center ">
+    <div
+      className={
+        person == "admin"
+          ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+          : selectedEvent.person.login == per.login
+          ? `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
+          : "hidden"
+      }
+    >
       <div className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 grid place-content-end">
           <div>
@@ -229,7 +235,13 @@ export default function EventModal() {
                 onClick={() => {
                   deleteData(selectedEvent.id);
                 }}
-                className=" material-icons-outlined text-gray-400 cursor-pointer"
+                className={
+                  person == "admin"
+                    ? `material-icons-outlined text-gray-400 cursor-pointer`
+                    : selectedEvent.person.login == per.login
+                    ? `material-icons-outlined text-gray-400 cursor-pointer`
+                    : `hidden`
+                }
               >
                 delete
               </span>
