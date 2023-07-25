@@ -8,18 +8,24 @@ import EventModal from "../components/EventModal";
 function Admin() {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const { monthIndex, showEventModal } = useContext(GlobalContext);
+  const [hidden , setHidden] =useState()
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
+  function onHidden() {
+    setHidden(!hidden)
+  }
   return (
     <React.Fragment>
         {showEventModal && <EventModal />}
         <div className="h-screen flex flex-col">
+          <div className="flex justify-between">
           <CalendarHeader />
-          <button>s</button>
+          <button onClick={onHidden} >saa</button>
+          </div>
           <div className="flex flex-1">
             <Month month={currentMonth} />
-            <Sidebar />
+            <Sidebar showHidden={hidden} />
           </div>
         </div>
     </React.Fragment>
