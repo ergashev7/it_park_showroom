@@ -34,7 +34,7 @@ export default function Labels() {
   }
 
   function postDatas(dataForm, id) {
-    postData("http://localhost:3500/items" + id, dataForm).then(
+    postData("http://83.69.139.151:3500/items/" + id, dataForm).then(
       (data) => {}
     );
   }

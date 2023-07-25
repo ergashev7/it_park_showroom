@@ -129,7 +129,6 @@ export default function EventModal() {
   const [responsible, setResponsible] = useState(
     selectedEvent ? selectedEvent.responsible : ""
   );
-  const [upd, setUpd] = useState();
   const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
     if (title == "") {
@@ -140,7 +139,7 @@ export default function EventModal() {
       }
       window.location.reload();
       const dataForm = {
-        isCheck: true,
+        isCheck: false,
         day: daySelected.format("dddd, MMMM DD"),
         title: title,
         description: description,
@@ -217,17 +216,6 @@ export default function EventModal() {
     }).then((response) => response.json());
     setShowEventModal(false);
   }
-  // useEffect(()=>{
-  //    if ( person !== "admin") {
-  //     if (selectedEvent.person.login == per.login) {
-  //       setUpd(true)
-  //     }else{
-  //       setUpd()
-  //     }
-  //   }else{
-  //     setUpd(true)
-  //   }
-  // })
 
   return (
     <div
@@ -265,7 +253,7 @@ export default function EventModal() {
             </button>
           </div>
         </header>
-        <div className="p-3 ">
+        <div className="p-3">
           <div className="grid grid-cols-1/5 items-end gap-y-7">
             <div className="flex gap-5  ">
               <div></div>
