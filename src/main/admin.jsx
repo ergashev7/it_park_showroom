@@ -9,23 +9,42 @@ function Admin() {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const { monthIndex, showEventModal } = useContext(GlobalContext);
   const [hidden, setHidden] = useState(true);
+  const [selectValue, setSelectValue] = useState("all");
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
   function onHidden() {
     setHidden(!hidden);
   }
+  // console.log(selectValue);
+  // console.log(selectValue);
+  localStorage.setItem("selectValue", selectValue);
   return (
     <React.Fragment>
       {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">
-        <div className="flex justify-between">
+        <div className="flex justify-between align-center">
           <CalendarHeader />
-          <button onClick={onHidden}>
-            <span className="material-icons-outlined text-black text-3xl px-6">
+          <div className="">
+            <select
+              onChange={(e) => setSelectValue(e.target.value)}
+              className="border border-grey-500 rounded px-2"
+            >
+              <option value="all">Все</option>
+              <option value="gray">Митинг рум на 1-этаже</option>
+              <option value="green">Шоурум на 1-этаже</option>
+              <option value="blue">Митинг рум на 2-этаже</option>
+              <option value="red">Учебные кабинеты на 3-этаже </option>
+              <option value="purple">Митинг рум на 17-этаже</option>
+              <option value="orange">Зал переговоров на 17-этаже</option>
+            </select>
+            <span
+              onClick={onHidden}
+              className="material-icons-outlined text-black text-3xl px-6"
+            >
               menu
             </span>
-          </button>
+          </div>
         </div>
         <div className="flex flex-1 ">
           <Month month={currentMonth} />

@@ -11,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState();
   const [data, setData] = useState();
   const [admin, setAdmin] = useState("/");
+
   useEffect(() => {
     fetch(url)
       .then((response) => {
@@ -38,10 +39,20 @@ function Login() {
       console.log(InputRef);
     }
   }
+  useEffect(()=>{
+    window.addEventListener("keydown", (event) => {
+      if ( event.key == "Enter") {
+        // confirmation() 
+      }else{
+
+      }
+    })
+  },[])
+
   return (
-    <div className="container1">
+    <div className="container1 ">
       <div className="bg-container1">
-        <div className="form1">
+        <div className="form1 sm:mt-5 lg:mt-0 mt-[90px]">
           <div className="form-container1">
             <div className="form-img1">
               <img src={imgIT} width="250px" alt="" />
@@ -56,7 +67,7 @@ function Login() {
                   <input
                     ref={InputRef}
                     className="input1"
-                    placeholder="hannah.green@test.com"
+                    placeholder="введите свой email"
                     onChange={(e) => setLogin(e.target.value)}
                     type="text"
                   />
@@ -71,7 +82,7 @@ function Login() {
                   ref={PasswordRef}
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
-                  placeholder="Password123@"
+                  placeholder="пароль"
                   className="input1 password2"
                 />
                 <br />
