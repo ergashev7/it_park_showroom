@@ -39,7 +39,7 @@ function Admin() {
       {showEventModal && <EventModal />}
       <div className="h-screen flex flex-col">
         <div className="flex justify-between align-center">
-          <CalendarHeader />
+          <CalendarHeader text={`<h1>sss</h1>`} />
           <div className="flex items-center">
             <select
               onChange={(e) => setSelectValue(e.target.value)}

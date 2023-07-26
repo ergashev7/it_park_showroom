@@ -1,27 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
-
-async function postData(url = "", data = {}) {
-  const response = await fetch(url, {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    redirect: "follow",
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(data),
-  });
-  return response.json();
-}
-
-function postDatas(dataForm) {
-  postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
-    // console.log(data);
-  });
-}
+import emailjs from "@emailjs/browser";
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 export default function EventModal() {
@@ -168,9 +147,33 @@ export default function EventModal() {
   const [responsible, setResponsible] = useState(
     leb ? leb[0].responsible : selectedEvent ? selectedEvent.responsible : ""
   );
-  const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
-    window.location.reload();
+    async function postData(url = "", data = {}) {
+      const response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data),
+      });
+      return response.json();
+    }
+    function postDatas(dataForm) {
+      postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
+        // console.log(data);
+      });
+      console.log("email send messages");
+    }
+    if (person === "admin") {
+      window.location.reload();
+    } else {
+      sendEmail();
+    }
     const dataForm = {
       isCheck: false,
       day: daySelected.format("dddd, MMMM DD"),
@@ -240,11 +243,14 @@ export default function EventModal() {
     }
 
     setShowEventModal(false);
-    if (per !== "admin") {
-      alert(
-        "Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов"
-      );
-    }
+    setTimeout(() => {
+      if (per !== "admin") {
+        alert(
+          "Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов"
+        );
+      }
+    }, 1000);
+    localStorage.setItem("lab", null);
   }
 
   function deleteData(item) {
@@ -325,14 +331,37 @@ export default function EventModal() {
     }
     postData(url, dataForm);
     setShowEventModal(false);
-    setTimeout(() => {
+    if (person === "admin") {
       window.location.reload();
-    }, 1000);
+    } else {
+      sendEmail();
+    }
   }
   function ochir() {
     setShowEventModal(false);
     deleteData(leb[0].id);
     localStorage.setItem("lab", null);
+  }
+  const form = useRef();
+
+  function sendEmail() {
+    console.log("email function send");
+    console.log(form.current);
+    emailjs
+      .sendForm(
+        "service_ztjnufw",
+        "template_5f1gxkj",
+        form.current,
+        "Mn9BlGW7ftorhwka6"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   }
 
   return (
@@ -347,6 +376,20 @@ export default function EventModal() {
           : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
       }
     >
+      <form ref={form} className="w-0">
+        <textarea
+          name="message"
+          placeholder="Message"
+          className="border mt-1"
+          value="Проверьте сайт book.itparktashkent.uz
+Поступила новая заявка"
+        />
+        <input
+          type="submit"
+          value="Send"
+          className="cursor-pointer block bg-blue-400 w-full rounded-lg text-white py-1"
+        />
+      </form>
       <div className="absolute w-full h-full z-10 bg-[#010101]  opacity-[0.6]"></div>
       <div className="relative z-20 bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 grid place-content-end">
@@ -508,7 +551,7 @@ export default function EventModal() {
               </div>
             </div>
             <p className="text-xl">Предметы:</p>
-            <div className="h-40 overflow-auto touch-auto ">
+            <div className="h-48 overflow-auto touch-auto ">
               <div className="lg:flex gap-7 lg:w-[600px]  lg:place-content-start grid place-content-center ">
                 <div className="lg:text-start  ">
                   <span className="font-bold">Ноутбуки:</span>
@@ -527,7 +570,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold ">Микрофон:</span>
                   <input
-                    value={person == "admin" ? microphone : null}
+                    value={microphone}
                     placeholder="0-10"
                     className="border  w-40 grid place-content-start md:place-content-center rounded border-grey-500 px-3"
                     type="text"
@@ -541,7 +584,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Петличка:</span>
                   <input
-                    value={person == "admin" ? buttonhole : null}
+                    value={buttonhole}
                     placeholder="0-10"
                     className="border w-40 rounded border-grey-500 grid place-content-start md:place-content-center px-3"
                     type="text"
@@ -557,7 +600,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Стулья:</span>
                   <input
-                    value={person == "admin" ? chairs : null}
+                    value={chairs}
                     onChange={(e) => setChairs(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -569,7 +612,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold ">Письменный стол:</span>
                   <input
-                    value={person == "admin" ? desk : null}
+                    value={desk}
                     onChange={(e) => setDesk(e.target.value)}
                     placeholder="0-5"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -581,7 +624,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Вода (0,33л.):</span>
                   <input
-                    value={person == "admin" ? water : null}
+                    value={water}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3  w-40"
                     type="number"
@@ -595,7 +638,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Ручка:</span>
                   <input
-                    value={person == "admin" ? pen : null}
+                    value={pen}
                     onChange={(e) => setPen(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -607,7 +650,7 @@ export default function EventModal() {
                 <div className="">
                   <span className="font-bold">Чай:</span>
                   <input
-                    value={person == "admin" ? tea : null}
+                    value={tea}
                     onChange={(e) => setTea(e.target.value)}
                     placeholder="0-10"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -619,7 +662,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Кофе:</span>
                   <input
-                    value={person == "admin" ? coffee : null}
+                    value={coffee}
                     onChange={(e) => setCoffee(e.target.value)}
                     placeholder="0-10"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -633,7 +676,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Бумага:</span>
                   <input
-                    value={person == "admin" ? paper : null}
+                    value={paper}
                     onChange={(e) => setPaper(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -645,7 +688,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Флаера:</span>
                   <input
-                    value={person == "admin" ? flyers : null}
+                    value={flyers}
                     onChange={(e) => setFlyers(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -660,13 +703,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кликер:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? clicker == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={clicker == "on" ? true : false}
                     onChange={(e) => setClicker(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -678,9 +715,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'43:</span>
                   <input
-                    checked={
-                      person == "admin" ? (TV43 == "on" ? true : false) : null
-                    }
+                    checked={TV43 == "on" ? true : false}
                     onChange={(e) => setTV43(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -692,9 +727,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'65:</span>
                   <input
-                    checked={
-                      person == "admin" ? (TV65 == "on" ? true : false) : null
-                    }
+                    checked={TV65 == "on" ? true : false}
                     onChange={(e) => setTV65(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -706,9 +739,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'76:</span>
                   <input
-                    checked={
-                      person == "admin" ? (TV76 == "on" ? true : false) : null
-                    }
+                    checked={TV76 == "on" ? true : false}
                     onChange={(e) => setTV76(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -720,13 +751,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Тачскрин'86':</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? touchscreen86 == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={touchscreen86 == "on" ? true : false}
                     onChange={(e) => setTouchscreen86(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -901,7 +926,7 @@ export default function EventModal() {
             </div>
           </div>
         </div>
-        <footer className="flex bg-gray-100 justify-end  p-3">
+        <footer className="flex justify-end border-t p-3 mt-5">
           <button
             onClick={ochir}
             className={

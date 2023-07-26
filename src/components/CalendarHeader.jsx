@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import logo from "../assets/logo.svg";
 import GlobalContext from "../context/GlobalContext";
 import dayjs from "dayjs";
-function CalendarHeader() {
+function CalendarHeader({text}) {
   const { monthIndex, setMonthIndex } = useContext(GlobalContext);
   function handlePrevMonth() {
     setMonthIndex(monthIndex - 1);
