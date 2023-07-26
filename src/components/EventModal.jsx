@@ -309,7 +309,8 @@ function ochir() {
           : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
       }
     >
-      <div className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
+      <div className="absolute w-full h-full z-10 bg-[#010101]  opacity-[0.6]"></div>
+      <div className="relative z-20 bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 grid place-content-end">
           <div>
             {selectedEvent && (
