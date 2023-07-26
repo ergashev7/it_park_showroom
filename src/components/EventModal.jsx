@@ -1,21 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import GlobalContext from "../context/GlobalContext";
 import emailjs from "@emailjs/browser";
 
 
-const sendEmail = () => {
-  const formParams = {
-    from_name: "Valisher Botirov",
-    from_email: "valisherbotirov111uzbekcoders@gmail.com",
-    message: "Assalom akasi",
-  };
-  // emailjs.sendForm('Gmail', 'service_ztjnufw', formParams, 'Mn9BlGW7ftorhwka6')
-  //     .then((result) => {
-  //       console.log(result.text);
-  //     }, (error) => {
-  //       console.log(error.text);
-  //     });
-};
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 export default function EventModal() {
@@ -164,6 +151,8 @@ export default function EventModal() {
   );
   const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
+
+
     async function postData(url = "", data = {}) {
       const response = await fetch(url, {
         method: "POST",
@@ -179,16 +168,19 @@ export default function EventModal() {
       });
       return response.json();
     }
-    
     function postDatas(dataForm) {
       postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
         // console.log(data);
       });
       console.log("email send messages");
-      sendEmail();
+
     }
-    
+    if(person === 'admin'){
     window.location.reload();
+    }
+    else{
+      sendEmail()
+    }
     const dataForm = {
       isCheck: false,
       day: daySelected.format("dddd, MMMM DD"),
@@ -346,15 +338,30 @@ export default function EventModal() {
     }
     postData(url, dataForm);
     setShowEventModal(false);
-    setTimeout(() => {
+    if(person === 'admin'){
       window.location.reload();
-    }, 1000);
+    }
+    else{
+      sendEmail()
+    }
   }
   function ochir() {
     setShowEventModal(false);
     deleteData(leb[0].id);
     localStorage.setItem("lab", null);
   }
+  const form = useRef();
+
+  function sendEmail() {
+    console.log("email function send")
+    console.log(form.current)
+    emailjs.sendForm('service_ztjnufw', 'template_5f1gxkj', form.current, 'Mn9BlGW7ftorhwka6')
+        .then((result) => {
+          console.log(result.text);
+        }, (error) => {
+          console.log(error.text);
+        });
+  };
 
   return (
     <div
@@ -368,6 +375,11 @@ export default function EventModal() {
           : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
       }
     >
+      <form ref={form} >
+        <textarea name="message" placeholder='Message' className='border mt-1' value='Проверьте сайт book.itparktashkent.uz
+Поступила новая заявка' />
+        <input type="submit" value="Send" className='cursor-pointer block bg-blue-400 w-full rounded-lg text-white py-1'/>
+      </form>
       <div className="absolute w-full h-full z-10 bg-[#010101]  opacity-[0.6]"></div>
       <div className="relative z-20 bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 grid place-content-end">
