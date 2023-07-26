@@ -34,7 +34,7 @@ const sendEmail = () => {
   //     });
 };
 function postDatas(dataForm) {
-  postData("https://83.69.139.151:3500/items", dataForm).then((data) => {
+  postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
   console.log("email send messages")
@@ -43,7 +43,7 @@ function postDatas(dataForm) {
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 export default function EventModal() {
-  const url = "https://83.69.139.151:3500/items";
+  const url = "http://83.69.139.151:3500/items";
   const {
     setShowEventModal,
     daySelected,
@@ -267,7 +267,7 @@ export default function EventModal() {
 
   function deleteData(item) {
     window.location.reload();
-    return fetch("https://83.69.139.151:3500/items" + "/" + item, {
+    return fetch("http://83.69.139.151:3500/items" + "/" + item, {
       method: "delete",
     }).then((response) => response.json());
     setShowEventModal(false);
@@ -288,7 +288,7 @@ export default function EventModal() {
     return response.json();
   }
   function tasdiqlash() {
-    const url = `https://83.69.139.151:3500/items/${leb[0].id}`;
+    const url = `http://83.69.139.151:3500/items/${leb[0].id}`;
     const dataForm = {
       isCheck: true,
     };
