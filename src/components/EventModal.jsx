@@ -373,7 +373,7 @@ export default function EventModal() {
           : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
       }
     >
-      <form ref={form} >
+      <form ref={form} className="w-0">
         <textarea name="message" placeholder='Message' className='border mt-1' value='Проверьте сайт book.itparktashkent.uz
 Поступила новая заявка' />
         <input type="submit" value="Send" className='cursor-pointer block bg-blue-400 w-full rounded-lg text-white py-1'/>
