@@ -3,7 +3,7 @@ import GlobalContext from "../context/GlobalContext";
 import { key } from "localforage";
 
 export default function Labels() {
-  const { labels, updateLabel } = useContext(GlobalContext);
+  const { labels, updateLabel, setShowEventModal } = useContext(GlobalContext);
   const url = "http://83.69.139.151:3500/items";
   const [data, setData] = useState([]);
   function fetchNotifacationList() {
@@ -12,7 +12,6 @@ export default function Labels() {
         return response.json();
       })
       .then((data) => {
-        console.log(data, "data");
         setData(data);
       });
   }
@@ -38,12 +37,18 @@ export default function Labels() {
       (data) => {}
     );
   }
+  function lab(el) {
+   let e = data.filter((e)=>e.id == el)
+    localStorage.setItem("lab", JSON.stringify(e) )
+    setShowEventModal(true);
+    // changeIsCheck(el);
+  }
   function changeIsCheck(id) {
     const data = {
       isCheck: true,
     };
     postDatas(data, id);
-    window.location.reload();
+    // window.location.reload();
   }
 
   useEffect(() => {
@@ -52,7 +57,7 @@ export default function Labels() {
 
   return (
     <div className="">
-      <p className="text-gray-500 font-bold mt-10">Notification</p>
+      <p className="text-gray-500 font-bold mt-10">Уведомление</p>
       {/* {labels.map(({ label: lbl, checked }, idx) => (
         <label key={idx} className="items-center mt-3 block">
           <input
@@ -70,7 +75,9 @@ export default function Labels() {
             if (el.isCheck == false) {
               return (
                 <div
-                  onClick={() => changeIsCheck(el.id)}
+                  onClick={() => {
+                    lab(el.id);
+                  }}
                   key={idx}
                   className="flex justify-between border p-2 rounded-lg mt-2 px-3 cursor-pointer"
                 >

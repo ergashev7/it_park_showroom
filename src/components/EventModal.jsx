@@ -33,21 +33,11 @@ export default function EventModal() {
     selectedEvent,
     setSelectedEvent,
   } = useContext(GlobalContext);
-  console.log();
-  const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : "");
-  const [description, setDescription] = useState(
-    selectedEvent ? selectedEvent.description : ""
-  );
-  const [selectedLabel, setSelectedLabel] = useState(
-    selectedEvent
-      ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
-      : labelsClasses[0]
-  );
-  // console.log(selectedEvent );
+  let lab = localStorage.getItem("lab");
 
-  let person = localStorage.getItem("admin");
-  let per = JSON.parse(localStorage.getItem("person"));
+  // console.log(selectedEvent );
   const [data, setData] = useState([]);
+
   useEffect(() => {
     fetch(url)
       .then((response) => {
@@ -57,77 +47,92 @@ export default function EventModal() {
         setData(data);
       });
   }, []);
-  let x = data.filter((day) => day.day == daySelected.format("dddd, MMMM DD"));
 
+  let person = localStorage.getItem("admin");
+  let per = JSON.parse(localStorage.getItem("person"));
+  let leb = JSON.parse(lab);
+  let x = data.filter((day) => day.day == daySelected.format("dddd, MMMM DD"));
+  const [title, setTitle] = useState(
+    leb ? leb[0].title : selectedEvent ? selectedEvent.title : ""
+  );
+  const [description, setDescription] = useState(
+    leb ? leb[0].description  : selectedEvent ? selectedEvent.description : ""
+  );
+  const [selectedLabel, setSelectedLabel] = useState(
+    leb ? leb[0].label:selectedEvent
+      ? selectedEvent.label
+      : "Выберите помещение"
+  );
   const [error, setError] = useState(false);
+  
   const [notebooks, setNotebooks] = useState(
-    selectedEvent ? selectedEvent.notebooks : ""
+    leb ? leb[0].notebooks :  selectedEvent ? selectedEvent.notebooks : ""
   );
   const [microphone, setMicrophone] = useState(
-    selectedEvent ? selectedEvent.microphone : ""
+    leb ? leb[0].microphone :  selectedEvent ? selectedEvent.microphone : ""
   );
   const [buttonhole, setButtonhole] = useState(
-    selectedEvent ? selectedEvent.buttonhole : ""
+    leb ? leb[0].buttonhole : selectedEvent ? selectedEvent.buttonhole : ""
   );
   const [chairs, setChairs] = useState(
-    selectedEvent ? selectedEvent.buttonhole : ""
+    leb ? leb[0].chairs : selectedEvent ? selectedEvent.chairs : ""
   );
-  const [desk, setDesk] = useState(selectedEvent ? selectedEvent.chairs : "");
-  const [water, setWater] = useState(selectedEvent ? selectedEvent.water : "");
-  const [tea, setTea] = useState(selectedEvent ? selectedEvent.tea : "");
+  const [desk, setDesk] = useState(leb ? leb[0].desk :selectedEvent ? selectedEvent.desk : "");
+  const [water, setWater] = useState(leb ? leb[0].water :selectedEvent ? selectedEvent.water : "");
+  const [tea, setTea] = useState(leb ? leb[0].tea :selectedEvent ? selectedEvent.tea : "");
   const [coffee, setCoffee] = useState(
-    selectedEvent ? selectedEvent.coffee : ""
+    leb ? leb[0].coffee :selectedEvent ? selectedEvent.coffee : ""
   );
-  const [pen, setPen] = useState(selectedEvent ? selectedEvent.pen : "");
-  const [paper, setPaper] = useState(selectedEvent ? selectedEvent.paper : "");
+  const [pen, setPen] = useState(leb ? leb[0].pen :selectedEvent ? selectedEvent.pen : "");
+  const [paper, setPaper] = useState(leb ? leb[0].paper :selectedEvent ? selectedEvent.paper : "");
   const [flyers, setFlyers] = useState(
-    selectedEvent ? selectedEvent.flyers : ""
+    leb ? leb[0].flyers :selectedEvent ? selectedEvent.flyers : ""
   );
   const [clicker, setClicker] = useState(
-    selectedEvent ? selectedEvent.clicker : ""
+    leb ? leb[0].clicker :selectedEvent ? selectedEvent.clicker : ""
   );
-  const [TV43, setTV43] = useState(selectedEvent ? selectedEvent.TV43 : "");
-  const [TV65, setTV65] = useState(selectedEvent ? selectedEvent.TV65 : "");
-  const [TV76, setTV76] = useState(selectedEvent ? selectedEvent.TV76 : "");
+  const [TV43, setTV43] = useState(leb ? leb[0].TV43 :selectedEvent ? selectedEvent.TV43 : "");
+  const [TV65, setTV65] = useState(leb ? leb[0].TV65 :selectedEvent ? selectedEvent.TV65 : "");
+  const [TV76, setTV76] = useState(leb ? leb[0].TV76 :selectedEvent ? selectedEvent.TV76 : "");
   const [touchscreen86, setTouchscreen86] = useState(
-    selectedEvent ? selectedEvent.touchscreen86 : ""
+    leb ? leb[0].touchscreen86 :selectedEvent ? selectedEvent.touchscreen86 : ""
   );
   const [videoConferencing, setVideoConferencing] = useState(
-    selectedEvent ? selectedEvent.videoConferencing : ""
+    leb ? leb[0].videoConferencing :selectedEvent ? selectedEvent.videoConferencing : ""
   );
   const [liveStream, setLiveStream] = useState(
-    selectedEvent ? selectedEvent.liveStream : ""
+    leb ? leb[0].title :selectedEvent ? selectedEvent.liveStream : ""
   );
   const [eventRecording, setEventRecording] = useState(
-    selectedEvent ? selectedEvent.eventRecording : ""
+    leb ? leb[0].eventRecording :selectedEvent ? selectedEvent.eventRecording : ""
   );
   const [photographer, setPhotographer] = useState(
-    selectedEvent ? selectedEvent.photographer : ""
+    leb ? leb[0].photographer :selectedEvent ? selectedEvent.photographer : ""
   );
   const [videographer, setVideographer] = useState(
-    selectedEvent ? selectedEvent.videographer : ""
+    leb ? leb[0].videographer :selectedEvent ? selectedEvent.videographer : ""
   );
   const [cooler, setCooler] = useState(
-    selectedEvent ? selectedEvent.cooler : ""
+    leb ? leb[0].cooler :selectedEvent ? selectedEvent.cooler : ""
   );
   const [markerBoard, setMarkerBoard] = useState(
-    selectedEvent ? selectedEvent.markerBoard : ""
+    leb ? leb[0].markerBoard : selectedEvent ? selectedEvent.markerBoard : ""
   );
   const [HDMIAdapter, setHDMIAdapter] = useState(
-    selectedEvent ? selectedEvent.HDMIAdapter : ""
+    leb ? leb[0].HDMIAdapter :selectedEvent ? selectedEvent.HDMIAdapter : ""
   );
   const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState(
-    selectedEvent ? selectedEvent.typeCToHDMIAdapter : ""
+    leb ? leb[0].typeCToHDMIAdapter : selectedEvent ? selectedEvent.typeCToHDMIAdapter : ""
   );
-  const [label, setLable] = useState(selectedEvent ? selectedEvent.label : "");
+  const [label, setLable] = useState(leb ? leb[0].label :selectedEvent ? selectedEvent.label : "");
   const [doClock, setDoClock] = useState(
-    selectedEvent ? selectedEvent.doClock : "08:00"
+    leb ? leb[0].doClock :selectedEvent ? selectedEvent.doClock : "08:00"
   );
   const [poClock, setPoClock] = useState(
-    selectedEvent ? selectedEvent.poClock : "09:00"
+    leb ? leb[0].poClock :selectedEvent ? selectedEvent.poClock : "09:00"
   );
   const [responsible, setResponsible] = useState(
-    selectedEvent ? selectedEvent.responsible : ""
+    leb ? leb[0].responsible : selectedEvent ? selectedEvent.responsible : ""
   );
   const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
@@ -202,6 +207,7 @@ export default function EventModal() {
 
     setShowEventModal(false);
   }
+  
   function deleteData(item) {
     window.location.reload();
     return fetch("http://83.69.139.151:3500/items" + "/" + item, {
@@ -225,10 +231,21 @@ export default function EventModal() {
     });
     return response.json();
   }
-
-  function updateEvent(){
-    console.log("run is code")
-    const url = `http://83.69.139.151:3500/items/${selectedEvent?.id}`
+  function tasdiqlash(){
+    const url = `http://83.69.139.151:3500/items/${leb[0].id}`;
+    const dataForm = {
+      isCheck: true,
+    }
+    postData(url, dataForm);
+    setShowEventModal(false);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  localStorage.setItem("lab",null)
+  }
+  function updateEvent() {
+    console.log("run is code");
+    const url = `http://83.69.139.151:3500/items/${selectedEvent?.id}`;
     const dataForm = {
       isCheck: false,
       day: daySelected.format("dddd, MMMM DD"),
@@ -268,13 +285,18 @@ export default function EventModal() {
     if (person === "admin") {
       dataForm.isCheck = true;
     }
-    postData(url,dataForm)
+    postData(url, dataForm);
     setShowEventModal(false);
-    setTimeout(()=>{
-      window.location.reload()
-    },1000)
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   }
+function ochir() {
+  setShowEventModal(false);
+  deleteData(leb[0].id)
+  localStorage.setItem("lab",null)
 
+}
   return (
     <div
       className={
@@ -337,7 +359,7 @@ export default function EventModal() {
               <select
                 className="border h-8 border-grey-500 rounded px-2"
                 value={
-                  person == "admin" ? (selectedEvent ? doClock : null) : null
+                  person == "admin" ? (leb?leb[0].doClock :selectedEvent ? doClock : null) : null
                 }
                 name=""
                 id=""
@@ -357,10 +379,14 @@ export default function EventModal() {
                 <option value="17:00">17:00</option>
                 <option value="18:00">18:00</option>
                 <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+
               </select>
               <select
                 value={
-                  person === "admin" ? (selectedEvent ? poClock : null) : null
+                  person === "admin" ? (leb?leb[0].poClock :selectedEvent ? poClock : null) : null
                 }
                 name=""
                 className="border h-8 border-grey-500 rounded px-2"
@@ -381,6 +407,10 @@ export default function EventModal() {
                 <option value="18:00">18:00</option>
                 <option value="19:00">19:00</option>
                 <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+                <option value="23:00">23:00</option>
+
               </select>
             </div>
             <div className="flex gap-5 ">
@@ -418,14 +448,14 @@ export default function EventModal() {
               <div className="flex gap-x-2">
                 <select
                   value={
-                    person == "admin" ? (selectedEvent ? label : null) : null
+                    person == "admin" ? ( leb?leb[0].label : selectedEvent ? label : null) : null
                   }
                   onClick={(e) => {
-                    setLable(e.target.value);
+                    setSelectedLabel(e.target.value);
                   }}
                   className="border border-grey-500 rounded px-2"
                 >
-                  <option value="indigo">Выберите помещение</option>
+                  <option value="indigo">Выберите помещение </option>
                   <option value="gray">Митинг рум на 1-этаже</option>
                   <option value="green">Шоурум на 1-этаже</option>
                   <option value="blue">Митинг рум на 2-этаже</option>
@@ -843,25 +873,36 @@ export default function EventModal() {
           </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">
-          <button className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]">
-            Подтверждение
+          <button 
+           onClick={ochir}
+           className={leb  ?`bg-red-500 hover:bg-red-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`:`hidden`}>
+            Удалить
+          </button>
+          <button 
+           onClick={tasdiqlash}
+           className={leb?`bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`:`hidden`}>
+            Подтвердить
           </button>
           <button
             onClick={handleSubmit}
             className={
-              selectedEvent
+            !leb ? selectedEvent
                 ? `hidden`
                 : `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
+                :`hidden`
             }
           >
-            Save
+            Сохранить
           </button>
-          <button onClick={updateEvent}    className={
-            selectedEvent
+          <button
+            onClick={updateEvent}
+            className={
+              selectedEvent
                 ? `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
                 : `hidden`
-          }>
-            Update
+            }
+          >
+            Изменить
           </button>
         </footer>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import imgIT from "../../assets/logo.svg";
 import "./login.css";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import database from "../../logindata.js";
 function Login() {
   const url = "http://83.69.139.151:3500/person";
@@ -11,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState();
   const [data, setData] = useState();
   const [admin, setAdmin] = useState("/");
+
   useEffect(() => {
     fetch(url)
       .then((response) => {
@@ -20,15 +21,18 @@ function Login() {
         setData(data);
       });
   }, []);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   function confirmation() {
-    localStorage.setItem("person", JSON.stringify(data.filter((e) => e.login == login)[0]));
+    localStorage.setItem(
+      "person",
+      JSON.stringify(data.filter((e) => e.login == login)[0])
+    );
     data.filter((e) => e.admin == true && e.login == login)[0] !== undefined
       ? localStorage.setItem("admin", "admin")
       : localStorage.setItem("admin", "user");
     if (data.some((e) => e.login == login && e.password == password)) {
       setAdmin("/admin");
-    navigate("/admin")
+      navigate("/admin");
     } else {
       InputRef.current.style.border = "2px solid red";
       PasswordRef.current.style.border = "2px solid red";
@@ -36,10 +40,20 @@ function Login() {
       // setAdmin("/");
     }
   }
+  useEffect(()=>{
+    window.addEventListener("keydown", (event) => {
+      if ( event.key == "Enter") {
+        // confirmation() 
+      }else{
+
+      }
+    })
+  },[])
+
   return (
-    <div className="container1">
+    <div className="container1 ">
       <div className="bg-container1">
-        <div className="form1">
+        <div className="form1 sm:mt-5 lg:mt-0 mt-[90px]">
           <div className="form-container1">
             <div className="form-img1">
               <img src={imgIT} width="250px" alt="" />
@@ -54,7 +68,7 @@ function Login() {
                   <input
                     ref={InputRef}
                     className="input1"
-                    placeholder="hannah.green@test.com"
+                    placeholder="введите свой email"
                     onChange={(e) => setLogin(e.target.value)}
                     type="text"
                   />
@@ -69,18 +83,18 @@ function Login() {
                   ref={PasswordRef}
                   onChange={(e) => setPassword(e.target.value)}
                   type="password"
-                  placeholder="Password123@"
+                  placeholder="пароль"
                   className="input1 password2"
                 />
                 <br />
               </div>
               {/*<Link to={admin}>*/}
-                <button
-                  onClick={confirmation}
-                  className="bg-blue-500 button1 mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
-                >
-                  Войти
-                </button>
+              <button
+                onClick={confirmation}
+                className="bg-blue-500 button1 mt-5 w-full  hover:bg-blue-600 px-6 py-2 rounded text-white"
+              >
+                Войти
+              </button>
               {/*</Link>*/}
             </div>
           </div>
