@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
 
-
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
     method: "POST",
@@ -18,13 +17,10 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
-
-
 function postDatas(dataForm) {
   postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
-
 }
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
