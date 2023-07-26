@@ -241,6 +241,11 @@ export default function EventModal() {
     }
 
     setShowEventModal(false);
+    if (per !== "admin") {
+      alert(
+        "Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов"
+      );
+    }
   }
 
   function deleteData(item) {
@@ -331,6 +336,7 @@ export default function EventModal() {
     deleteData(leb[0].id);
     localStorage.setItem("lab", null);
   }
+
   return (
     <div
       className={
@@ -343,7 +349,8 @@ export default function EventModal() {
           : `h-screen w-full fixed left-0 top-0 flex justify-center items-center`
       }
     >
-      <div className="bg-white rounded-lg shadow-2xl lg:w-1/1 ">
+      <div className="absolute w-full h-full z-10 bg-[#010101]  opacity-[0.6]"></div>
+      <div className="relative z-20 bg-white rounded-lg shadow-2xl lg:w-1/1 ">
         <header className="bg-gray-100 px-4 py-2 grid place-content-end">
           <div>
             {selectedEvent && (
@@ -457,33 +464,35 @@ export default function EventModal() {
                 <option value="23:00">23:00</option>
               </select>
             </div>
-            <div className="flex gap-5 ">
-              <span className="material-icons-outlined text-gray-400">
-                people
-              </span>
-              <input
-                type="number"
-                name="description"
-                placeholder="Количество Людей"
-                value={description}
-                required
-                className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-            <div className="flex gap-5 ">
-              <span className="material-icons-outlined text-gray-400">
-                people
-              </span>
-              <input
-                type="text"
-                name="description"
-                placeholder="Ответственный человек"
-                value={responsible}
-                required
-                className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
-                onChange={(e) => setResponsible(e.target.value)}
-              />
+            <div className="flex flex-row sm:flex-col gap-3 sm:gap-5">
+              <div className="flex gap-5 ">
+                <span className="flex-shrink-0 material-icons-outlined text-gray-400">
+                  people
+                </span>
+                <input
+                  type="number"
+                  name="description"
+                  placeholder="Количество Людей"
+                  value={description}
+                  required
+                  className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <div className="flex gap-5 ">
+                <span className="flex-shrink-0 material-icons-outlined text-gray-400">
+                  people
+                </span>
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="Ответственный человек"
+                  value={responsible}
+                  required
+                  className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                  onChange={(e) => setResponsible(e.target.value)}
+                />
+              </div>
             </div>
             <div className="flex gap-5">
               <span className="material-icons-outlined text-gray-400">

@@ -5,7 +5,16 @@ import Sidebar from "../components/Sidebar";
 import { getMonth } from "../util";
 import GlobalContext from "../context/GlobalContext";
 import EventModal from "../components/EventModal";
+import { useNavigate } from "react-router-dom";
 function Admin() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.getItem("token") !== "qwerty"
+      ? navigate("/")
+      : navigate("/admin");
+  }, []);
+
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const { monthIndex, showEventModal } = useContext(GlobalContext);
   const [hidden, setHidden] = useState(true);
@@ -16,6 +25,12 @@ function Admin() {
   function onHidden() {
     setHidden(!hidden);
   }
+  useEffect(() => {
+    if (window.innerWidth > 1000) {
+      setHidden(!hidden);
+    }
+    console.log(window.innerWidth, "width");
+  }, []);
   // console.log(selectValue);
   // console.log(selectValue);
   localStorage.setItem("selectValue", selectValue);
@@ -25,10 +40,10 @@ function Admin() {
       <div className="h-screen flex flex-col">
         <div className="flex justify-between align-center">
           <CalendarHeader />
-          <div className="">
+          <div className="flex items-center">
             <select
               onChange={(e) => setSelectValue(e.target.value)}
-              className="border border-grey-500 rounded px-2"
+              className="border border-grey-500 rounded sm:px-2 w-[150px] sm:w-auto"
             >
               <option value="all">Все</option>
               <option value="gray">Митинг рум на 1-этаже</option>
@@ -40,7 +55,7 @@ function Admin() {
             </select>
             <span
               onClick={onHidden}
-              className="material-icons-outlined text-black text-3xl px-6"
+              className="material-icons-outlined cursor-pointer text-black text-2xl sm:text-3xl px-2 sm:px-6"
             >
               menu
             </span>
