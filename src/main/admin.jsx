@@ -25,8 +25,8 @@ function Admin() {
       <div className="h-screen flex flex-col">
         <div className="flex justify-between align-center">
           <CalendarHeader />
-          <div className="">
-          <select onChange={(e)=>setSelectValue(e.target.value)} className="border border-grey-500 rounded px-2">
+          <div className="flex items-center">
+          <select onChange={(e)=>setSelectValue(e.target.value)} className="border border-grey-500 rounded sm:px-2 w-[150px] sm:w-auto">
                   <option value="all">Все</option>
                   <option value="gray">Митинг рум на 1-этаже</option>
                   <option value="green">Шоурум на 1-этаже</option>
@@ -35,7 +35,7 @@ function Admin() {
                   <option value="purple">Митинг рум на 17-этаже</option>
                   <option value="orange">Зал переговоров на 17-этаже</option>
                 </select>
-              <span onClick={onHidden} className="material-icons-outlined cursor-pointer text-black text-3xl px-6">
+              <span onClick={onHidden} className="material-icons-outlined cursor-pointer text-black text-2xl sm:text-3xl px-2 sm:px-6">
                 menu
               </span>
           </div>
