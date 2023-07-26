@@ -16,6 +16,12 @@ function Admin() {
   function onHidden() {
     setHidden(!hidden);
   }
+    useEffect(()=>{
+        if(window.innerWidth > 1000){
+            setHidden(!hidden);
+        }
+        console.log(window.innerWidth,"width")
+    },[])
   // console.log(selectValue);
   // console.log(selectValue);
   localStorage.setItem("selectValue",selectValue)
