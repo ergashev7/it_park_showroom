@@ -38,8 +38,8 @@ export default function Labels() {
     );
   }
   function lab(el) {
-   let e = data.filter((e)=>e.id == el)
-    localStorage.setItem("lab", JSON.stringify(e) )
+    let e = data.filter((e) => e.id == el);
+    localStorage.setItem("lab", JSON.stringify(e));
     setShowEventModal(true);
     // changeIsCheck(el);
   }

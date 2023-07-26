@@ -42,7 +42,6 @@ function postDatas(dataForm) {
 }
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
-
 export default function EventModal() {
   const url = "http://83.69.139.151:3500/items";
   const {
@@ -75,7 +74,7 @@ export default function EventModal() {
     leb ? leb[0].title : selectedEvent ? selectedEvent.title : ""
   );
   const [description, setDescription] = useState(
-    leb ? leb[0].description  : selectedEvent ? selectedEvent.description : ""
+    leb ? leb[0].description : selectedEvent ? selectedEvent.description : ""
   );
   const [selectedLabel, setSelectedLabel] = useState(
     selectedEvent
@@ -83,12 +82,12 @@ export default function EventModal() {
       : labelsClasses[0]
   );
   const [error, setError] = useState(false);
-  
+
   const [notebooks, setNotebooks] = useState(
-    leb ? leb[0].notebooks :  selectedEvent ? selectedEvent.notebooks : ""
+    leb ? leb[0].notebooks : selectedEvent ? selectedEvent.notebooks : ""
   );
   const [microphone, setMicrophone] = useState(
-    leb ? leb[0].microphone :  selectedEvent ? selectedEvent.microphone : ""
+    leb ? leb[0].microphone : selectedEvent ? selectedEvent.microphone : ""
   );
   const [buttonhole, setButtonhole] = useState(
     leb ? leb[0].buttonhole : selectedEvent ? selectedEvent.buttonhole : ""
@@ -96,59 +95,93 @@ export default function EventModal() {
   const [chairs, setChairs] = useState(
     leb ? leb[0].chairs : selectedEvent ? selectedEvent.chairs : ""
   );
-  const [desk, setDesk] = useState(leb ? leb[0].desk :selectedEvent ? selectedEvent.desk : "");
-  const [water, setWater] = useState(leb ? leb[0].water :selectedEvent ? selectedEvent.water : "");
-  const [tea, setTea] = useState(leb ? leb[0].tea :selectedEvent ? selectedEvent.tea : "");
-  const [coffee, setCoffee] = useState(
-    leb ? leb[0].coffee :selectedEvent ? selectedEvent.coffee : ""
+  const [desk, setDesk] = useState(
+    leb ? leb[0].desk : selectedEvent ? selectedEvent.desk : ""
   );
-  const [pen, setPen] = useState(leb ? leb[0].pen :selectedEvent ? selectedEvent.pen : "");
-  const [paper, setPaper] = useState(leb ? leb[0].paper :selectedEvent ? selectedEvent.paper : "");
+  const [water, setWater] = useState(
+    leb ? leb[0].water : selectedEvent ? selectedEvent.water : ""
+  );
+  const [tea, setTea] = useState(
+    leb ? leb[0].tea : selectedEvent ? selectedEvent.tea : ""
+  );
+  const [coffee, setCoffee] = useState(
+    leb ? leb[0].coffee : selectedEvent ? selectedEvent.coffee : ""
+  );
+  const [pen, setPen] = useState(
+    leb ? leb[0].pen : selectedEvent ? selectedEvent.pen : ""
+  );
+  const [paper, setPaper] = useState(
+    leb ? leb[0].paper : selectedEvent ? selectedEvent.paper : ""
+  );
   const [flyers, setFlyers] = useState(
-    leb ? leb[0].flyers :selectedEvent ? selectedEvent.flyers : ""
+    leb ? leb[0].flyers : selectedEvent ? selectedEvent.flyers : ""
   );
   const [clicker, setClicker] = useState(
-    leb ? leb[0].clicker :selectedEvent ? selectedEvent.clicker : ""
+    leb ? leb[0].clicker : selectedEvent ? selectedEvent.clicker : ""
   );
-  const [TV43, setTV43] = useState(leb ? leb[0].TV43 :selectedEvent ? selectedEvent.TV43 : "");
-  const [TV65, setTV65] = useState(leb ? leb[0].TV65 :selectedEvent ? selectedEvent.TV65 : "");
-  const [TV76, setTV76] = useState(leb ? leb[0].TV76 :selectedEvent ? selectedEvent.TV76 : "");
+  const [TV43, setTV43] = useState(
+    leb ? leb[0].TV43 : selectedEvent ? selectedEvent.TV43 : ""
+  );
+  const [TV65, setTV65] = useState(
+    leb ? leb[0].TV65 : selectedEvent ? selectedEvent.TV65 : ""
+  );
+  const [TV76, setTV76] = useState(
+    leb ? leb[0].TV76 : selectedEvent ? selectedEvent.TV76 : ""
+  );
   const [touchscreen86, setTouchscreen86] = useState(
-    leb ? leb[0].touchscreen86 :selectedEvent ? selectedEvent.touchscreen86 : ""
+    leb
+      ? leb[0].touchscreen86
+      : selectedEvent
+      ? selectedEvent.touchscreen86
+      : ""
   );
   const [videoConferencing, setVideoConferencing] = useState(
-    leb ? leb[0].videoConferencing :selectedEvent ? selectedEvent.videoConferencing : ""
+    leb
+      ? leb[0].videoConferencing
+      : selectedEvent
+      ? selectedEvent.videoConferencing
+      : ""
   );
   const [liveStream, setLiveStream] = useState(
-    leb ? leb[0].title :selectedEvent ? selectedEvent.liveStream : ""
+    leb ? leb[0].title : selectedEvent ? selectedEvent.liveStream : ""
   );
   const [eventRecording, setEventRecording] = useState(
-    leb ? leb[0].eventRecording :selectedEvent ? selectedEvent.eventRecording : ""
+    leb
+      ? leb[0].eventRecording
+      : selectedEvent
+      ? selectedEvent.eventRecording
+      : ""
   );
   const [photographer, setPhotographer] = useState(
-    leb ? leb[0].photographer :selectedEvent ? selectedEvent.photographer : ""
+    leb ? leb[0].photographer : selectedEvent ? selectedEvent.photographer : ""
   );
   const [videographer, setVideographer] = useState(
-    leb ? leb[0].videographer :selectedEvent ? selectedEvent.videographer : ""
+    leb ? leb[0].videographer : selectedEvent ? selectedEvent.videographer : ""
   );
   const [cooler, setCooler] = useState(
-    leb ? leb[0].cooler :selectedEvent ? selectedEvent.cooler : ""
+    leb ? leb[0].cooler : selectedEvent ? selectedEvent.cooler : ""
   );
   const [markerBoard, setMarkerBoard] = useState(
     leb ? leb[0].markerBoard : selectedEvent ? selectedEvent.markerBoard : ""
   );
   const [HDMIAdapter, setHDMIAdapter] = useState(
-    leb ? leb[0].HDMIAdapter :selectedEvent ? selectedEvent.HDMIAdapter : ""
+    leb ? leb[0].HDMIAdapter : selectedEvent ? selectedEvent.HDMIAdapter : ""
   );
   const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState(
-    leb ? leb[0].typeCToHDMIAdapter : selectedEvent ? selectedEvent.typeCToHDMIAdapter : ""
+    leb
+      ? leb[0].typeCToHDMIAdapter
+      : selectedEvent
+      ? selectedEvent.typeCToHDMIAdapter
+      : ""
   );
-  const [label, setLabel] = useState(leb ? leb[0].label :selectedEvent ? selectedEvent.label : "");
+  const [label, setLabel] = useState(
+    leb ? leb[0].label : selectedEvent ? selectedEvent.label : ""
+  );
   const [doClock, setDoClock] = useState(
-    leb ? leb[0].doClock :selectedEvent ? selectedEvent.doClock : "08:00"
+    leb ? leb[0].doClock : selectedEvent ? selectedEvent.doClock : "08:00"
   );
   const [poClock, setPoClock] = useState(
-    leb ? leb[0].poClock :selectedEvent ? selectedEvent.poClock : "09:00"
+    leb ? leb[0].poClock : selectedEvent ? selectedEvent.poClock : "09:00"
   );
   const [responsible, setResponsible] = useState(
     leb ? leb[0].responsible : selectedEvent ? selectedEvent.responsible : ""
@@ -226,10 +259,12 @@ export default function EventModal() {
 
     setShowEventModal(false);
     if (per !== "admin") {
-      alert("Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов")
+      alert(
+        "Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов"
+      );
     }
   }
-  
+
   function deleteData(item) {
     window.location.reload();
     return fetch("http://83.69.139.151:3500/items" + "/" + item, {
@@ -237,7 +272,6 @@ export default function EventModal() {
     }).then((response) => response.json());
     setShowEventModal(false);
   }
-
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "PATCH",
@@ -253,17 +287,17 @@ export default function EventModal() {
     });
     return response.json();
   }
-  function tasdiqlash(){
+  function tasdiqlash() {
     const url = `http://83.69.139.151:3500/items/${leb[0].id}`;
     const dataForm = {
       isCheck: true,
-    }
+    };
     postData(url, dataForm);
     setShowEventModal(false);
     setTimeout(() => {
       window.location.reload();
     }, 1000);
-  localStorage.setItem("lab",null)
+    localStorage.setItem("lab", null);
   }
   function updateEvent() {
     console.log("run is code");
@@ -313,12 +347,11 @@ export default function EventModal() {
       window.location.reload();
     }, 1000);
   }
-function ochir() {
-  setShowEventModal(false);
-  deleteData(leb[0].id)
-  localStorage.setItem("lab",null)
-
-}
+  function ochir() {
+    setShowEventModal(false);
+    deleteData(leb[0].id);
+    localStorage.setItem("lab", null);
+  }
 
   return (
     <div
@@ -368,9 +401,7 @@ function ochir() {
                 value={title}
                 required
                 className={
-                  errorHandle
-                    ? `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`
-                    : `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-red-500`
+                 `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`
                 }
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -382,12 +413,10 @@ function ochir() {
               <p>{daySelected.format("dddd, MMMM DD")}</p>
               <select
                 className="border h-8 border-grey-500 rounded px-2"
-                value={
-                  person == "admin" ? (leb?leb[0].doClock :selectedEvent ? doClock : null) : null
-                }
+                value={leb ? leb[0].doClock : selectedEvent ? doClock : null}
                 name=""
                 id=""
-                onClick={(e) => {
+                onChange={(e) => {
                   setDoClock(e.target.value);
                 }}
               >
@@ -406,16 +435,13 @@ function ochir() {
                 <option value="20:00">20:00</option>
                 <option value="21:00">21:00</option>
                 <option value="22:00">22:00</option>
-
               </select>
               <select
-                value={
-                  person === "admin" ? (leb?leb[0].poClock :selectedEvent ? poClock : null) : null
-                }
+                value={leb ? leb[0].poClock : selectedEvent ? poClock : null}
                 name=""
                 className="border h-8 border-grey-500 rounded px-2"
                 id=""
-                onClick={(e) => {
+                onChange={(e) => {
                   setPoClock(e.target.value);
                 }}
               >
@@ -434,38 +460,37 @@ function ochir() {
                 <option value="21:00">21:00</option>
                 <option value="22:00">22:00</option>
                 <option value="23:00">23:00</option>
-
               </select>
             </div>
             <div className="flex flex-row sm:flex-col gap-3 sm:gap-5">
-            <div className="flex gap-5 ">
-              <span className="flex-shrink-0 material-icons-outlined text-gray-400">
-                people
-              </span>
-              <input
-                type="number"
-                name="description"
-                placeholder="Количество Людей"
-                value={description}
-                required
-                className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-            <div className="flex gap-5 ">
-              <span className="flex-shrink-0 material-icons-outlined text-gray-400">
-                people
-              </span>
-              <input
-                type="text"
-                name="description"
-                placeholder="Ответственный человек"
-                value={responsible}
-                required
-                className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
-                onChange={(e) => setResponsible(e.target.value)}
-              />
-            </div>
+              <div className="flex gap-5 ">
+                <span className="flex-shrink-0 material-icons-outlined text-gray-400">
+                  people
+                </span>
+                <input
+                  type="number"
+                  name="description"
+                  placeholder="Количество Людей"
+                  value={description}
+                  required
+                  className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <div className="flex gap-5 ">
+                <span className="flex-shrink-0 material-icons-outlined text-gray-400">
+                  people
+                </span>
+                <input
+                  type="text"
+                  name="description"
+                  placeholder="Ответственный человек"
+                  value={responsible}
+                  required
+                  className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+                  onChange={(e) => setResponsible(e.target.value)}
+                />
+              </div>
             </div>
             <div className="flex gap-5">
               <span className="material-icons-outlined text-gray-400">
@@ -473,10 +498,8 @@ function ochir() {
               </span>
               <div className="flex gap-x-2">
                 <select
-                  value={
-                    person == "admin" ? ( leb?leb[0].label : selectedEvent ? label : null) : null
-                  }
-                  onClick={(e) => {
+                  value={leb ? leb[0].label : selectedEvent ? label : null}
+                  onChange={(e) => {
                     setLabel(e.target.value);
                   }}
                   className="border border-grey-500 rounded px-2"
@@ -510,7 +533,7 @@ function ochir() {
                 <div className="lg:text-start  ">
                   <span className="font-bold">Ноутбуки:</span>
                   <input
-                    value={person == "admin" ? notebooks : null}
+                    value={notebooks}
                     placeholder="0-60"
                     className=" border w-40  grid place-content-start  md:place-content-center rounded border-grey-500 px-3"
                     type="text"
@@ -899,23 +922,34 @@ function ochir() {
           </div>
         </div>
         <footer className="flex justify-end border-t p-3 mt-5">
-          <button 
-           onClick={ochir}
-           className={leb  ?`bg-red-500 hover:bg-red-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`:`hidden`}>
+          <button
+            onClick={ochir}
+            className={
+              leb
+                ? `bg-red-500 hover:bg-red-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
+                : `hidden`
+            }
+          >
             Удалить
           </button>
-          <button 
-           onClick={tasdiqlash}
-           className={leb?`bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`:`hidden`}>
+          <button
+            onClick={tasdiqlash}
+            className={
+              leb
+                ? `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
+                : `hidden`
+            }
+          >
             Подтвердить
           </button>
           <button
             onClick={handleSubmit}
             className={
-            !leb ? selectedEvent
-                ? `hidden`
-                : `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
-                :`hidden`
+              !leb
+                ? selectedEvent
+                  ? `hidden`
+                  : `bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded text-white lg:ml-1 mr-[40px] sm:ml-[2px]`
+                : `hidden`
             }
           >
             Сохранить

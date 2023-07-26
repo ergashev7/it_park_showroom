@@ -57,10 +57,14 @@ export default function Day({ day, rowIdx }) {
   }
   function after() {
     if (person !== "admin") {
-      if (
-        monts[oy] == day.format("MMMM") &&
-        (kun < day.format("DD") || kun == day.format("DD"))
-      ) {
+      if (oy + 1 == +day.format("M")) {
+        if (kun < day.format("DD") || kun == day.format("DD")) {
+          setDaySelected(day);
+          setShowEventModal(true);
+        }else {
+          alert("Извините, время истекло");
+        }
+      } else if (oy + 1 < +day.format("M")) {
         setDaySelected(day);
         setShowEventModal(true);
       } else {

@@ -340,23 +340,142 @@
     {
       "id": 2,
       "name": "Sherzod",
-      "login": "sher",
-      "admin": false,
-      "password": "123456"
+      "login": "abdurakhmonovsherzod@gmail.com",
+      "admin": true,
+      "password": "sherzod1"
     },
     {
       "id": 3,
-      "name": "Sanobar",
-      "login": "Sano",
+      "name": "Akbarshox",
+      "login": "akbarshox19950727@gmail.com",
       "admin": false,
-      "password": "123456"
+      "password": "akbarshox1"
     },
     {
       "id": 4,
+      "name": "Asrorxon",
+      "login": "asrorxonaloxojaev13@gmail.com",
+      "admin": false,
+      "password": "asrorxon1"
+    },
+    {
+      "id": 5,
+      "name": "Dauren",
+      "login": "degemov@gmail.com",
+      "admin": false,
+      "password": "dauren1"
+    },
+    {
+      "id": 6,
+      "name": "Baxodur",
+      "login": "bakhodur@gmail.com",
+      "admin": false,
+      "password": "baxodur1"
+    },
+    {
+      "id": 7,
+      "name": "Asadbek",
+      "login": "irisbekovasad1111@gmail.com",
+      "admin": false,
+      "password": "asadbek1"
+    },
+    {
+      "id": 8,
+      "name": "Anvar",
+      "login": "atrm.tash@gmail.com",
+      "admin": false,
+      "password": "anvar1"
+    },
+    {
+      "id": 9,
       "name": "Qodiri",
       "login": "Qodiri",
       "admin": false,
       "password": "123456"
+    },
+    {
+      "id": 10,
+      "name": "Abdumajid",
+      "login": "a.abboshonov@it-park.uz",
+      "admin": false,
+      "password": "abdumajid1"
+    },
+    {
+      "id": 11,
+      "name": "Qodiri",
+      "login": "Qodiri",
+      "admin": false,
+      "password": "123456"
+    },
+    {
+      "id": 12,
+      "name": "Umida",
+      "login": "u.odilova@it-park.uz",
+      "admin": false,
+      "password": "umida1"
+    },
+    {
+      "id": 13,
+      "name": "Zaynab",
+      "login": "z.atabaeva@it-park.",
+      "admin": false,
+      "password": "zaynab1"
+    },
+    {
+      "id": 14,
+      "name": "Azamat",
+      "login": "a.seydaliev@it-park.",
+      "admin": false,
+      "password": "azamat1"
+    },
+    {
+      "id": 15,
+      "name": "Shaxzod",
+      "login": "s.narzullaev@it-park.uz",
+      "admin": false,
+      "password": "shaxzod1"
+    },
+    {
+      "id": 16,
+      "name": "Saida",
+      "login": "s.saidova@it-park.uz",
+      "admin": false,
+      "password": "saida1"
+    },
+    {
+      "id": 17,
+      "name": "Botijon",
+      "login": "b.foziljonov@it-park.uz",
+      "admin": false,
+      "password": "botijon1"
+    },
+    {
+      "id": 18,
+      "name": "Alisher",
+      "login": "Admin@it-park.uz",
+      "admin": false,
+      "password": "alisher1"
+    },
+    {
+      "id": 19,
+      "name": "Suhrob",
+      "login": "Suhrob",
+      "admin": true,
+      "password": "1111"
+    },
+    {
+      "id": 20,
+      "name": "Jibek",
+      "login": "tarteyevajibek@gmail.com",
+      "admin": false,
+      "password": "jibek1"
+    },
+    {
+      "id": 21,
+      "name": "Umida",
+      "login": "umarkhodjaeva.u@gmail.com",
+      "admin": true,
+      "password": "umida1"
     }
   ]
 }
