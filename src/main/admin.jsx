@@ -35,7 +35,7 @@ function Admin() {
                   <option value="purple">Митинг рум на 17-этаже</option>
                   <option value="orange">Зал переговоров на 17-этаже</option>
                 </select>
-              <span onClick={onHidden} className="material-icons-outlined text-black text-3xl px-6">
+              <span onClick={onHidden} className="material-icons-outlined cursor-pointer text-black text-3xl px-6">
                 menu
               </span>
           </div>
