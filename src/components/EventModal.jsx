@@ -24,6 +24,7 @@ function postDatas(dataForm) {
   postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
+
 }
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
@@ -385,9 +386,7 @@ export default function EventModal() {
                 placeholder="Тема Мероприятия"
                 value={title}
                 required
-                className={
-                 `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`
-                }
+                className={`pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -513,7 +512,7 @@ export default function EventModal() {
               </div>
             </div>
             <p className="text-xl">Предметы:</p>
-            <div className="h-48 overflow-auto touch-auto ">
+            <div className="h-40 overflow-auto touch-auto ">
               <div className="lg:flex gap-7 lg:w-[600px]  lg:place-content-start grid place-content-center ">
                 <div className="lg:text-start  ">
                   <span className="font-bold">Ноутбуки:</span>
@@ -906,7 +905,7 @@ export default function EventModal() {
             </div>
           </div>
         </div>
-        <footer className="flex justify-end border-t p-3 mt-5">
+        <footer className="flex bg-gray-100 justify-end  p-3">
           <button
             onClick={ochir}
             className={

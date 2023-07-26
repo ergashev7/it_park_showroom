@@ -61,7 +61,7 @@ export default function Day({ day, rowIdx }) {
         if (kun < day.format("DD") || kun == day.format("DD")) {
           setDaySelected(day);
           setShowEventModal(true);
-        }else {
+        } else {
           alert("Извините, время истекло");
         }
       } else if (oy + 1 < +day.format("M")) {
