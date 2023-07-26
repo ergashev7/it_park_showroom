@@ -60,9 +60,9 @@ function Admin() {
             </span>
           </div>
         </div>
-        <div className="flex flex-1 relative">
+        <div className="flex flex-1 ">
           <Month month={currentMonth} />
-            <div className='absolute top-0 right-0 bg-white h-full'>
+            <div className='absolute top-[64px] right-0 bg-white h-full'>
                  <Sidebar showHidden={hidden} />
             </div>
         </div>
