@@ -381,9 +381,7 @@ export default function EventModal() {
                 placeholder="Тема Мероприятия"
                 value={title}
                 required
-                className={
-                 `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`
-                }
+                className={`pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
