@@ -30,7 +30,7 @@ function Admin() {
             setHidden(!hidden);
         }
         if(showEventModal){
-          setHidden(!hidden);
+          setHidden(true);
         }
     },[showEventModal])
   localStorage.setItem("selectValue", selectValue);

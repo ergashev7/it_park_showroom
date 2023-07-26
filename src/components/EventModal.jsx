@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
-import emailjs from "@emailjs/browser";
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -18,25 +17,12 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
-const sendEmail = () => {
-  const formParams = {
-    from_name: "Valisher Botirov",
-    from_email: "valisherbotirov111uzbekcoders@gmail.com",
-    message: "Assalom akasi",
-  };
-  // emailjs.sendForm('Gmail', 'service_ztjnufw', formParams, 'Mn9BlGW7ftorhwka6')
-  //     .then((result) => {
-  //       console.log(result.text);
-  //     }, (error) => {
-  //       console.log(error.text);
-  //     });
-};
+
+
 function postDatas(dataForm) {
   postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
-  console.log("email send messages");
-  sendEmail();
 }
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
@@ -527,7 +513,7 @@ export default function EventModal() {
               </div>
             </div>
             <p className="text-xl">Предметы:</p>
-            <div className="h-48 overflow-auto touch-auto ">
+            <div className="h-40 overflow-auto touch-auto ">
               <div className="lg:flex gap-7 lg:w-[600px]  lg:place-content-start grid place-content-center ">
                 <div className="lg:text-start  ">
                   <span className="font-bold">Ноутбуки:</span>
@@ -852,7 +838,7 @@ export default function EventModal() {
             </div>
           </div>
         </div>
-        <footer className="flex justify-end border-t p-3 mt-5">
+        <footer className="flex bg-gray-100 justify-end  p-3">
           <button
             onClick={ochir}
             className={
