@@ -1,29 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
-
-async function postData(url = "", data = {}) {
-  const response = await fetch(url, {
-    method: "POST",
-    mode: "cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    redirect: "follow",
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(data),
-  });
-  return response.json();
-}
+import emailjs from "@emailjs/browser";
 
 
-
-function postDatas(dataForm) {
-  postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
-    // console.log(data);
-  });
-}
+const sendEmail = () => {
+  const formParams = {
+    from_name: "Valisher Botirov",
+    from_email: "valisherbotirov111uzbekcoders@gmail.com",
+    message: "Assalom akasi",
+  };
+  // emailjs.sendForm('Gmail', 'service_ztjnufw', formParams, 'Mn9BlGW7ftorhwka6')
+  //     .then((result) => {
+  //       console.log(result.text);
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+};
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 export default function EventModal() {
@@ -172,6 +164,30 @@ export default function EventModal() {
   );
   const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
+    async function postData(url = "", data = {}) {
+      const response = await fetch(url, {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify(data),
+      });
+      return response.json();
+    }
+    
+    function postDatas(dataForm) {
+      postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
+        // console.log(data);
+      });
+      console.log("email send messages");
+      sendEmail();
+    }
+    
     window.location.reload();
     const dataForm = {
       isCheck: false,
@@ -288,7 +304,7 @@ export default function EventModal() {
   }
   function updateEvent() {
     console.log("run is code");
-    const url = `https://83.69.139.151:3500/items/${selectedEvent?.id}`;
+    const url = `http://83.69.139.151:3500/items/${selectedEvent?.id}`;
     const dataForm = {
       isCheck: false,
       day: daySelected.format("dddd, MMMM DD"),
@@ -513,7 +529,7 @@ export default function EventModal() {
               </div>
             </div>
             <p className="text-xl">Предметы:</p>
-            <div className="h-40 overflow-auto touch-auto ">
+            <div className="h-48 overflow-auto touch-auto ">
               <div className="lg:flex gap-7 lg:w-[600px]  lg:place-content-start grid place-content-center ">
                 <div className="lg:text-start  ">
                   <span className="font-bold">Ноутбуки:</span>
@@ -677,7 +693,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'43:</span>
                   <input
-                    checked={TV43 == "on" ? true : false}
+                    checked={
+                      TV43 == "on" ? true : false 
+                    }
                     onChange={(e) => setTV43(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -689,7 +707,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'65:</span>
                   <input
-                    checked={TV65 == "on" ? true : false}
+                    checked={
+                       TV65 == "on" ? true : false 
+                    }
                     onChange={(e) => setTV65(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -701,7 +721,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'76:</span>
                   <input
-                    checked={TV76 == "on" ? true : false}
+                    checked={
+                       TV76 == "on" ? true : false 
+                    }
                     onChange={(e) => setTV76(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -713,7 +735,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Тачскрин'86':</span>
                   <input
-                    checked={touchscreen86 == "on" ? true : false}
+                    checked={
+                    
+                         touchscreen86 == "on"
+                          ? true
+                          : false
+                       
+                    }
                     onChange={(e) => setTouchscreen86(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -725,7 +753,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Камера для ВКС:</span>
                   <input
-                    checked={videoConferencing == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? videoConferencing == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setVideoConferencing(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -739,7 +773,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Онлайн-трансляция:</span>
                   <input
-                    checked={liveStream == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? liveStream == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setLiveStream(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -751,7 +791,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Запись ивента:</span>
                   <input
-                    checked={eventRecording == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? eventRecording == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setEventRecording(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -763,7 +809,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Фотограф:</span>
                   <input
-                    checked={photographer == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? photographer == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setPhotographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -775,7 +827,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Видеограф:</span>
                   <input
-                    checked={videographer == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? videographer == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setVideographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -787,7 +845,9 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кулер:</span>
                   <input
-                    checked={cooler == "on" ? true : false}
+                    checked={
+                      person == "admin" ? (cooler == "on" ? true : false) : null
+                    }
                     onChange={(e) => setCooler(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -801,7 +861,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Маркерная доска:</span>
                   <input
-                    checked={markerBoard == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? markerBoard == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setMarkerBoard(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -813,7 +879,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold ">HDMI переходник:</span>
                   <input
-                    checked={HDMIAdapter == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? HDMIAdapter == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -825,7 +897,13 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Адаптер Type-C на HDMI:</span>
                   <input
-                    checked={typeCToHDMIAdapter == "on" ? true : false}
+                    checked={
+                      person == "admin"
+                        ? typeCToHDMIAdapter == "on"
+                          ? true
+                          : false
+                        : null
+                    }
                     onChange={(e) => setTypeCToHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -838,7 +916,7 @@ export default function EventModal() {
             </div>
           </div>
         </div>
-        <footer className="flex bg-gray-100 justify-end  p-3">
+        <footer className="flex justify-end border-t p-3 mt-5">
           <button
             onClick={ochir}
             className={
