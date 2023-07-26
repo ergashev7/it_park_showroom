@@ -418,8 +418,9 @@ function ochir() {
 
               </select>
             </div>
+            <div className="flex flex-row sm:flex-col gap-3 sm:gap-5">
             <div className="flex gap-5 ">
-              <span className="material-icons-outlined text-gray-400">
+              <span className="flex-shrink-0 material-icons-outlined text-gray-400">
                 people
               </span>
               <input
@@ -433,7 +434,7 @@ function ochir() {
               />
             </div>
             <div className="flex gap-5 ">
-              <span className="material-icons-outlined text-gray-400">
+              <span className="flex-shrink-0 material-icons-outlined text-gray-400">
                 people
               </span>
               <input
@@ -445,6 +446,7 @@ function ochir() {
                 className="  border-0 text-gray-600 pb-2 lg:w-full  border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
                 onChange={(e) => setResponsible(e.target.value)}
               />
+            </div>
             </div>
             <div className="flex gap-5">
               <span className="material-icons-outlined text-gray-400">
