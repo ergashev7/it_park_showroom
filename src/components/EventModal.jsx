@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
+import emailjs from '@emailjs/browser';
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -17,11 +18,29 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
+
+const sendEmail = () => {
+
+  const formParams = {
+    from_name: "Valisher Botirov",
+    from_email: 'valisherbotirov111uzbekcoders@gmail.com',
+    message: 'Assalom akasi',
+  };
+  // emailjs.sendForm('Gmail', 'service_ztjnufw', formParams, 'Mn9BlGW7ftorhwka6')
+  //     .then((result) => {
+  //       console.log(result.text);
+  //     }, (error) => {
+  //       console.log(error.text);
+  //     });
+};
 function postDatas(dataForm) {
   postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
+  console.log("email send messages")
+  sendEmail()
 }
+
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
 
 export default function EventModal() {

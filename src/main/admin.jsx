@@ -27,7 +27,6 @@ function Admin() {
         if(window.innerWidth > 1000){
             setHidden(!hidden);
         }
-        console.log(window.innerWidth,"width")
     },[])
   // console.log(selectValue);
   // console.log(selectValue);
