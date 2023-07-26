@@ -23,7 +23,6 @@ function postDatas(dataForm) {
   });
 }
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
-
 export default function EventModal() {
   const url = "http://83.69.139.151:3500/items";
   const {
@@ -254,7 +253,6 @@ export default function EventModal() {
     }).then((response) => response.json());
     setShowEventModal(false);
   }
-
   async function postData(url = "", data = {}) {
     const response = await fetch(url, {
       method: "PATCH",
