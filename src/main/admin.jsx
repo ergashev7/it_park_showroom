@@ -25,12 +25,11 @@ function Admin() {
   function onHidden() {
     setHidden(!hidden);
   }
-  useEffect(() => {
-    if (window.innerWidth > 1000) {
-      setHidden(!hidden);
-    }
-    console.log(window.innerWidth, "width");
-  }, []);
+    useEffect(()=>{
+        if(window.innerWidth > 1000){
+            setHidden(!hidden);
+        }
+    },[])
   // console.log(selectValue);
   // console.log(selectValue);
   localStorage.setItem("selectValue", selectValue);
@@ -61,9 +60,11 @@ function Admin() {
             </span>
           </div>
         </div>
-        <div className="flex flex-1 ">
+        <div className="flex flex-1 relative">
           <Month month={currentMonth} />
-          <Sidebar showHidden={hidden} />
+            <div className='absolute top-0 right-0 bg-white h-full'>
+                 <Sidebar showHidden={hidden} />
+            </div>
         </div>
       </div>
     </React.Fragment>
