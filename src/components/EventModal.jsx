@@ -206,6 +206,9 @@ export default function EventModal() {
     }
 
     setShowEventModal(false);
+    if (per !== "admin") {
+      alert("Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов")
+    }
   }
   
   function deleteData(item) {
@@ -297,6 +300,7 @@ function ochir() {
   localStorage.setItem("lab",null)
 
 }
+
   return (
     <div
       className={

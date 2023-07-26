@@ -33,6 +33,7 @@ function Login() {
     if (data.some((e) => e.login == login && e.password == password)) {
       setAdmin("/admin");
       navigate("/admin");
+      localStorage.setItem("token","qwerty")
     } else {
       InputRef.current.style.border = "2px solid red";
       PasswordRef.current.style.border = "2px solid red";
