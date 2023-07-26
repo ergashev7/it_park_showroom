@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -18,13 +18,11 @@ async function postData(url = "", data = {}) {
   return response.json();
 }
 
-
 const sendEmail = () => {
-
   const formParams = {
     from_name: "Valisher Botirov",
-    from_email: 'valisherbotirov111uzbekcoders@gmail.com',
-    message: 'Assalom akasi',
+    from_email: "valisherbotirov111uzbekcoders@gmail.com",
+    message: "Assalom akasi",
   };
   // emailjs.sendForm('Gmail', 'service_ztjnufw', formParams, 'Mn9BlGW7ftorhwka6')
   //     .then((result) => {
@@ -37,8 +35,8 @@ function postDatas(dataForm) {
   postData("http://83.69.139.151:3500/items", dataForm).then((data) => {
     // console.log(data);
   });
-  console.log("email send messages")
-  sendEmail()
+  console.log("email send messages");
+  sendEmail();
 }
 
 const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
@@ -258,11 +256,14 @@ export default function EventModal() {
     }
 
     setShowEventModal(false);
-    if (per !== "admin") {
-      alert(
-        "Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов"
-      );
-    }
+    setTimeout(() => {
+      if (per !== "admin") {
+        alert(
+          "Ваш запрос успешно отправлен! Пожалуйста, дождитесь ответа админов"
+        );
+      }
+    }, 1000);
+    localStorage.setItem("lab", null);
   }
 
   function deleteData(item) {
@@ -400,9 +401,7 @@ export default function EventModal() {
                 placeholder="Тема Мероприятия"
                 value={title}
                 required
-                className={
-                 `pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`
-                }
+                className={`pt-3 lg:w-full border-0 text-gray-600 text-xl font-semibold border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500`}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -547,7 +546,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold ">Микрофон:</span>
                   <input
-                    value={person == "admin" ? microphone : null}
+                    value={microphone}
                     placeholder="0-10"
                     className="border  w-40 grid place-content-start md:place-content-center rounded border-grey-500 px-3"
                     type="text"
@@ -561,7 +560,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Петличка:</span>
                   <input
-                    value={person == "admin" ? buttonhole : null}
+                    value={buttonhole}
                     placeholder="0-10"
                     className="border w-40 rounded border-grey-500 grid place-content-start md:place-content-center px-3"
                     type="text"
@@ -577,7 +576,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Стулья:</span>
                   <input
-                    value={person == "admin" ? chairs : null}
+                    value={chairs}
                     onChange={(e) => setChairs(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -589,7 +588,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold ">Письменный стол:</span>
                   <input
-                    value={person == "admin" ? desk : null}
+                    value={desk}
                     onChange={(e) => setDesk(e.target.value)}
                     placeholder="0-5"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -601,7 +600,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Вода (0,33л.):</span>
                   <input
-                    value={person == "admin" ? water : null}
+                    value={water}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3  w-40"
                     type="number"
@@ -615,7 +614,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Ручка:</span>
                   <input
-                    value={person == "admin" ? pen : null}
+                    value={pen}
                     onChange={(e) => setPen(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -627,7 +626,7 @@ export default function EventModal() {
                 <div className="">
                   <span className="font-bold">Чай:</span>
                   <input
-                    value={person == "admin" ? tea : null}
+                    value={tea}
                     onChange={(e) => setTea(e.target.value)}
                     placeholder="0-10"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -639,7 +638,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Кофе:</span>
                   <input
-                    value={person == "admin" ? coffee : null}
+                    value={coffee}
                     onChange={(e) => setCoffee(e.target.value)}
                     placeholder="0-10"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -653,7 +652,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Бумага:</span>
                   <input
-                    value={person == "admin" ? paper : null}
+                    value={paper}
                     onChange={(e) => setPaper(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -665,7 +664,7 @@ export default function EventModal() {
                 <div>
                   <span className="font-bold">Флаера:</span>
                   <input
-                    value={person == "admin" ? flyers : null}
+                    value={flyers}
                     onChange={(e) => setFlyers(e.target.value)}
                     placeholder="0-60"
                     className="border grid place-content-start md:place-content-center rounded border-grey-500 px-3 w-40"
@@ -680,13 +679,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кликер:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? clicker == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={clicker == "on" ? true : false}
                     onChange={(e) => setClicker(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -698,9 +691,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'43:</span>
                   <input
-                    checked={
-                      person == "admin" ? (TV43 == "on" ? true : false) : null
-                    }
+                    checked={TV43 == "on" ? true : false}
                     onChange={(e) => setTV43(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -712,9 +703,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'65:</span>
                   <input
-                    checked={
-                      person == "admin" ? (TV65 == "on" ? true : false) : null
-                    }
+                    checked={TV65 == "on" ? true : false}
                     onChange={(e) => setTV65(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -726,9 +715,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">ТВ'76:</span>
                   <input
-                    checked={
-                      person == "admin" ? (TV76 == "on" ? true : false) : null
-                    }
+                    checked={TV76 == "on" ? true : false}
                     onChange={(e) => setTV76(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -740,13 +727,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Тачскрин'86':</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? touchscreen86 == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={touchscreen86 == "on" ? true : false}
                     onChange={(e) => setTouchscreen86(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -758,13 +739,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Камера для ВКС:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? videoConferencing == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={videoConferencing == "on" ? true : false}
                     onChange={(e) => setVideoConferencing(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -778,13 +753,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Онлайн-трансляция:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? liveStream == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={liveStream == "on" ? true : false}
                     onChange={(e) => setLiveStream(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -796,13 +765,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Запись ивента:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? eventRecording == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={eventRecording == "on" ? true : false}
                     onChange={(e) => setEventRecording(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -814,13 +777,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Фотограф:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? photographer == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={photographer == "on" ? true : false}
                     onChange={(e) => setPhotographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -832,13 +789,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Видеограф:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? videographer == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={videographer == "on" ? true : false}
                     onChange={(e) => setVideographer(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -850,9 +801,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Кулер:</span>
                   <input
-                    checked={
-                      person == "admin" ? (cooler == "on" ? true : false) : null
-                    }
+                    checked={cooler == "on" ? true : false}
                     onChange={(e) => setCooler(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -866,13 +815,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Маркерная доска:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? markerBoard == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={markerBoard == "on" ? true : false}
                     onChange={(e) => setMarkerBoard(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -884,13 +827,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold ">HDMI переходник:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? HDMIAdapter == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={HDMIAdapter == "on" ? true : false}
                     onChange={(e) => setHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
@@ -902,13 +839,7 @@ export default function EventModal() {
                 <div className="gap-3 flex">
                   <span className="font-bold">Адаптер Type-C на HDMI:</span>
                   <input
-                    checked={
-                      person == "admin"
-                        ? typeCToHDMIAdapter == "on"
-                          ? true
-                          : false
-                        : null
-                    }
+                    checked={typeCToHDMIAdapter == "on" ? true : false}
                     onChange={(e) => setTypeCToHDMIAdapter(e.target.value)}
                     placeholder="0-60"
                     className="border rounded border-grey-500   "
