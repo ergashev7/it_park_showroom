@@ -59,9 +59,9 @@ export default function EventModal() {
     leb ? leb[0].description  : selectedEvent ? selectedEvent.description : ""
   );
   const [selectedLabel, setSelectedLabel] = useState(
-    leb ? leb[0].label:selectedEvent
-      ? selectedEvent.label
-      : "Выберите помещение"
+    selectedEvent
+      ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
+      : labelsClasses[0]
   );
   const [error, setError] = useState(false);
   
@@ -124,7 +124,7 @@ export default function EventModal() {
   const [typeCToHDMIAdapter, setTypeCToHDMIAdapter] = useState(
     leb ? leb[0].typeCToHDMIAdapter : selectedEvent ? selectedEvent.typeCToHDMIAdapter : ""
   );
-  const [label, setLable] = useState(leb ? leb[0].label :selectedEvent ? selectedEvent.label : "");
+  const [label, setLabel] = useState(leb ? leb[0].label :selectedEvent ? selectedEvent.label : "");
   const [doClock, setDoClock] = useState(
     leb ? leb[0].doClock :selectedEvent ? selectedEvent.doClock : "08:00"
   );
@@ -451,7 +451,7 @@ function ochir() {
                     person == "admin" ? ( leb?leb[0].label : selectedEvent ? label : null) : null
                   }
                   onClick={(e) => {
-                    setSelectedLabel(e.target.value);
+                    setLabel(e.target.value);
                   }}
                   className="border border-grey-500 rounded px-2"
                 >
