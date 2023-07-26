@@ -59,11 +59,9 @@ export default function EventModal() {
     leb ? leb[0].description : selectedEvent ? selectedEvent.description : ""
   );
   const [selectedLabel, setSelectedLabel] = useState(
-    leb
-      ? leb[0].label
-      : selectedEvent
-      ? selectedEvent.label
-      : "Выберите помещение"
+    selectedEvent
+      ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
+      : labelsClasses[0]
   );
   const [error, setError] = useState(false);
 
@@ -158,7 +156,8 @@ export default function EventModal() {
       ? selectedEvent.typeCToHDMIAdapter
       : ""
   );
-  const [label, setLable] = useState(
+
+  const [label, setLabel] = useState(
     leb ? leb[0].label : selectedEvent ? selectedEvent.label : ""
   );
   const [doClock, setDoClock] = useState(
@@ -502,7 +501,7 @@ export default function EventModal() {
                       : null
                   }
                   onClick={(e) => {
-                    setSelectedLabel(e.target.value);
+                    setLabel(e.target.value);
                   }}
                   className="border border-grey-500 rounded px-2"
                 >
