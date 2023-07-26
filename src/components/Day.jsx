@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import React, { useContext, useState, useEffect } from "react";
 import GlobalContext from "../context/GlobalContext";
-import "./Day.css"
+import "./Day.css";
 export default function Day({ day, rowIdx }) {
   const url = "http://83.69.139.151:3500/items";
   let person = localStorage.getItem("admin");
@@ -38,11 +38,11 @@ export default function Day({ day, rowIdx }) {
   ];
   let kun = new Date().getDate();
   let oy = new Date().getMonth();
-  let selectValue =localStorage.getItem("selectValue")
+  let selectValue = localStorage.getItem("selectValue");
   let x = data.filter(
     (row) => day.format("dddd, MMMM DD") == row.day && row.isCheck == true
   );
-  
+
   useEffect(() => {
     const events = filteredEvents.filter(
       (evt) => dayjs(evt.day).format("DD-MM-YY") === day.format("DD-MM-YY")
@@ -86,9 +86,15 @@ export default function Day({ day, rowIdx }) {
           <div
             key={idx}
             onClick={() => setSelectedEvent(evt)}
-            className={`bg-${evt.label == selectValue || "all"== selectValue? evt.label : ""}-200 flex justify-between p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+            className={`bg-${
+              evt.label == selectValue || "all" == selectValue ? evt.label : ""
+            }-200 flex justify-between p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
           >
-            <p>{evt.label == selectValue || "all"== selectValue? evt.title:""}</p>
+            <p>
+              {evt.label == selectValue || "all" == selectValue
+                ? evt.title
+                : ""}
+            </p>
           </div>
         ))}
       </div>

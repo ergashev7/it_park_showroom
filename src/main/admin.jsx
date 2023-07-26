@@ -5,11 +5,18 @@ import Sidebar from "../components/Sidebar";
 import { getMonth } from "../util";
 import GlobalContext from "../context/GlobalContext";
 import EventModal from "../components/EventModal";
+import { useNavigate } from "react-router-dom";
 function Admin() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.getItem("token") !== "qwerty" ? navigate("/") : navigate("/admin");
+  }, []);
+
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const { monthIndex, showEventModal } = useContext(GlobalContext);
   const [hidden, setHidden] = useState(true);
-  const [selectValue ,setSelectValue]=useState("all")
+  const [selectValue, setSelectValue] = useState("all");
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
@@ -24,7 +31,7 @@ function Admin() {
     },[])
   // console.log(selectValue);
   // console.log(selectValue);
-  localStorage.setItem("selectValue",selectValue)
+  localStorage.setItem("selectValue", selectValue);
   return (
     <React.Fragment>
       {showEventModal && <EventModal />}
