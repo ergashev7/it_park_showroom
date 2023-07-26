@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
 import emailjs from "@emailjs/browser";
 
-
 const sendEmail = () => {
   const formParams = {
     from_name: "Valisher Botirov",
@@ -162,7 +161,6 @@ export default function EventModal() {
   const [responsible, setResponsible] = useState(
     leb ? leb[0].responsible : selectedEvent ? selectedEvent.responsible : ""
   );
-  const [errorHandle, setErrorHandle] = useState(false);
   function handleSubmit(e) {
     async function postData(url = "", data = {}) {
       const response = await fetch(url, {
