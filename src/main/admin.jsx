@@ -29,9 +29,10 @@ function Admin() {
         if(window.innerWidth > 1000){
             setHidden(!hidden);
         }
-    },[])
-  // console.log(selectValue);
-  // console.log(selectValue);
+        if(showEventModal){
+          setHidden(!hidden);
+        }
+    },[showEventModal])
   localStorage.setItem("selectValue", selectValue);
   return (
     <React.Fragment>
@@ -60,9 +61,12 @@ function Admin() {
             </span>
           </div>
         </div>
-        <div className="flex flex-1 relative">
+        <div className="flex flex-1 ">
           <Month month={currentMonth} />
-            <div className='absolute top-0 right-0 bg-white h-full'>
+          <div className="hidden lg:block">
+          <Sidebar showHidden={hidden} />
+          </div>
+            <div className='block lg:hidden absolute top-[64px] right-0 bg-white h-full'>
                  <Sidebar showHidden={hidden} />
             </div>
         </div>
